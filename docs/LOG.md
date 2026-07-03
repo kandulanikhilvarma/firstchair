@@ -1,5 +1,19 @@
 # Build log
 
+## 2026-07-04 (session 3) — Days 13, 15–17 UI parts + F9 (commit 63bcdb4)
+
+Shipped:
+- src/lib/seed.ts — deterministic demo data (mulberry32, fixed seeds): 30-day trend, SOV, prompt rows, citations
+- src/lib/scoring/recommend.ts — F9 rule-based recommendations from citation gaps; every rec carries evidence line; 5 tests
+- /dashboard — sidebar shell, brand switcher topbar, "Demo data" badge, score hero (59/100 ↑4 + sparkline), per-engine trend chart w/ toggles, SOV donut + legend, prompt results table (Recommended/Mentioned/Absent badges, tabular-nums), top cited sources w/ missing-from-N callout, what-to-fix-first list
+- /onboarding — 4-step wizard per wireframe 1e: brand form → aliases + up to 5 competitors → 20 real generated prompts w/ toggles → per-engine progress bars → dashboard link
+- deps added: recharts, lucide-react
+- 57 tests green; typecheck/lint/build green. Preview-verified: dashboard sections, wizard full walkthrough (20 prompts generated from templates, toggle works, bars animate)
+
+OFFLINE WORK EXHAUSTED. Everything remaining needs accounts/keys:
+supabase-js wiring (auth, persistence, queue worker, RLS test), audit live path,
+Stripe, Resend emails, Vercel deploy, cost re-verify, fixture capture.
+
 ## 2026-07-04 (session 2) — Days 8, 9 (pure half), 12 (offline parts)
 
 Shipped (commit 581a05a):
