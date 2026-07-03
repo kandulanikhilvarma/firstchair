@@ -1,5 +1,22 @@
 # Build log
 
+## 2026-07-04 (session 5) — GitHub live
+
+- Private repo github.com/kandulanikhilvarma/rankwell created (gh CLI installed via winget, device-flow auth + workflow scope refresh)
+- Branch renamed master → main, all 5 commits pushed
+- CI ran on push: SUCCESS (typecheck + lint + 62 tests)
+- Ruleset "protect-main" active: changes to main require PR + green "checks" job; no bypass actors
+- NOTE: PR-only flow now enforced — future work lands on feat/* branches
+
+## 2026-07-04 (session 4) — Day 10 logic + Day 11 UI half (commit 85fb40b)
+
+- src/lib/scan.ts — runBrandScan orchestrator: N prompts × 3 engines, injected deps (engine caller, extraction LLM, spend reader), call failures recorded not fatal, CircuitBreakerOpen thrown when todaySpend + accumulated ≥ MAX_DAILY_LLM_USD (checked before every call), per-engine daily_scores aggregation. Worker route later = claim-job SQL + this + upserts.
+- /audit/demo — audit result per wireframe 1a: sticky primary-900 score bar (62/100), engine cards w/ mentioned/rank badges, Perplexity detail blurred + lock note, "2 more insights locked" box, trial CTA. Preview-verified.
+- 62 tests green; typecheck/lint/build green. 6 routes.
+
+Remaining offline candidates: none of substance. Auth UI/queue-worker route/email
+template all need their services to be verifiable — writing them blind = rework risk.
+
 ## 2026-07-04 (session 3) — Days 13, 15–17 UI parts + F9 (commit 63bcdb4)
 
 Shipped:
