@@ -1,36 +1,82 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Rankwell
 
-## Getting Started
+**AI visibility tracking for law firms.** See how ChatGPT, Gemini and Perplexity talk about your firm — and how to become the one they recommend.
 
-First, run the development server:
+[![CI](https://github.com/kandulanikhilvarma/rankwell/actions/workflows/ci.yml/badge.svg)](https://github.com/kandulanikhilvarma/rankwell/actions/workflows/ci.yml)
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+Prospective clients increasingly ask AI assistants — not Google — "who is the best personal injury lawyer in Austin?" Rankwell puts those exact questions to the three major answer engines every day, records what they say, and turns the raw responses into an explainable visibility score, competitor share-of-voice, and a prioritized fix list.
+
+## How it works
+
+1. **Prompt set** — 20 templated buyer questions generated per firm (city × practice area), editable.
+2. **Daily scan** — every active prompt is sent to OpenAI (`gpt-4o-mini`), Google Gemini (`gemini-2.0-flash` with Search grounding) and Perplexity (`sonar`) through their official APIs. Raw responses, citations, token counts and cost are stored.
+3. **Mention extraction** — a deterministic alias matcher (case/punctuation-insensitive, `&`↔`and`, legal-suffix tolerant) finds tracked firms; a second zod-validated LLM pass classifies sentiment and recommendation strength. LLM output is treated as untrusted input end to end.
+4. **Scoring** — per engine, per day:
+
+   ```
+   score = 100 × Σ w(p) / N        w(p) = 1.0 recommended
+                                          0.6 first mention among tracked firms
+                                          0.4 mentioned
+                                          0   absent
+   ```
+
+   Share of voice = brand mentions ÷ mentions of all tracked firms. Every dashboard number is traceable to a stored raw response — no black-box scores.
+5. **Recommendations** — rule-based citation-gap analysis: domains the engines cite where competitors are listed and you are not, ranked by evidence.
+
+## Architecture
+
+```mermaid
+flowchart LR
+  A[Marketing site + free audit] --> C[Next.js API routes]
+  B[Dashboard] --> C
+  D[Vercel Cron] -->|claims jobs| E[(Postgres scan_jobs queue)]
+  D --> F[OpenAI] & G[Gemini] & H[Perplexity]
+  C --> E
+  C --> I[Stripe] & J[Resend]
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- **Next.js 16 (App Router) + TypeScript + Tailwind v4** — one codebase for marketing site, app and API.
+- **Supabase** — Postgres, auth, row-level security on every table.
+- **Postgres as job queue** — `FOR UPDATE SKIP LOCKED` with a `unique(brand_id, scheduled_for)` idempotency constraint. No Redis.
+- **Cost controls** — per-call cost logging and a global daily circuit breaker (`MAX_DAILY_LLM_USD`) checked before every engine call.
+- **Stripe** — plan state derived exclusively from signature-verified webhooks.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Getting started
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm install
+cp .env.example .env.local   # fill in keys
+npm run dev                  # http://localhost:3000
+```
 
-## Learn More
+| Script | What |
+|---|---|
+| `npm run dev` | Dev server |
+| `npm run build` | Production build |
+| `npm run typecheck` | `tsc --noEmit` |
+| `npm run lint` | ESLint |
+| `npm test` | Vitest unit suite |
 
-To learn more about Next.js, take a look at the following resources:
+Database schema and RLS policies live in [`supabase/migrations`](supabase/migrations); apply with `supabase db reset` against your project. LLM prompts are versioned in [`prompts/`](prompts).
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Project structure
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```
+src/app/            routes: landing, /dashboard, /onboarding, /audit/demo, /api/audit
+src/lib/engines/    OpenAI / Gemini / Perplexity clients — retry, timeout, cost logging
+src/lib/scoring/    mention matcher, LLM extraction, score math, aggregation, recommendations
+src/lib/scan.ts     scan orchestrator with cost circuit breaker
+prompts/            versioned system prompts (scan, extraction)
+supabase/           SQL migrations incl. RLS policies
+```
 
-## Deploy on Vercel
+## Security posture
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- RLS enabled on every table, policies shipped in the same migration as the table.
+- All engine/Stripe/Supabase service keys are server-side only; `.env*` is gitignored.
+- Every API input validated with zod; LLM output schema-validated and rendered as text only.
+- Public audit endpoint is rate-limited and email-gated.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Status
+
+Pre-launch build (30-day MVP plan). Dashboard, onboarding and audit-result views currently run on deterministic demo data; live scanning activates with engine keys. See [`docs/LOG.md`](docs/LOG.md) for the build log.
