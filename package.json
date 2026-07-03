@@ -11,9 +11,11 @@
     "test": "vitest run"
   },
   "dependencies": {
+    "lucide-react": "^1.23.0",
     "next": "16.2.10",
     "react": "19.2.4",
     "react-dom": "19.2.4",
+    "recharts": "^3.9.1",
     "zod": "^4.4.3"
   },
   "devDependencies": {

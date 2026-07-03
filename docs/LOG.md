@@ -1,5 +1,16 @@
 # Build log
 
+## 2026-07-04 (session 2) — Days 8, 9 (pure half), 12 (offline parts)
+
+Shipped (commit 581a05a):
+- src/lib/scoring/extract.ts — LLM extraction pass: zod schema, fence-stripping parser, 1 retry, deterministic-only fallback w/ needs_review; injected callLlm for testability; skips LLM when no deterministic mention (no wasted spend); prompts/extract-system-v1.txt versioned
+- src/lib/scoring/aggregate.ts — per-prompt outcomes → daily_scores row (score, SOV, mention/rec counts, top-5 citations by frequency)
+- Landing page §3.4: hero + audit form as CTA, how-it-works, pricing (Agency highlighted), FAQ w/ "API ≠ consumer app" honesty, footer. Verified in preview: desktop, mobile 375px, form submit → friendly 503
+- /api/audit — zod-validated skeleton; real scan path lands with keys (Day 11)
+- 52 unit tests green; typecheck/lint green
+
+Still blocked on keys/accounts: audit live path, Supabase auth, queue worker (needs supabase-js + service role), RLS live test, fixture capture.
+
 ## 2026-07-04 — bootstrap (plan Days 2–6, local parts)
 
 Shipped:
