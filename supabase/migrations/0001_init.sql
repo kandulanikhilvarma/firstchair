@@ -117,13 +117,16 @@ as $$
   select workspace_id from members where user_id = auth.uid()
 $$;
 
+-- workspaces/members: users read only. Creation and membership writes happen
+-- server-side with the service-role key (signup flow) — a user-writable
+-- members policy would let anyone insert themselves into any workspace.
 alter table workspaces enable row level security;
-create policy workspace_member_all on workspaces
-  for all using (id in (select member_workspaces()));
+create policy workspaces_member_read on workspaces
+  for select using (id in (select member_workspaces()));
 
 alter table members enable row level security;
-create policy members_self on members
-  for all using (user_id = auth.uid());
+create policy members_self_read on members
+  for select using (user_id = auth.uid());
 
 alter table brands enable row level security;
 create policy brands_by_workspace on brands
