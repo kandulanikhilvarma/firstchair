@@ -19,6 +19,9 @@ import { findMentions, type TrackedBrand } from "../src/lib/scoring/mentions";
 const SYSTEM_PROMPT =
   "You are a helpful assistant answering a consumer's question. Answer naturally and concretely. When the question asks for professionals or firms, name specific ones you would point the person to, with a short reason each. Keep the answer under 300 words.";
 
+// 29 of the 30 day1-probe.md prompts — #14 ("Is [firm you find in #1] a good
+// law firm?") is templated on a prior result at runtime, not a fixed string;
+// run it manually in-browser after seeing what #1 surfaces.
 const PROMPTS: string[] = [
   "Who is the best personal injury lawyer in Austin?",
   "Best car accident attorney in Austin",
