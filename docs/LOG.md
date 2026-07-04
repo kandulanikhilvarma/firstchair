@@ -1,30 +1,35 @@
 # Build log
 
-## 2026-07-05 (session 7) — Stripe billing (F8) + brands persist (F3)
+## 2026-07-05 (session 7) — F3 + F8 + F5 shipped, Azure engine path
 
-- F3 (PR #12): onboarding wizard persists to Supabase via saveOnboarding
-  server action (zod, runs as user so RLS enforces membership). Brand +
-  aliases + competitors (is_competitor_of) + prompts with is_active.
-  Mock scan bars removed. E2E: rows in live DB, anon reads empty.
-- F8 (PR #14): Stripe subscriptions, webhooks-only plan state.
-  /api/stripe/checkout (7-day card-required trial), /api/stripe/webhook
-  (only writer of workspace.plan, sig-verified), /api/stripe/portal,
-  /billing page (Solo/Agency, monthly/annual toggle). stripe.ts server-only
-  client; pure resolvePlan + PRICE_TO_PLAN in stripe-plans.ts (testable).
-  scripts/stripe-setup.ts created products/prices (test mode).
-- Security bug caught by new test: PRICE_TO_PLAN object literal registered
-  an empty-string key when a STRIPE_PRICE_* env was unset -> empty priceId
-  granted a plan. Fixed: filter unset envs.
-- Verified live (Stripe test + live Supabase): checkout -> real session +
-  customer persisted; signed webhooks flip trial->solo->agency->canceled;
-  unsigned/forged -> 400, plan untouched.
-- NOTE: untracked F5 work present in tree from a parallel effort, NOT
-  committed here (not authored/reviewed this session, untestable w/o engine
-  keys): src/lib/queue.ts+test, src/app/api/cron/, engines/extraction-llm.ts,
-  supabase/migrations/0002_scan_queue.sql, vercel.json. Needs own PR + review.
-- USER TODO (F8 go-live): add 4 STRIPE_PRICE_* to Vercel; register webhook
-  endpoint /api/stripe/webhook in Stripe dashboard + set STRIPE_WEBHOOK_SECRET
-  in Vercel; enable customer portal in Stripe test mode.
+- F3 (PR #12): onboarding wizard persists via saveOnboarding server action
+  (zod, user-session inserts, RLS enforces membership). E2E: rows in live DB.
+- F8 (PR #14): Stripe subs, webhooks-only plan state. checkout (7-day
+  card-required trial) / webhook (sole writer of workspace.plan, sig-verified)
+  / portal / /billing page. Security bug caught by new test: unset
+  STRIPE_PRICE_* env collapsed to empty-string key in PRICE_TO_PLAN -> empty
+  priceId granted a plan; fixed by filtering unset envs. Live-verified:
+  real checkout session, signed webhooks flip trial->solo->agency->canceled,
+  forged/unsigned -> 400.
+- F5 (PR #15): daily cron worker + claim_scan_job() (FOR UPDATE SKIP LOCKED,
+  service_role-only). Live-verified: 401 gate, enqueue->claim->pipeline->
+  daily_scores upsert->done. Zero scores until an engine key is funded.
+  Known limitation: total engine outage writes 0-score rows ('no data'
+  indistinguishable from 'absent') — follow-up.
+- All merged to main by user same day: #9, #11, #12, #14, #15.
+- Azure OpenAI compat: OPENAI_BASE_URL env override in openai.ts +
+  extraction-llm.ts (Azure v1 surface, api-key header added) + OPENAI_MODEL
+  override. Path to free engine credit via GitHub Student Pack -> Azure for
+  Students ($100, no card): create Azure OpenAI resource, deploy gpt-4o-mini,
+  set OPENAI_BASE_URL=https://<resource>.openai.azure.com/openai/v1 +
+  OPENAI_API_KEY=<azure-key>.
+- USER TODO: Azure for Students signup + resource + deployment + 2 env lines;
+  F8 Vercel setup (4 STRIPE_PRICE_*, webhook endpoint + secret, enable
+  portal); rotate all keys pasted in chat after testing.
+- Merge-flow gotcha: stacked PR #14 was merged into its base branch
+  feat/auth-magic-link, not main (GitHub only auto-retargets when the base
+  branch is deleted on merge) — F8 was missing from main until PR #16
+  carried it over. Rule going forward: delete branches on merge.
 
 ## 2026-07-04 (session 6) — Supabase live + auth (F2) + probe automation
 
