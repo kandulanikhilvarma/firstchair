@@ -1,5 +1,28 @@
 # Build log
 
+## 2026-07-04 (session 6) — Supabase live + auth (F2) + probe automation
+
+- Live Supabase project wired: schema 0001_init.sql applied by user via SQL editor;
+  all 9 tables verified over REST. RLS live-tested (Day 4 gate): anon read = empty,
+  anon INSERT workspaces = 42501 denied, service-role write/delete works.
+- F2 auth shipped (PR #11): magic-link login, @supabase/ssr cookie sessions,
+  browser/server/admin clients, /login, /auth/callback (token_hash verifyOtp
+  preferred + PKCE code fallback), src/proxy.ts gate (Next 16 renamed middleware),
+  sign-out. First login creates workspace (7-day trial) + owner membership via
+  service-role. E2E verified in live preview incl. rows in live DB.
+- scripts/day1-probe.ts + icp-list.md (PR #9, ancestor of #11): automated Day-1
+  probe over engine APIs + 45-entry real ICP list from web search.
+- Engine key status: OpenAI key has no billing (429 insufficient_quota), Gemini
+  free tier quota-blocked. Probe + live scans wait on one funded key.
+- Gotchas hit: Supabase built-in SMTP silently drops past ~2 emails/hour (dev
+  workaround: scripts/gen-login-link.ts mints links via admin API); stale .next
+  cache after proxy.ts rename caused edge 500 "adapterFn is not a function" then
+  request hangs — fix is rm .next; dependabot merges on main conflicted
+  package.json/lockfile mid-PR (merged main back in, regenerated lockfile).
+- USER TODO: Supabase email templates -> token_hash link format + add Vercel
+  domain to Auth URL config; verify Vercel env vars (bare Supabase URL, no
+  leading space in STRIPE_WEBHOOK_SECRET); rotate exposed keys post-testing.
+
 ## 2026-07-04 (session 5) — GitHub live
 
 - Private repo github.com/kandulanikhilvarma/rankwell created (gh CLI installed via winget, device-flow auth + workflow scope refresh)
