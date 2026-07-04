@@ -26,6 +26,10 @@
 - USER TODO: Azure for Students signup + resource + deployment + 2 env lines;
   F8 Vercel setup (4 STRIPE_PRICE_*, webhook endpoint + secret, enable
   portal); rotate all keys pasted in chat after testing.
+- Merge-flow gotcha: stacked PR #14 was merged into its base branch
+  feat/auth-magic-link, not main (GitHub only auto-retargets when the base
+  branch is deleted on merge) — F8 was missing from main until PR #16
+  carried it over. Rule going forward: delete branches on merge.
 
 ## 2026-07-04 (session 6) — Supabase live + auth (F2) + probe automation
 
