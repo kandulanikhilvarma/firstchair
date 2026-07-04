@@ -1,5 +1,32 @@
 # Build log
 
+## 2026-07-05 (session 7) — F3 + F8 + F5 shipped, Azure engine path
+
+- F3 (PR #12): onboarding wizard persists via saveOnboarding server action
+  (zod, user-session inserts, RLS enforces membership). E2E: rows in live DB.
+- F8 (PR #14): Stripe subs, webhooks-only plan state. checkout (7-day
+  card-required trial) / webhook (sole writer of workspace.plan, sig-verified)
+  / portal / /billing page. Security bug caught by new test: unset
+  STRIPE_PRICE_* env collapsed to empty-string key in PRICE_TO_PLAN -> empty
+  priceId granted a plan; fixed by filtering unset envs. Live-verified:
+  real checkout session, signed webhooks flip trial->solo->agency->canceled,
+  forged/unsigned -> 400.
+- F5 (PR #15): daily cron worker + claim_scan_job() (FOR UPDATE SKIP LOCKED,
+  service_role-only). Live-verified: 401 gate, enqueue->claim->pipeline->
+  daily_scores upsert->done. Zero scores until an engine key is funded.
+  Known limitation: total engine outage writes 0-score rows ('no data'
+  indistinguishable from 'absent') — follow-up.
+- All merged to main by user same day: #9, #11, #12, #14, #15.
+- Azure OpenAI compat: OPENAI_BASE_URL env override in openai.ts +
+  extraction-llm.ts (Azure v1 surface, api-key header added) + OPENAI_MODEL
+  override. Path to free engine credit via GitHub Student Pack -> Azure for
+  Students ($100, no card): create Azure OpenAI resource, deploy gpt-4o-mini,
+  set OPENAI_BASE_URL=https://<resource>.openai.azure.com/openai/v1 +
+  OPENAI_API_KEY=<azure-key>.
+- USER TODO: Azure for Students signup + resource + deployment + 2 env lines;
+  F8 Vercel setup (4 STRIPE_PRICE_*, webhook endpoint + secret, enable
+  portal); rotate all keys pasted in chat after testing.
+
 ## 2026-07-04 (session 6) — Supabase live + auth (F2) + probe automation
 
 - Live Supabase project wired: schema 0001_init.sql applied by user via SQL editor;
