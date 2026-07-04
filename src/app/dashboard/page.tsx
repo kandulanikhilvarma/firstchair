@@ -17,6 +17,7 @@ import {
   seedTrend,
 } from "@/lib/seed";
 import { SovDonut, Sparkline, TrendChart } from "./charts";
+import SignOutButton from "./sign-out-button";
 
 // ponytail: static demo dashboard on seeded data; swaps to daily_scores reads when Supabase lands
 
@@ -72,6 +73,7 @@ export default function Dashboard() {
               {label}
             </a>
           ))}
+          <SignOutButton />
         </nav>
       </aside>
 
