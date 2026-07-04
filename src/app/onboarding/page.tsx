@@ -1,15 +1,15 @@
 "use client";
 
-// Onboarding wizard — wireframe 1e. Local state only; persistence + real scan
-// wire in with Supabase (Day 13 verify needs live first-scan trigger).
+// Onboarding wizard — wireframe 1e. Persists brand/competitors/prompts to
+// Supabase (F3); real scan trigger lands with the queue worker (F5).
 
 import { Check } from "lucide-react";
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { expandTemplates } from "@/lib/prompts/templates";
-import { ENGINE_LABELS, ENGINES } from "@/lib/seed";
+import { saveOnboarding } from "./actions";
 
-const STEPS = ["Brand", "Aliases", "Prompts", "First scan"] as const;
+const STEPS = ["Brand", "Aliases", "Prompts", "Save"] as const;
 
 const inputCls =
   "w-full rounded-lg border border-border bg-surface-0 px-3 py-2.5 text-ink-900 placeholder:text-ink-600/60 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2";
@@ -205,79 +205,82 @@ export default function Onboarding() {
               onClick={() => setStep(3)}
               className="mt-1 cursor-pointer self-start rounded-lg bg-primary-700 px-5 py-2.5 font-semibold text-white transition-colors duration-200 hover:bg-primary-500"
             >
-              Start my first scan
+              Save my setup
             </button>
           </div>
         )}
 
-        {step === 3 && <FirstScan />}
+        {step === 3 && (
+          <SaveStep
+            input={{
+              name: brand.name,
+              city: brand.city,
+              practice: brand.practice,
+              aliases: aliases
+                .split(",")
+                .map((a) => a.trim())
+                .filter(Boolean),
+              competitors,
+              prompts,
+            }}
+          />
+        )}
       </div>
     </main>
   );
 }
 
-/** Per-engine progress bars — this screen IS the activation metric (§1.8), so real
- *  per-engine feedback, not a spinner. Mock timing until the queue exists. */
-function FirstScan() {
-  const [progress, setProgress] = useState<Record<string, number>>({
-    openai: 0,
-    gemini: 0,
-    perplexity: 0,
-  });
+/** Persists the wizard to Supabase on mount. Per-engine scan progress bars
+ *  (wireframe 1e, activation metric §1.8) return here with the queue worker (F5) —
+ *  no fake bars while scans can't actually run. */
+function SaveStep({
+  input,
+}: {
+  input: Parameters<typeof saveOnboarding>[0];
+}) {
+  const [state, setState] = useState<
+    { status: "saving" } | { status: "saved" } | { status: "error"; message: string }
+  >({ status: "saving" });
+  const started = useRef(false);
 
   useEffect(() => {
-    const speeds: Record<string, number> = { openai: 4, gemini: 2.6, perplexity: 1.8 };
-    const t = setInterval(() => {
-      setProgress((p) => {
-        const next = { ...p };
-        for (const e of ENGINES) next[e] = Math.min(100, next[e] + speeds[e]);
-        return next;
-      });
-    }, 120);
-    return () => clearInterval(t);
-  }, []);
-
-  const done = ENGINES.every((e) => progress[e] === 100);
+    if (started.current) return; // StrictMode double-mount — save exactly once
+    started.current = true;
+    saveOnboarding(input).then((res) =>
+      setState(res.ok ? { status: "saved" } : { status: "error", message: res.error }),
+    );
+  }, [input]);
 
   return (
-    <div className="flex flex-col gap-5">
+    <div className="flex flex-col gap-4">
       <h1 className="text-2xl font-bold text-primary-900">
-        First scan running
+        {state.status === "saved" ? "Setup complete" : "Saving your setup"}
       </h1>
-      {ENGINES.map((e) => (
-        <div key={e}>
-          <div className="flex justify-between text-sm font-medium">
-            <span className="text-ink-900">{ENGINE_LABELS[e]}</span>
-            <span className="tnum text-ink-600">
-              {progress[e] === 100
-                ? "done"
-                : progress[e] === 0
-                  ? "queued"
-                  : `${Math.round(progress[e])}%`}
-            </span>
-          </div>
-          <div
-            role="progressbar"
-            aria-valuenow={Math.round(progress[e])}
-            aria-valuemin={0}
-            aria-valuemax={100}
-            aria-label={`${ENGINE_LABELS[e]} scan progress`}
-            className="mt-1 h-2 overflow-hidden rounded-full bg-surface-50"
+      {state.status === "saving" && (
+        <p role="status" className="text-sm text-ink-600">
+          Saving your firm, competitors and prompts…
+        </p>
+      )}
+      {state.status === "error" && (
+        <p role="status" className="text-sm text-danger-600">
+          {state.message}
+        </p>
+      )}
+      {state.status === "saved" && (
+        <>
+          <p role="status" className="text-sm text-ink-600">
+            {input.prompts.filter((p) => p.active).length} prompts tracked for{" "}
+            {input.name} vs {input.competitors.length} competitor
+            {input.competitors.length === 1 ? "" : "s"}. Daily scans start once
+            engines are connected.
+          </p>
+          <Link
+            href="/dashboard"
+            className="mt-2 self-start rounded-lg bg-accent-600 px-5 py-2.5 font-semibold text-white transition-colors duration-200 hover:opacity-90"
           >
-            <div
-              className="h-full rounded-full bg-primary-500 transition-[width] duration-150"
-              style={{ width: `${progress[e]}%` }}
-            />
-          </div>
-        </div>
-      ))}
-      {done && (
-        <Link
-          href="/dashboard"
-          className="mt-2 self-start rounded-lg bg-accent-600 px-5 py-2.5 font-semibold text-white transition-colors duration-200 hover:opacity-90"
-        >
-          View my dashboard
-        </Link>
+            View my dashboard
+          </Link>
+        </>
       )}
     </div>
   );
