@@ -1,5 +1,31 @@
 # Build log
 
+## 2026-07-05 (session 7) — Stripe billing (F8) + brands persist (F3)
+
+- F3 (PR #12): onboarding wizard persists to Supabase via saveOnboarding
+  server action (zod, runs as user so RLS enforces membership). Brand +
+  aliases + competitors (is_competitor_of) + prompts with is_active.
+  Mock scan bars removed. E2E: rows in live DB, anon reads empty.
+- F8 (PR #14): Stripe subscriptions, webhooks-only plan state.
+  /api/stripe/checkout (7-day card-required trial), /api/stripe/webhook
+  (only writer of workspace.plan, sig-verified), /api/stripe/portal,
+  /billing page (Solo/Agency, monthly/annual toggle). stripe.ts server-only
+  client; pure resolvePlan + PRICE_TO_PLAN in stripe-plans.ts (testable).
+  scripts/stripe-setup.ts created products/prices (test mode).
+- Security bug caught by new test: PRICE_TO_PLAN object literal registered
+  an empty-string key when a STRIPE_PRICE_* env was unset -> empty priceId
+  granted a plan. Fixed: filter unset envs.
+- Verified live (Stripe test + live Supabase): checkout -> real session +
+  customer persisted; signed webhooks flip trial->solo->agency->canceled;
+  unsigned/forged -> 400, plan untouched.
+- NOTE: untracked F5 work present in tree from a parallel effort, NOT
+  committed here (not authored/reviewed this session, untestable w/o engine
+  keys): src/lib/queue.ts+test, src/app/api/cron/, engines/extraction-llm.ts,
+  supabase/migrations/0002_scan_queue.sql, vercel.json. Needs own PR + review.
+- USER TODO (F8 go-live): add 4 STRIPE_PRICE_* to Vercel; register webhook
+  endpoint /api/stripe/webhook in Stripe dashboard + set STRIPE_WEBHOOK_SECRET
+  in Vercel; enable customer portal in Stripe test mode.
+
 ## 2026-07-04 (session 6) — Supabase live + auth (F2) + probe automation
 
 - Live Supabase project wired: schema 0001_init.sql applied by user via SQL editor;
