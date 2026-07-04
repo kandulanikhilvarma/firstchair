@@ -4,8 +4,9 @@
 // not a scored EngineResult).
 
 import { callWithRetry, ensureOk } from "./types";
+import { OPENAI_BASE_URL } from "./openai";
 
-const MODEL = "gpt-4o-mini";
+const MODEL = process.env.OPENAI_MODEL ?? "gpt-4o-mini";
 
 export async function callExtractionLlmOpenAI(
   systemPrompt: string,
@@ -15,10 +16,11 @@ export async function callExtractionLlmOpenAI(
   if (!apiKey) throw new Error("missing env OPENAI_API_KEY");
 
   return callWithRetry(async () => {
-    const res = await fetch("https://api.openai.com/v1/chat/completions", {
+    const res = await fetch(`${OPENAI_BASE_URL()}/chat/completions`, {
       method: "POST",
       headers: {
         Authorization: `Bearer ${apiKey}`,
+        "api-key": apiKey,
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
