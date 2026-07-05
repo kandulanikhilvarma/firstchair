@@ -9,7 +9,7 @@ Prospective clients increasingly ask AI assistants — not Google — "who is th
 ## How it works
 
 1. **Prompt set** — 20 templated buyer questions generated per firm (city × practice area), editable.
-2. **Daily scan** — every active prompt is sent to OpenAI (`gpt-4o-mini`), Google Gemini (`gemini-2.0-flash` with Search grounding) and Perplexity (`sonar`) through their official APIs. Raw responses, citations, token counts and cost are stored.
+2. **Daily scan** — every active prompt is sent to OpenAI (`gpt-4o-mini`), Google Gemini (`gemini-2.0-flash` with Search grounding) and Perplexity (`sonar`) through their official APIs. Raw responses, citations, token counts and cost are stored. The OpenAI client also speaks any OpenAI-compatible endpoint (Azure OpenAI, Groq) via `OPENAI_BASE_URL`/`OPENAI_MODEL`.
 3. **Mention extraction** — a deterministic alias matcher (case/punctuation-insensitive, `&`↔`and`, legal-suffix tolerant) finds tracked firms; a second zod-validated LLM pass classifies sentiment and recommendation strength. LLM output is treated as untrusted input end to end.
 4. **Scoring** — per engine, per day:
 
@@ -62,12 +62,17 @@ Database schema and RLS policies live in [`supabase/migrations`](supabase/migrat
 ## Project structure
 
 ```
-src/app/            routes: landing, /dashboard, /onboarding, /audit/demo, /api/audit
+src/app/            routes: landing, /login, /dashboard, /onboarding, /billing, /audit/demo
+src/app/api/        /api/audit, /api/stripe/{checkout,webhook,portal}, /api/cron/scan
+src/proxy.ts        auth gate for app routes (JWT validated per request)
 src/lib/engines/    OpenAI / Gemini / Perplexity clients — retry, timeout, cost logging
 src/lib/scoring/    mention matcher, LLM extraction, score math, aggregation, recommendations
 src/lib/scan.ts     scan orchestrator with cost circuit breaker
+src/lib/queue.ts    worker decision/mapping logic (DB-free, unit-tested)
+src/lib/stripe*.ts  Stripe client (server-only) + pure price→plan mapping
 prompts/            versioned system prompts (scan, extraction)
-supabase/           SQL migrations incl. RLS policies
+supabase/           SQL migrations incl. RLS policies + scan-job claim function
+scripts/            one-time setup (Stripe products/prices) and dev utilities
 ```
 
 ## Security posture
@@ -79,4 +84,15 @@ supabase/           SQL migrations incl. RLS policies
 
 ## Status
 
-Pre-launch build (30-day MVP plan). Dashboard, onboarding and audit-result views currently run on deterministic demo data; live scanning activates with engine keys. See [`docs/LOG.md`](docs/LOG.md) for the build log.
+Pre-launch build (30-day MVP plan).
+
+| Area | State |
+|---|---|
+| Auth (magic link, workspace bootstrap) | live, verified against production Supabase |
+| Onboarding → brand/competitors/prompts persistence | live, RLS-enforced |
+| Daily scan worker (queue claim → engines → extraction → scores) | live; pipeline verified end-to-end with real LLM responses |
+| Billing (Stripe checkout, webhook plan state, portal) | live in test mode; signed-webhook lifecycle verified |
+| Dashboard & audit result views | render deterministic demo data — wiring to `daily_scores` is next |
+| Weekly email report | not started |
+
+See [`docs/LOG.md`](docs/LOG.md) for the day-by-day build log.
