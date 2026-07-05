@@ -1,5 +1,31 @@
 # Build log
 
+## 2026-07-05 (session 8) — engine unblocked (Groq), pipeline verified with real LLM output
+
+- Azure path stalled: Azure-for-Students quota 0 for chat deployments in
+  tried regions; gpt-4o-mini deploy locked (deprecated), gpt-5.4-mini
+  insufficient quota. Parked — resource exists if quota request approved.
+- Unblocked free via Groq (console.groq.com, OpenAI-compatible):
+  OPENAI_BASE_URL=https://api.groq.com/openai/v1 +
+  OPENAI_MODEL=llama-3.3-70b-versatile. Zero code changes — the #17
+  override was built for exactly this.
+- Day-1 probe gate MET: 29/29 calls answered, 8 named a known ICP firm
+  (Loewy 3x, Byrd Davis 2x, Foster LLP 2x, Arnold & Itkin 1x).
+- F5 pipeline verified with real LLM data end-to-end: cron run processed
+  job; 5 mentions extracted w/ correct rec-vs-mention split (4/1),
+  sentiment, position 1; visibility_score 24.2; cost_usd logged per call.
+  Test rows cleaned after.
+- Caveat (stands): Groq = Llama, proves plumbing not product data. Before
+  first paying customer: real OpenAI key + Gemini quota fix + Day-9 cost
+  re-verify against $0.60/brand/day ceiling.
+- Groq key rotated by user post-testing; .env.local synced.
+- Merge-flow gotcha resolved: #16 landed F8 on main, #17 (Azure compat)
+  merged. Repo docs refreshed (README status/structure, .env.example
+  gained OPENAI_BASE_URL/OPENAI_MODEL + STRIPE_PRICE_*).
+- USER TODO unchanged: F8 Vercel env + Stripe webhook endpoint + portal;
+  rotate remaining keys pasted in chat (Gemini, Supabase, Stripe, Resend,
+  CRON_SECRET) before launch.
+
 ## 2026-07-05 (session 7) — F3 + F8 + F5 shipped, Azure engine path
 
 - F3 (PR #12): onboarding wizard persists via saveOnboarding server action
