@@ -1,3 +1,4 @@
+import Link from "next/link";
 import {
   ArrowUpRight,
   BarChart3,
@@ -8,19 +9,10 @@ import {
   Settings,
   Users,
 } from "lucide-react";
-import { recommendFromCitations } from "@/lib/scoring/recommend";
-import {
-  DEMO_BRAND,
-  ENGINE_LABELS,
-  seedCitations,
-  seedPromptRows,
-  seedShareOfVoice,
-  seedTrend,
-} from "@/lib/seed";
+import { ENGINE_LABELS } from "@/lib/seed";
 import { SovDonut, Sparkline, TrendChart } from "./charts";
+import { getDashboardData } from "./data";
 import SignOutButton from "./sign-out-button";
-
-// ponytail: static demo dashboard on seeded data; swaps to daily_scores reads when Supabase lands
 
 const NAV = [
   { label: "Dashboard", icon: LayoutDashboard, active: true, href: "#" },
@@ -31,72 +23,41 @@ const NAV = [
   { label: "Settings", icon: Settings, active: false, href: "#" },
 ];
 
-function scoreOf(p: { openai: number; gemini: number; perplexity: number }) {
-  return Math.round((p.openai + p.gemini + p.perplexity) / 3);
-}
+export default async function Dashboard() {
+  const data = await getDashboardData();
 
-export default function Dashboard() {
-  const trend = seedTrend();
-  const sov = seedShareOfVoice();
-  const prompts = seedPromptRows();
-  const citations = seedCitations();
-  const recommendations = recommendFromCitations(
-    citations.map((c) => ({
-      domain: c.domain,
-      citedInPrompts: c.citedInPrompts,
-      totalPrompts: 10,
-      brandListed: c.brandListed,
-      competitorsListed: c.competitorsListed,
-    })),
-  );
+  // No brand yet — send the user through onboarding.
+  if (!data) {
+    return (
+      <Shell brandName={null}>
+        <EmptyState
+          title="Set up your first brand"
+          body="Add your firm, competitors and the questions you want tracked. Your first scan runs right after."
+          cta={{ label: "Start onboarding", href: "/onboarding" }}
+        />
+      </Shell>
+    );
+  }
 
-  const today = scoreOf(trend[trend.length - 1]);
-  const weekAgo = scoreOf(trend[trend.length - 8]);
-  const delta = today - weekAgo;
+  // Brand exists but no scores yet — first scan is still pending.
+  if (!data.hasScans || data.trend.length === 0) {
+    return (
+      <Shell brandName={data.brandName}>
+        <EmptyState
+          title="Your first scan is on the way"
+          body="We run your prompts against ChatGPT, Gemini and Perplexity every day. Scores appear here once the first daily scan completes."
+        />
+      </Shell>
+    );
+  }
+
+  const { trend, sov, promptRows: prompts, citationGaps: citations, recommendations } = data;
+  const { today, delta } = data.hero;
+  const missingCount = citations.filter((c) => !c.brandListed).length;
 
   return (
-    <div className="flex min-h-screen">
-      {/* Sidebar §3.3 */}
-      <aside className="hidden w-60 shrink-0 border-r border-border bg-surface-0 px-4 py-6 lg:block">
-        <span className="px-2 text-xl font-bold text-primary-900">Rankwell</span>
-        <nav className="mt-8 space-y-1">
-          {NAV.map(({ label, icon: Icon, active, href }) => (
-            <a
-              key={label}
-              href={href}
-              aria-current={active ? "page" : undefined}
-              className={`flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium ${
-                active
-                  ? "bg-primary-700 text-white"
-                  : "text-ink-600 hover:bg-surface-50 hover:text-ink-900"
-              }`}
-            >
-              <Icon className="h-5 w-5" aria-hidden />
-              {label}
-            </a>
-          ))}
-          <SignOutButton />
-        </nav>
-      </aside>
-
-      <div className="min-w-0 flex-1">
-        {/* Topbar with brand switcher */}
-        <header className="flex items-center justify-between border-b border-border bg-surface-0 px-6 py-4">
-          <label className="flex items-center gap-2 text-sm font-medium text-ink-600">
-            Brand
-            <select
-              defaultValue={DEMO_BRAND}
-              className="cursor-pointer rounded-lg border border-border bg-surface-0 px-3 py-1.5 font-semibold text-ink-900 focus:outline-none focus:ring-2 focus:ring-primary-500"
-            >
-              <option>{DEMO_BRAND}</option>
-            </select>
-          </label>
-          <span className="rounded-full bg-warn-600/10 px-3 py-1 text-xs font-semibold text-warn-600">
-            Demo data
-          </span>
-        </header>
-
-        <main className="mx-auto max-w-7xl space-y-6 p-6">
+    <Shell brandName={data.brandName}>
+      <main className="mx-auto max-w-7xl space-y-6 p-6">
           {/* ① Score hero + ② SOV donut */}
           <div className="grid gap-6 lg:grid-cols-3">
             <section className="rounded-xl border border-border bg-surface-0 p-6 shadow-card lg:col-span-2">
@@ -126,7 +87,13 @@ export default function Dashboard() {
             <section className="rounded-xl border border-border bg-surface-0 p-6 shadow-card">
               <h2 className="text-sm font-semibold text-ink-600">Share of voice</h2>
               <div className="mt-2">
-                <SovDonut data={sov} />
+                {sov.length > 0 ? (
+                  <SovDonut data={sov} />
+                ) : (
+                  <p className="py-8 text-center text-sm text-ink-600">
+                    No firm mentions in the latest scan.
+                  </p>
+                )}
               </div>
             </section>
           </div>
@@ -158,6 +125,13 @@ export default function Dashboard() {
                   </tr>
                 </thead>
                 <tbody>
+                  {prompts.length === 0 && (
+                    <tr>
+                      <td colSpan={5} className="px-6 py-6 text-center text-ink-600">
+                        No responses recorded in the latest scan.
+                      </td>
+                    </tr>
+                  )}
                   {prompts.map((r, i) => (
                     <tr key={i} className="border-b border-border last:border-0">
                       <td className="max-w-md truncate px-6 py-2 text-ink-900">{r.prompt}</td>
@@ -190,42 +164,117 @@ export default function Dashboard() {
           <div className="grid gap-6 lg:grid-cols-2">
             <section className="rounded-xl border border-border bg-surface-0 p-6 shadow-card">
               <h2 className="text-sm font-semibold text-ink-600">Top cited sources</h2>
-              <ul className="mt-3 space-y-2 text-sm">
-                {citations.map((c) => (
-                  <li key={c.domain} className="flex items-center justify-between">
-                    <span className="font-medium text-ink-900">{c.domain}</span>
-                    <span className="tnum text-ink-600">
-                      cited for {c.citedInPrompts}/10 prompts ·{" "}
-                      {c.brandListed ? (
-                        <span className="font-semibold text-accent-600">listed</span>
-                      ) : (
-                        <span className="font-semibold text-danger-600">missing</span>
-                      )}
-                    </span>
-                  </li>
-                ))}
-              </ul>
-              <p className="mt-3 text-sm text-warn-600">
-                You&apos;re missing from{" "}
-                {citations.filter((c) => !c.brandListed).length} of{" "}
-                {citations.length} top-cited sources.
-              </p>
+              {citations.length > 0 ? (
+                <>
+                  <ul className="mt-3 space-y-2 text-sm">
+                    {citations.map((c) => (
+                      <li key={c.domain} className="flex items-center justify-between">
+                        <span className="font-medium text-ink-900">{c.domain}</span>
+                        <span className="tnum text-ink-600">
+                          cited for {c.citedInPrompts}/{c.totalPrompts} prompts ·{" "}
+                          {c.brandListed ? (
+                            <span className="font-semibold text-accent-600">listed</span>
+                          ) : (
+                            <span className="font-semibold text-danger-600">missing</span>
+                          )}
+                        </span>
+                      </li>
+                    ))}
+                  </ul>
+                  <p className="mt-3 text-sm text-warn-600">
+                    You&apos;re missing from {missingCount} of {citations.length} top-cited
+                    sources.
+                  </p>
+                </>
+              ) : (
+                <p className="mt-3 text-sm text-ink-600">
+                  No sources were cited in the latest scan yet.
+                </p>
+              )}
             </section>
 
             <section className="rounded-xl border border-border bg-surface-0 p-6 shadow-card">
               <h2 className="text-sm font-semibold text-ink-600">What to fix first</h2>
-              <ol className="mt-3 space-y-3 text-sm">
-                {recommendations.map((r) => (
-                  <li key={r.action}>
-                    <p className="font-semibold text-ink-900">{r.action}</p>
-                    <p className="text-ink-600">{r.evidence}</p>
-                  </li>
-                ))}
-              </ol>
+              {recommendations.length > 0 ? (
+                <ol className="mt-3 space-y-3 text-sm">
+                  {recommendations.map((r) => (
+                    <li key={r.action}>
+                      <p className="font-semibold text-ink-900">{r.action}</p>
+                      <p className="text-ink-600">{r.evidence}</p>
+                    </li>
+                  ))}
+                </ol>
+              ) : (
+                <p className="mt-3 text-sm text-ink-600">
+                  No citation gaps found — you&apos;re listed on the sources the engines cite.
+                </p>
+              )}
             </section>
           </div>
         </main>
+    </Shell>
+  );
+}
+
+/** Sidebar + header chrome shared by the populated and empty dashboard states. */
+function Shell({ brandName, children }: { brandName: string | null; children: React.ReactNode }) {
+  return (
+    <div className="flex min-h-screen">
+      <aside className="hidden w-60 shrink-0 border-r border-border bg-surface-0 px-4 py-6 lg:block">
+        <span className="px-2 text-xl font-bold text-primary-900">Rankwell</span>
+        <nav className="mt-8 space-y-1">
+          {NAV.map(({ label, icon: Icon, active, href }) => (
+            <a
+              key={label}
+              href={href}
+              aria-current={active ? "page" : undefined}
+              className={`flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium ${
+                active
+                  ? "bg-primary-700 text-white"
+                  : "text-ink-600 hover:bg-surface-50 hover:text-ink-900"
+              }`}
+            >
+              <Icon className="h-5 w-5" aria-hidden />
+              {label}
+            </a>
+          ))}
+          <SignOutButton />
+        </nav>
+      </aside>
+
+      <div className="min-w-0 flex-1">
+        <header className="flex items-center justify-between border-b border-border bg-surface-0 px-6 py-4">
+          <span className="text-sm font-medium text-ink-600">
+            Brand <span className="font-semibold text-ink-900">{brandName ?? "—"}</span>
+          </span>
+        </header>
+        {children}
       </div>
     </div>
+  );
+}
+
+function EmptyState({
+  title,
+  body,
+  cta,
+}: {
+  title: string;
+  body: string;
+  cta?: { label: string; href: string };
+}) {
+  return (
+    <main className="mx-auto flex max-w-xl flex-col items-center gap-3 px-6 py-24 text-center">
+      <h1 className="font-heading text-2xl font-bold text-primary-900">{title}</h1>
+      <p className="text-ink-600">{body}</p>
+      {cta && (
+        <Link
+          href={cta.href}
+          className="mt-2 rounded-lg bg-primary-700 px-5 py-2.5 font-semibold text-white hover:bg-primary-500"
+        >
+          {cta.label}
+        </Link>
+      )}
+    </main>
   );
 }
