@@ -1,5 +1,32 @@
 # Build log
 
+## 2026-07-08 (session 9) — F6 + F1 + F7: MVP feature-complete
+
+- F6 (PR #20): dashboard reads live daily_scores instead of demo seed.
+  src/lib/dashboard.ts pure transforms (trend, blended hero + week delta,
+  SOV from latest-scan mentions, prompt rows, citation gaps) + 6 tests;
+  dashboard/data.ts server-only fetch (RLS-scoped); page.tsx async server
+  component with empty states (no brand -> onboarding; no scans -> pending)
+  + per-section fallbacks. seed.ts stripped to shared types + labels.
+  Verified live: real Groq scan of Loewy -> score, SOV, real prompt table
+  (2 recommendations @ position 1), citation empty states.
+- F1 (PR #21): landing audit runs a real scan. api/audit does zod +
+  per-email hourly rate limit (DB count) -> runBrandScan 5 prompts x 3
+  engines (ephemeral brand) -> persist audit_leads + result jsonb -> email
+  -> return. audit-form renders per-engine result card + trial CTA.
+  Verified: Morgan & Morgan/Orlando -> 100/100, 5/5, best #1; form ->
+  result card end to end.
+- F7 (PR #21): api/cron/weekly (CRON_SECRET-gated) blends each workspace
+  brand's last 7 days, emails the owner the score + delta. Monday 13:00 UTC
+  cron. Verified: authed run sent 1, unauth 401.
+- src/lib/email.ts (+tests): Resend send wrapper + pure HTML builders for
+  audit + weekly emails (user input escaped). No react-email dep.
+- All F1-F9 now built + verified. Still on Groq (Llama); swap to real
+  OpenAI + Gemini/Perplexity + Day-9 cost re-verify before first paying
+  customer. USER TODO: set EMAIL_FROM (verified Resend domain) +
+  NEXT_PUBLIC_APP_URL in Vercel; register the weekly cron is automatic via
+  vercel.json on deploy.
+
 ## 2026-07-05 (session 8) — engine unblocked (Groq), pipeline verified with real LLM output
 
 - Azure path stalled: Azure-for-Students quota 0 for chat deployments in
