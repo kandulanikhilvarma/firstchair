@@ -86,13 +86,19 @@ scripts/            one-time setup (Stripe products/prices) and dev utilities
 
 Pre-launch build (30-day MVP plan).
 
+All nine MVP features (F1–F9) are built and verified end-to-end.
+
 | Area | State |
 |---|---|
-| Auth (magic link, workspace bootstrap) | live, verified against production Supabase |
-| Onboarding → brand/competitors/prompts persistence | live, RLS-enforced |
-| Daily scan worker (queue claim → engines → extraction → scores) | live; pipeline verified end-to-end with real LLM responses |
-| Billing (Stripe checkout, webhook plan state, portal) | live in test mode; signed-webhook lifecycle verified |
-| Dashboard & audit result views | render deterministic demo data — wiring to `daily_scores` is next |
-| Weekly email report | not started |
+| Free audit lead magnet (F1) | live — landing form runs a real 5-prompt × 3-engine scan, emails + renders the result |
+| Auth, magic link, workspace bootstrap (F2) | live, verified against production Supabase |
+| Onboarding → brand/competitors/prompts (F3, F4) | live, RLS-enforced |
+| Daily scan worker: queue claim → engines → extraction → scores (F5) | live; pipeline verified with real LLM responses |
+| Dashboard on live `daily_scores` (F6) | live — trend, share of voice, prompt table, citation gaps, empty states |
+| Weekly report email (F7) | live — Monday cron blends the week and emails the owner |
+| Billing: Stripe checkout, webhook plan state, portal (F8) | live in test mode; signed-webhook lifecycle verified |
+| Rule-based recommendations (F9) | live — citation-gap analysis feeds the dashboard |
+
+Verification to date has run on the Groq OpenAI-compatible endpoint (free) — it proves the full pipeline, but is Llama, not the consumer assistants. Point `OPENAI_API_KEY` at real OpenAI (plus Gemini/Perplexity keys) and re-verify the per-brand daily cost against the $0.60 ceiling before onboarding a paying customer.
 
 See [`docs/LOG.md`](docs/LOG.md) for the day-by-day build log.
