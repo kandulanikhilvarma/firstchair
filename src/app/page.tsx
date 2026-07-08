@@ -1,3 +1,4 @@
+import Link from "next/link";
 import AuditForm from "./audit-form";
 
 const STEPS = [
@@ -37,6 +38,25 @@ const FAQS = [
 export default function Home() {
   return (
     <div className="flex flex-1 flex-col">
+      {/* Top nav — logo + the way in for returning + new customers */}
+      <header className="mx-auto flex w-full max-w-6xl items-center justify-between px-6 py-4">
+        <span className="text-xl font-bold text-primary-900">Rankwell</span>
+        <nav className="flex items-center gap-3">
+          <Link
+            href="/login"
+            className="text-sm font-medium text-ink-600 hover:text-ink-900"
+          >
+            Log in
+          </Link>
+          <Link
+            href="/login"
+            className="rounded-lg bg-primary-700 px-4 py-2 text-sm font-semibold text-white transition-colors duration-200 hover:bg-primary-500"
+          >
+            Start free trial
+          </Link>
+        </nav>
+      </header>
+
       {/* Hero — audit form IS the CTA (§3.4) */}
       <section className="mx-auto flex w-full max-w-6xl flex-col items-center gap-10 px-6 py-20 lg:flex-row lg:items-start lg:justify-between">
         <div className="max-w-xl text-center lg:text-left">
@@ -95,6 +115,12 @@ export default function Home() {
               <li>Competitor tracking (5)</li>
               <li>Weekly email report</li>
             </ul>
+            <Link
+              href="/login"
+              className="mt-6 block rounded-lg border border-primary-700 px-4 py-2.5 text-center font-semibold text-primary-700 transition-colors duration-200 hover:bg-primary-700 hover:text-white"
+            >
+              Start 7-day trial
+            </Link>
           </div>
           <div className="rounded-xl border-2 border-primary-500 bg-surface-0 p-8 shadow-card-hover">
             <div className="flex items-center justify-between">
@@ -112,6 +138,12 @@ export default function Home() {
               <li>Competitor tracking per brand</li>
               <li>Client-ready weekly emails</li>
             </ul>
+            <Link
+              href="/login"
+              className="mt-6 block rounded-lg bg-primary-700 px-4 py-2.5 text-center font-semibold text-white transition-colors duration-200 hover:bg-primary-500"
+            >
+              Start 7-day trial
+            </Link>
           </div>
         </div>
       </section>
