@@ -88,6 +88,14 @@ export default async function Home({
             <span>Google Gemini</span>
             <span>Perplexity</span>
           </div>
+          <p className="mt-4 text-center lg:text-left">
+            <Link
+              href="/audit/demo"
+              className="text-sm font-semibold text-primary-700 hover:text-primary-500"
+            >
+              Not ready? See a sample report →
+            </Link>
+          </p>
         </div>
         <AuditForm />
       </section>
