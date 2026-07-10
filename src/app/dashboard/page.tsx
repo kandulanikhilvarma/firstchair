@@ -1,27 +1,9 @@
 import Link from "next/link";
-import {
-  ArrowUpRight,
-  BarChart3,
-  CreditCard,
-  FileText,
-  LayoutDashboard,
-  MessageSquareText,
-  Settings,
-  Users,
-} from "lucide-react";
+import { ArrowUpRight, BarChart3 } from "lucide-react";
 import { ENGINE_LABELS } from "@/lib/seed";
 import { SovDonut, Sparkline, TrendChart } from "./charts";
 import { getDashboardData } from "./data";
-import SignOutButton from "./sign-out-button";
-
-const NAV = [
-  { label: "Dashboard", icon: LayoutDashboard, active: true, href: "#" },
-  { label: "Prompts", icon: MessageSquareText, active: false, href: "#" },
-  { label: "Competitors", icon: Users, active: false, href: "#" },
-  { label: "Reports", icon: FileText, active: false, href: "#" },
-  { label: "Billing", icon: CreditCard, active: false, href: "/billing" },
-  { label: "Settings", icon: Settings, active: false, href: "#" },
-];
+import Shell from "./shell";
 
 export default async function Dashboard() {
   const data = await getDashboardData();
@@ -213,44 +195,6 @@ export default async function Dashboard() {
           </div>
         </main>
     </Shell>
-  );
-}
-
-/** Sidebar + header chrome shared by the populated and empty dashboard states. */
-function Shell({ brandName, children }: { brandName: string | null; children: React.ReactNode }) {
-  return (
-    <div className="flex min-h-screen">
-      <aside className="hidden w-60 shrink-0 border-r border-border bg-surface-0 px-4 py-6 lg:block">
-        <span className="px-2 text-xl font-bold text-primary-900">Rankwell</span>
-        <nav className="mt-8 space-y-1">
-          {NAV.map(({ label, icon: Icon, active, href }) => (
-            <a
-              key={label}
-              href={href}
-              aria-current={active ? "page" : undefined}
-              className={`flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium ${
-                active
-                  ? "bg-primary-700 text-white"
-                  : "text-ink-600 hover:bg-surface-50 hover:text-ink-900"
-              }`}
-            >
-              <Icon className="h-5 w-5" aria-hidden />
-              {label}
-            </a>
-          ))}
-          <SignOutButton />
-        </nav>
-      </aside>
-
-      <div className="min-w-0 flex-1">
-        <header className="flex items-center justify-between border-b border-border bg-surface-0 px-6 py-4">
-          <span className="text-sm font-medium text-ink-600">
-            Brand <span className="font-semibold text-ink-900">{brandName ?? "—"}</span>
-          </span>
-        </header>
-        {children}
-      </div>
-    </div>
   );
 }
 
