@@ -1,5 +1,30 @@
 # Build log
 
+## 2026-07-10 (session 10) — unplanned UX pass: activation, mobile, conversion
+
+Audit of user-centric gaps outside the MVP spec; shipped as 3 stacked PRs.
+
+- #24 instant first scan: onboarding now POSTs /api/scan/run after saving —
+  new users see real data immediately instead of an empty dashboard until
+  the 6am cron. lib/worker.ts extracts processScanJob (shared cron+instant,
+  dedupes the old inline copy); failures leave the job queued for cron.
+  Verified: authed run scanned + wrote daily_scores in ~25s; unauth 401.
+- #28 polish + mobile: dashboard/shell.tsx client chrome — mobile top bar +
+  drawer (app previously had NO nav/sign-out below lg), dead href="#" nav
+  items now disabled 'Soon' tags; branded 404/error/global-error/loading
+  pages (was raw Next crash screens); icon.svg favicon; metadataBase + OG/
+  Twitter cards for link unfurls.
+- #29 conversion: trial countdown banner on every dashboard view ('N days
+  left · Choose a plan', canceled -> 'Reactivate'), days computed server-
+  side for client purity; magic-link resend button + spam hint w/ 30s
+  cooldown (Supabase SMTP quota); landing links 'See a sample report' to
+  the previously orphaned /audit/demo.
+- Earlier same pass: #23 landing login nav + pricing CTAs (there was no
+  route into /login from the homepage at all).
+- Verified against live data: banner shows '2 days left' for the real
+  trial workspace; 404/favicon/mobile-bar checks in preview; 81 tests.
+- Merge order: #24 -> #28 -> #29 (stacked; delete branches on merge).
+
 ## 2026-07-08 (session 9) — F6 + F1 + F7: MVP feature-complete
 
 - F6 (PR #20): dashboard reads live daily_scores instead of demo seed.
