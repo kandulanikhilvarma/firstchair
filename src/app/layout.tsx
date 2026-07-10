@@ -13,10 +13,27 @@ const spaceGrotesk = Space_Grotesk({
   weight: ["600", "700"],
 });
 
+const siteUrl = process.env.NEXT_PUBLIC_APP_URL ?? "https://rankwell-seven.vercel.app";
+const title = "Rankwell — AI visibility for law firms";
+const description =
+  "See how ChatGPT, Gemini and Perplexity talk about your law firm — and how to become the firm they recommend.";
+
 export const metadata: Metadata = {
-  title: "Rankwell — AI visibility for law firms",
-  description:
-    "See how ChatGPT, Gemini and Perplexity talk about your law firm — and how to become the firm they recommend.",
+  metadataBase: new URL(siteUrl),
+  title,
+  description,
+  openGraph: {
+    title,
+    description,
+    url: siteUrl,
+    siteName: "Rankwell",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title,
+    description,
+  },
 };
 
 export default function RootLayout({
