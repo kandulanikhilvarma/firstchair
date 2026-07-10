@@ -1,9 +1,9 @@
 "use client";
 
 // Onboarding wizard — wireframe 1e. Persists brand/competitors/prompts to
-// Supabase (F3); real scan trigger lands with the queue worker (F5).
+// Supabase (F3), then triggers the first scan (F5) so the dashboard has data.
 
-import { Check } from "lucide-react";
+import { Check, Loader2 } from "lucide-react";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { expandTemplates } from "@/lib/prompts/templates";
@@ -230,35 +230,60 @@ export default function Onboarding() {
   );
 }
 
-/** Persists the wizard to Supabase on mount. Per-engine scan progress bars
- *  (wireframe 1e, activation metric §1.8) return here with the queue worker (F5) —
- *  no fake bars while scans can't actually run. */
+/** Persists the wizard, then kicks off the first scan immediately (F5 worker via
+ *  /api/scan/run) so the user lands on a dashboard with real data instead of an
+ *  empty one waiting for the 6am cron. */
 function SaveStep({
   input,
 }: {
   input: Parameters<typeof saveOnboarding>[0];
 }) {
   const [state, setState] = useState<
-    { status: "saving" } | { status: "saved" } | { status: "error"; message: string }
+    | { status: "saving" }
+    | { status: "scanning" }
+    | { status: "done"; scanned: boolean }
+    | { status: "error"; message: string }
   >({ status: "saving" });
   const started = useRef(false);
 
   useEffect(() => {
-    if (started.current) return; // StrictMode double-mount — save exactly once
+    if (started.current) return; // StrictMode double-mount — run exactly once
     started.current = true;
-    saveOnboarding(input).then((res) =>
-      setState(res.ok ? { status: "saved" } : { status: "error", message: res.error }),
-    );
+    (async () => {
+      const res = await saveOnboarding(input);
+      if (!res.ok) {
+        setState({ status: "error", message: res.error });
+        return;
+      }
+      setState({ status: "scanning" });
+      // First scan is best-effort: if it fails or times out the job stays
+      // queued for the daily cron, so never block the user on it.
+      try {
+        const scan = await fetch("/api/scan/run", { method: "POST" });
+        setState({ status: "done", scanned: scan.ok });
+      } catch {
+        setState({ status: "done", scanned: false });
+      }
+    })();
   }, [input]);
+
+  const activePrompts = input.prompts.filter((p) => p.active).length;
 
   return (
     <div className="flex flex-col gap-4">
       <h1 className="text-2xl font-bold text-primary-900">
-        {state.status === "saved" ? "Setup complete" : "Saving your setup"}
+        {state.status === "done" ? "You're all set" : "Setting up your tracker"}
       </h1>
       {state.status === "saving" && (
         <p role="status" className="text-sm text-ink-600">
           Saving your firm, competitors and prompts…
+        </p>
+      )}
+      {state.status === "scanning" && (
+        <p role="status" className="flex items-center gap-2 text-sm text-ink-600">
+          <Loader2 className="h-4 w-4 animate-spin" aria-hidden />
+          Running your first scan across ChatGPT, Gemini and Perplexity — this
+          takes about a minute.
         </p>
       )}
       {state.status === "error" && (
@@ -266,13 +291,15 @@ function SaveStep({
           {state.message}
         </p>
       )}
-      {state.status === "saved" && (
+      {state.status === "done" && (
         <>
           <p role="status" className="text-sm text-ink-600">
-            {input.prompts.filter((p) => p.active).length} prompts tracked for{" "}
-            {input.name} vs {input.competitors.length} competitor
-            {input.competitors.length === 1 ? "" : "s"}. Daily scans start once
-            engines are connected.
+            {activePrompts} prompts tracked for {input.name} vs{" "}
+            {input.competitors.length} competitor
+            {input.competitors.length === 1 ? "" : "s"}.{" "}
+            {state.scanned
+              ? "Your first results are ready."
+              : "Your first scan is queued and will appear shortly; daily scans run every morning."}
           </p>
           <Link
             href="/dashboard"
