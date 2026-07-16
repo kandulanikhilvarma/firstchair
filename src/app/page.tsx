@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { redirect } from "next/navigation";
 import AuditForm from "./audit-form";
 
 const STEPS = [
@@ -35,7 +36,21 @@ const FAQS = [
   },
 ];
 
-export default function Home() {
+export default async function Home({
+  searchParams,
+}: {
+  searchParams: Promise<{ code?: string; token_hash?: string; type?: string }>;
+}) {
+  // Supabase falls back to the Site URL (this root) when emailRedirectTo isn't
+  // in the Redirect URLs allowlist, dropping the auth code here instead of at
+  // /auth/callback. Forward it so login still completes.
+  const params = await searchParams;
+  if (params.code || params.token_hash) {
+    const forward = new URLSearchParams();
+    for (const [k, v] of Object.entries(params)) if (v) forward.set(k, v);
+    redirect(`/auth/callback?${forward.toString()}`);
+  }
+
   return (
     <div className="flex flex-1 flex-col">
       {/* Top nav — logo + the way in for returning + new customers */}
