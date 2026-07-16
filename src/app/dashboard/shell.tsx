@@ -67,12 +67,45 @@ function NavItems({ onNavigate }: { onNavigate?: () => void }) {
   );
 }
 
+/** Trial countdown / trial-ended banner — the only conversion nudge in the app. */
+function PlanBanner({ plan, trialDaysLeft }: { plan: string | null; trialDaysLeft: number | null }) {
+  if (plan === "trial" && trialDaysLeft !== null) {
+    const daysLeft = trialDaysLeft;
+    return (
+      <div className="flex flex-wrap items-center justify-between gap-2 border-b border-border bg-warn-600/10 px-4 py-2 text-sm lg:px-6">
+        <span className="font-medium text-ink-900">
+          <span className="tnum font-semibold">{daysLeft}</span> day
+          {daysLeft === 1 ? "" : "s"} left in your free trial.
+        </span>
+        <Link href="/billing" className="font-semibold text-primary-700 hover:text-primary-500">
+          Choose a plan →
+        </Link>
+      </div>
+    );
+  }
+  if (plan === "canceled") {
+    return (
+      <div className="flex flex-wrap items-center justify-between gap-2 border-b border-border bg-danger-600/10 px-4 py-2 text-sm lg:px-6">
+        <span className="font-medium text-ink-900">Your trial has ended — scans are paused.</span>
+        <Link href="/billing" className="font-semibold text-primary-700 hover:text-primary-500">
+          Reactivate →
+        </Link>
+      </div>
+    );
+  }
+  return null;
+}
+
 /** Sidebar (desktop) + top bar with a drawer (mobile) shared by all dashboard states. */
 export default function Shell({
   brandName,
+  plan = null,
+  trialDaysLeft = null,
   children,
 }: {
   brandName: string | null;
+  plan?: string | null;
+  trialDaysLeft?: number | null;
   children: React.ReactNode;
 }) {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -134,6 +167,7 @@ export default function Shell({
             Brand <span className="font-semibold text-ink-900">{brandName ?? "—"}</span>
           </span>
         </header>
+        <PlanBanner plan={plan} trialDaysLeft={trialDaysLeft} />
         {children}
       </div>
     </div>
