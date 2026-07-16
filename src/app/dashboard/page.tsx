@@ -1,17 +1,31 @@
 import Link from "next/link";
 import { ArrowUpRight, BarChart3 } from "lucide-react";
 import { ENGINE_LABELS } from "@/lib/seed";
+import { createClient } from "@/lib/supabase/server";
 import { SovDonut, Sparkline, TrendChart } from "./charts";
 import { getDashboardData } from "./data";
 import Shell from "./shell";
 
+/** Workspace plan for the trial-countdown banner (RLS-scoped, same as /billing).
+ *  Days-left computed here — the client Shell must stay pure (no Date.now in render). */
+async function getPlan(): Promise<{ plan: string | null; trialDaysLeft: number | null }> {
+  const supabase = await createClient();
+  const { data } = await supabase.from("workspaces").select("plan, trial_ends_at").limit(1);
+  const plan = data?.[0]?.plan ?? null;
+  const ends = data?.[0]?.trial_ends_at;
+  const trialDaysLeft = ends
+    ? Math.max(0, Math.ceil((new Date(ends).getTime() - Date.now()) / 86400_000))
+    : null;
+  return { plan, trialDaysLeft };
+}
+
 export default async function Dashboard() {
-  const data = await getDashboardData();
+  const [data, { plan, trialDaysLeft }] = await Promise.all([getDashboardData(), getPlan()]);
 
   // No brand yet — send the user through onboarding.
   if (!data) {
     return (
-      <Shell brandName={null}>
+      <Shell brandName={null} plan={plan} trialDaysLeft={trialDaysLeft}>
         <EmptyState
           title="Set up your first brand"
           body="Add your firm, competitors and the questions you want tracked. Your first scan runs right after."
@@ -24,7 +38,7 @@ export default async function Dashboard() {
   // Brand exists but no scores yet — first scan is still pending.
   if (!data.hasScans || data.trend.length === 0) {
     return (
-      <Shell brandName={data.brandName}>
+      <Shell brandName={data.brandName} plan={plan} trialDaysLeft={trialDaysLeft}>
         <EmptyState
           title="Your first scan is on the way"
           body="We run your prompts against ChatGPT, Gemini and Perplexity every day. Scores appear here once the first daily scan completes."
@@ -38,7 +52,7 @@ export default async function Dashboard() {
   const missingCount = citations.filter((c) => !c.brandListed).length;
 
   return (
-    <Shell brandName={data.brandName}>
+    <Shell brandName={data.brandName} plan={plan} trialDaysLeft={trialDaysLeft}>
       <main className="mx-auto max-w-7xl space-y-6 p-6">
           {/* ① Score hero + ② SOV donut */}
           <div className="grid gap-6 lg:grid-cols-3">
