@@ -2,6 +2,7 @@
 
 import { z } from "zod";
 import { createClient } from "@/lib/supabase/server";
+import { checkBrandAllowance } from "@/lib/plan";
 
 const SetupSchema = z.object({
   name: z.string().trim().min(1).max(120),
@@ -42,6 +43,20 @@ export async function saveOnboarding(
     .limit(1)
     .maybeSingle();
   if (!membership) return { ok: false, error: "No workspace found for this account." };
+
+  // Every add-brand path routes through here, so the plan limit is enforced
+  // once, at the write, rather than in each caller's UI.
+  const [{ data: workspace }, { count: brandCount }] = await Promise.all([
+    supabase.from("workspaces").select("plan").eq("id", membership.workspace_id).maybeSingle(),
+    supabase
+      .from("brands")
+      .select("id", { count: "exact", head: true })
+      .eq("workspace_id", membership.workspace_id)
+      .is("is_competitor_of", null),
+  ]);
+
+  const allowance = checkBrandAllowance(workspace?.plan, brandCount ?? 0);
+  if (!allowance.allowed) return { ok: false, error: allowance.reason ?? "Brand limit reached." };
 
   const { data: brand, error: brandErr } = await supabase
     .from("brands")

@@ -33,22 +33,36 @@ const EMPTY = (brandName: string): DashboardData => ({
   recommendations: [],
 });
 
+export interface BrandRef {
+  id: string;
+  name: string;
+}
+
+/** Every firm this workspace tracks, oldest first. Competitors are excluded —
+ *  they are rows in the same table, linked by is_competitor_of. */
+export async function getBrands(): Promise<BrandRef[]> {
+  const supabase = await createClient();
+  const { data } = await supabase
+    .from("brands")
+    .select("id, name")
+    .is("is_competitor_of", null)
+    .order("created_at", { ascending: true });
+  return data ?? [];
+}
+
 /**
- * Reads the signed-in user's primary brand and assembles the dashboard from
+ * Reads the requested brand (or the first) and assembles the dashboard from
  * daily_scores (30-day trend) plus the latest completed scan (SOV, prompt
  * table, citation gaps). RLS scopes every query to the user's workspace.
  * Returns null when the user has no brand yet (pre-onboarding).
  */
-export async function getDashboardData(): Promise<DashboardData | null> {
+export async function getDashboardData(brandId?: string): Promise<DashboardData | null> {
   const supabase = await createClient();
 
-  const { data: brands } = await supabase
-    .from("brands")
-    .select("id, name")
-    .is("is_competitor_of", null)
-    .order("created_at", { ascending: true })
-    .limit(1);
-  const brand = brands?.[0];
+  const brands = await getBrands();
+  // An unknown or other-workspace id falls back to the first brand rather than
+  // erroring; RLS already guarantees the list only contains this workspace's.
+  const brand = brands.find((b) => b.id === brandId) ?? brands[0];
   if (!brand) return null;
 
   const since = new Date();

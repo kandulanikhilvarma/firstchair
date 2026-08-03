@@ -3,7 +3,7 @@ import { ArrowUpRight, BarChart3 } from "lucide-react";
 import { ENGINE_LABELS } from "@/lib/seed";
 import { createClient } from "@/lib/supabase/server";
 import { SovDonut, Sparkline, TrendChart } from "./charts";
-import { getDashboardData } from "./data";
+import { getBrands, getDashboardData } from "./data";
 import Shell from "./shell";
 
 /** Workspace plan for the trial-countdown banner (RLS-scoped, same as /billing).
@@ -19,13 +19,24 @@ async function getPlan(): Promise<{ plan: string | null; trialDaysLeft: number |
   return { plan, trialDaysLeft };
 }
 
-export default async function Dashboard() {
-  const [data, { plan, trialDaysLeft }] = await Promise.all([getDashboardData(), getPlan()]);
+export default async function Dashboard({
+  searchParams,
+}: {
+  searchParams: Promise<{ brand?: string }>;
+}) {
+  const { brand: requestedBrand } = await searchParams;
+  const [data, { plan, trialDaysLeft }, brands] = await Promise.all([
+    getDashboardData(requestedBrand),
+    getPlan(),
+    getBrands(),
+  ]);
+  const currentBrandId = brands.find((b) => b.id === requestedBrand)?.id ?? brands[0]?.id ?? null;
+  const shellProps = { brands, currentBrandId, plan, trialDaysLeft };
 
   // No brand yet — send the user through onboarding.
   if (!data) {
     return (
-      <Shell brandName={null} plan={plan} trialDaysLeft={trialDaysLeft}>
+      <Shell brandName={null} {...shellProps}>
         <EmptyState
           title="Set up your first brand"
           body="Add your firm, competitors and the questions you want tracked. Your first scan runs right after."
@@ -38,7 +49,7 @@ export default async function Dashboard() {
   // Brand exists but no scores yet — first scan is still pending.
   if (!data.hasScans || data.trend.length === 0) {
     return (
-      <Shell brandName={data.brandName} plan={plan} trialDaysLeft={trialDaysLeft}>
+      <Shell brandName={data.brandName} {...shellProps}>
         <EmptyState
           title="Your first scan is on the way"
           body="We run your prompts against ChatGPT, Gemini and Perplexity every day. Scores appear here once the first daily scan completes."
@@ -52,7 +63,7 @@ export default async function Dashboard() {
   const missingCount = citations.filter((c) => !c.brandListed).length;
 
   return (
-    <Shell brandName={data.brandName} plan={plan} trialDaysLeft={trialDaysLeft}>
+    <Shell brandName={data.brandName} {...shellProps}>
       <main className="mx-auto max-w-7xl space-y-6 p-6">
           {/* ① Score hero + ② SOV donut */}
           <div className="grid gap-6 lg:grid-cols-3">
