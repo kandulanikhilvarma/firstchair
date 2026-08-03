@@ -22,6 +22,7 @@ interface AuditResult {
   }>;
 }
 
+/** A filing cover sheet: ruled fields, small-caps notation, oxblood commit. */
 export default function AuditForm() {
   const [status, setStatus] = useState<Status>("idle");
   const [message, setMessage] = useState("");
@@ -55,78 +56,107 @@ export default function AuditForm() {
 
   if (status === "ok" && result) {
     return (
-      <div className="flex w-full max-w-md flex-col gap-4 rounded-xl border border-border bg-surface-0 p-6 text-left shadow-card">
-        <div>
-          <h3 className="font-heading text-lg font-bold text-primary-900">{result.firmName}</h3>
-          <p className="mt-1 flex items-baseline gap-2">
-            <span className="tnum text-4xl font-bold text-primary-900">{result.overallScore}</span>
-            <span className="text-ink-600">/100 AI visibility</span>
-          </p>
+      <div className="w-full max-w-md border border-border-strong bg-surface-0 text-left">
+        <div className="border-b border-border-strong bg-surface-50 px-6 py-2.5">
+          <span className="notation text-[0.8rem] text-ink-500">Record of findings</span>
         </div>
-        <ul className="space-y-2 text-sm">
-          {result.engines.map((e) => (
-            <li key={e.engine} className="flex items-center justify-between">
-              <span className="font-medium text-ink-900">{ENGINE_LABELS[e.engine] ?? e.engine}</span>
-              <span className="tnum text-ink-600">
-                {e.visibilityScore}/100 · {e.mentionedInPrompts}/{e.totalPrompts} prompts
-                {e.bestPosition ? ` · best #${e.bestPosition}` : ""}
-              </span>
-            </li>
-          ))}
-        </ul>
-        <p className="text-sm text-accent-600">{message}</p>
-        <a
-          href="/login"
-          className="rounded-lg bg-primary-700 px-4 py-3 text-center font-semibold text-white transition-colors duration-200 hover:bg-primary-500"
-        >
-          Track this daily — start free trial
-        </a>
+        <div className="px-6 py-6">
+          <h3 className="text-2xl text-ink-900">{result.firmName}</h3>
+          <p className="mt-3 flex items-baseline gap-2 border-b border-border pb-5">
+            <span className="tnum font-display text-6xl leading-none text-ox-700">
+              {result.overallScore}
+            </span>
+            <span className="notation text-ink-500">of 100 visibility</span>
+          </p>
+          <table className="mt-4 w-full text-left">
+            <tbody>
+              {result.engines.map((e) => (
+                <tr key={e.engine} className="border-b border-border last:border-0">
+                  <th scope="row" className="py-2 pr-3 font-normal text-ink-900">
+                    {ENGINE_LABELS[e.engine] ?? e.engine}
+                  </th>
+                  <td className="transcript tnum py-2 text-right text-sm text-ink-700">
+                    {e.visibilityScore}/100 · {e.mentionedInPrompts} of {e.totalPrompts}
+                    {e.bestPosition ? ` · best #${e.bestPosition}` : ""}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+          <p role="status" className="mt-4 text-sm text-verdict">
+            {message}
+          </p>
+          <a
+            href="/login"
+            className="mt-5 block bg-ox-700 px-4 py-3.5 text-center font-semibold text-canary-100 transition-colors hover:bg-ox-900"
+          >
+            Track this daily — start free trial
+          </a>
+        </div>
       </div>
     );
   }
 
-  const inputCls =
-    "w-full rounded-lg border border-border bg-surface-0 px-3 py-2.5 text-ink-900 placeholder:text-ink-600/60 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2";
+  const fieldCls =
+    "mt-1 w-full border-0 border-b border-border-strong bg-transparent px-0 py-2 text-ink-900 placeholder:text-ink-500/55 focus:border-ox-700 focus:outline-none focus:ring-0";
 
   return (
     <form
       onSubmit={onSubmit}
-      className="flex w-full max-w-md flex-col gap-3 rounded-xl border border-border bg-surface-0 p-6 text-left shadow-card"
+      className="w-full max-w-md border border-border-strong bg-surface-0 text-left"
     >
-      <label className="text-sm font-medium text-ink-900">
-        Firm name
-        <input name="firmName" required placeholder="Smith & Jones LLP" className={inputCls} />
-      </label>
-      <label className="text-sm font-medium text-ink-900">
-        City
-        <input name="city" required placeholder="Austin" className={inputCls} />
-      </label>
-      <label className="text-sm font-medium text-ink-900">
-        Practice area
-        <input name="practiceArea" required placeholder="Personal injury" className={inputCls} />
-      </label>
-      <label className="text-sm font-medium text-ink-900">
-        Work email
-        <input name="email" type="email" required placeholder="you@firm.com" className={inputCls} />
-      </label>
-      <button
-        type="submit"
-        disabled={status === "submitting"}
-        className="mt-1 cursor-pointer rounded-lg bg-primary-700 px-4 py-3 font-semibold text-white transition-colors duration-200 hover:bg-primary-500 disabled:opacity-60"
-      >
-        {status === "submitting" ? "Running audit…" : "Run my free AI visibility audit"}
-      </button>
-      {message && (
-        <p
-          role="status"
-          className={`text-sm ${status === "error" ? "text-danger-600" : "text-accent-600"}`}
+      <div className="flex items-baseline justify-between border-b border-border-strong bg-surface-50 px-6 py-2.5">
+        <span className="notation text-[0.8rem] text-ink-500">Request for audit</span>
+        <span className="transcript text-xs text-ink-500">No. 001</span>
+      </div>
+
+      <div className="margin-rule px-6 py-6">
+        <div className="flex flex-col gap-4">
+          <label className="block text-sm">
+            <span className="notation text-ink-500">Firm name</span>
+            <input name="firmName" required placeholder="Smith &amp; Jones LLP" className={fieldCls} />
+          </label>
+          <label className="block text-sm">
+            <span className="notation text-ink-500">City</span>
+            <input name="city" required placeholder="Austin" className={fieldCls} />
+          </label>
+          <label className="block text-sm">
+            <span className="notation text-ink-500">Practice area</span>
+            <input name="practiceArea" required placeholder="Personal injury" className={fieldCls} />
+          </label>
+          <label className="block text-sm">
+            <span className="notation text-ink-500">Work email</span>
+            <input
+              name="email"
+              type="email"
+              required
+              placeholder="you@firm.com"
+              className={fieldCls}
+            />
+          </label>
+        </div>
+
+        <button
+          type="submit"
+          disabled={status === "submitting"}
+          className="mt-6 w-full cursor-pointer bg-ox-700 px-4 py-3.5 font-semibold text-canary-100 transition-colors hover:bg-ox-900 disabled:cursor-wait disabled:opacity-70"
         >
-          {message}
+          {status === "submitting" ? "Querying the engines…" : "Run my free audit"}
+        </button>
+
+        {message && (
+          <p
+            role="status"
+            className={`mt-3 text-sm ${status === "error" ? "text-rule" : "text-verdict"}`}
+          >
+            {message}
+          </p>
+        )}
+
+        <p className="mt-3 text-xs text-ink-500">
+          5 real client questions across 3 engines. Results in about 2 minutes. No card.
         </p>
-      )}
-      <p className="text-xs text-ink-600">
-        5 real client questions × 3 AI engines. Results in ~2 minutes. No credit card.
-      </p>
+      </div>
     </form>
   );
 }
