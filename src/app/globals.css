@@ -1,49 +1,79 @@
 @import "tailwindcss";
 
-/* Design tokens — master plan §3.1–3.3. Light mode default (lawyers screenshot reports). */
+/* First Chair — Editorial Law Review.
+   Drawn from legal publishing's SATURATED range (West reporter buckram, canary
+   legal pad, blue-backed pleadings, red margin rule) — deliberately not the
+   cream/parchment rendition. Oxblood carries whole regions; it is a field,
+   not an accent. */
 :root {
-  --background: #f8fafc; /* surface-50 */
-  --foreground: #0f172a; /* ink-900 */
+  --background: #ffffff;
+  --foreground: #12161f;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
 
-  --color-primary-900: #0b1d3a;
-  --color-primary-700: #153e75;
-  --color-primary-500: #2563eb;
-  --color-accent-600: #059669;
-  --color-danger-600: #dc2626;
-  --color-warn-600: #d97706;
-  --color-ink-900: #0f172a;
-  --color-ink-600: #475569;
+  /* Pleading ink — blue-black, never neutral gray */
+  --color-ink-900: #12161f;
+  --color-ink-700: #2b3444;
+  --color-ink-500: #4a5160;
+
+  /* Oxblood buckram — reporter spines */
+  --color-ox-900: #3f1119;
+  --color-ox-700: #6e1f2c;
+  --color-ox-500: #8e2a3a;
+
+  /* Canary legal pad — the signal color */
+  --color-canary-400: #f7d64a;
+  --color-canary-200: #f3e4a6;
+  --color-canary-100: #fbf4d6;
+
+  /* Red margin rule, foil stamping, court green */
+  --color-rule: #c8102e;
+  --color-foil: #a8843a;
+  --color-verdict: #3f6212;
+
+  /* Stock */
   --color-surface-0: #ffffff;
-  --color-surface-50: #f8fafc;
-  --color-border: #e2e8f0;
+  --color-surface-50: #f7f6f2;
+  --color-border: #ddd8ce;
+  --color-border-strong: #b9b2a4;
 
-  /* Chart series, colorblind-safe, brand always first */
-  --color-chart-1: #2563eb;
-  --color-chart-2: #059669;
-  --color-chart-3: #d97706;
-  --color-chart-4: #7c3aed;
-  --color-chart-5: #db2777;
-  --color-chart-6: #0891b2;
+  /* Legacy aliases — existing surfaces render in the new world until each is
+     rebuilt. Remove once every surface is rewritten. */
+  --color-primary-900: #3f1119;
+  --color-primary-700: #6e1f2c;
+  --color-primary-500: #8e2a3a;
+  --color-accent-600: #3f6212;
+  --color-danger-600: #c8102e;
+  --color-warn-600: #a8843a;
+  --color-ink-600: #4a5160;
 
-  --font-sans: var(--font-inter);
-  --font-heading: var(--font-space-grotesk);
+  /* Engine series — from this world, not a chart-library default */
+  --color-chart-1: #6e1f2c;
+  --color-chart-2: #1d4e5f;
+  --color-chart-3: #a8843a;
+  --color-chart-4: #3f6212;
+  --color-chart-5: #7c2d5c;
+  --color-chart-6: #4a5160;
 
-  --radius-input: 8px;
-  --radius-card: 12px;
+  --font-display: var(--font-caslon-display);
+  --font-sans: var(--font-public-sans);
+  --font-heading: var(--font-caslon-display);
+  --font-mono: var(--font-courier-prime);
 
-  --shadow-card: 0 1px 2px rgb(0 0 0 / 0.05);
-  --shadow-card-hover: 0 4px 12px rgb(0 0 0 / 0.08);
+  --radius-input: 2px;
+  --radius-card: 3px;
+
+  --shadow-card: 0 1px 2px rgb(63 17 25 / 0.08);
+  --shadow-card-hover: 0 6px 16px -4px rgb(63 17 25 / 0.16);
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: var(--font-inter), system-ui, sans-serif;
+  font-family: var(--font-public-sans), system-ui, sans-serif;
   line-height: 1.6;
 }
 
@@ -51,11 +81,71 @@ h1,
 h2,
 h3,
 h4 {
-  font-family: var(--font-space-grotesk), system-ui, sans-serif;
-  line-height: 1.2;
+  font-family: var(--font-caslon-display), Georgia, serif;
+  line-height: 1.08;
+  letter-spacing: -0.02em;
+  font-weight: 400;
 }
 
-/* Scores and table numbers: aligned columns, no delta jitter (§3.2) */
+/* Scores and table numbers: aligned columns, no delta jitter */
 .tnum {
   font-variant-numeric: tabular-nums;
+}
+
+/* Bluebook run-in label: small caps, letterspaced — the notation this audience
+   reads daily. Lives inline in copy and table headers, never stacked above a
+   heading as an eyebrow. */
+.notation {
+  font-variant-caps: all-small-caps;
+  letter-spacing: 0.11em;
+  font-weight: 600;
+}
+
+/* Court-transcript block: verbatim machine answers set in Courier, because a
+   transcript is Courier. Data, not costume. */
+.transcript {
+  font-family: var(--font-courier-prime), ui-monospace, monospace;
+  line-height: 1.7;
+}
+
+/* The one authored motion moment: a verdict inking onto the page as a stamp
+   presses. Used once per surface, on the proof block — never as a generic
+   section entrance. Content is visible by default; this only reveals. */
+@keyframes ink-in {
+  from {
+    clip-path: inset(0 100% 0 0);
+    opacity: 0.4;
+  }
+  to {
+    clip-path: inset(0 0 0 0);
+    opacity: 1;
+  }
+}
+
+.ink-in {
+  animation: ink-in 900ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.ink-in-1 { animation-delay: 160ms; }
+.ink-in-2 { animation-delay: 320ms; }
+.ink-in-3 { animation-delay: 480ms; }
+
+@media (prefers-reduced-motion: reduce) {
+  .ink-in,
+  .ink-in-1,
+  .ink-in-2,
+  .ink-in-3 {
+    animation: none;
+  }
+}
+
+/* Ruled stock — the horizontal lines of a legal pad, as field texture */
+.ruled {
+  background-image: repeating-linear-gradient(
+    to bottom,
+    transparent 0,
+    transparent 31px,
+    var(--color-canary-200) 31px,
+    var(--color-canary-200) 32px
+  );
 }

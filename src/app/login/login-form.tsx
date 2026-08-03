@@ -55,49 +55,60 @@ export default function LoginForm() {
 
   if (status === "sent") {
     return (
-      <div className="flex flex-col gap-3 rounded-xl border border-border bg-surface-0 p-6 text-center shadow-card">
-        <p role="status" className="text-sm text-accent-600">{message}</p>
-        <p className="text-sm text-ink-600">
-          Not in your inbox after a minute? Check your spam folder — or send it
-          again.
-        </p>
-        <button
-          type="button"
-          onClick={onResend}
-          disabled={resending}
-          className="cursor-pointer text-sm font-semibold text-primary-700 hover:text-primary-500 disabled:opacity-60"
-        >
-          {resending ? "Sending…" : "Send the link again"}
-        </button>
+      <div className="border border-border-strong bg-surface-0">
+        <div className="border-b border-border-strong bg-surface-50 px-6 py-2.5">
+          <span className="notation text-[0.8rem] text-ink-500">Link issued</span>
+        </div>
+        <div className="px-6 py-6">
+          <p role="status" className="text-ink-900">
+            {message}
+          </p>
+          <p className="mt-3 text-sm text-ink-700">
+            Not there within a minute? Check spam, then send another.
+          </p>
+          <button
+            type="button"
+            onClick={onResend}
+            disabled={resending}
+            className="notation mt-5 cursor-pointer border-b-2 border-canary-400 pb-0.5 text-ox-700 hover:border-ox-700 disabled:opacity-60"
+          >
+            {resending ? "Sending…" : "Send another link"}
+          </button>
+        </div>
       </div>
     );
   }
 
   return (
-    <form
-      onSubmit={onSubmit}
-      className="flex flex-col gap-3 rounded-xl border border-border bg-surface-0 p-6 shadow-card"
-    >
-      <label className="text-sm font-medium text-ink-900">
-        Work email
-        <input
-          name="email"
-          type="email"
-          required
-          placeholder="you@firm.com"
-          className="w-full rounded-lg border border-border bg-surface-0 px-3 py-2.5 text-ink-900 placeholder:text-ink-600/60 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2"
-        />
-      </label>
-      <button
-        type="submit"
-        disabled={status === "submitting"}
-        className="mt-1 cursor-pointer rounded-lg bg-primary-700 px-4 py-3 font-semibold text-white transition-colors duration-200 hover:bg-primary-500 disabled:opacity-60"
-      >
-        {status === "submitting" ? "Sending link…" : "Email me a sign-in link"}
-      </button>
-      {status === "error" && (
-        <p role="status" className="text-sm text-danger-600">{message}</p>
-      )}
+    <form onSubmit={onSubmit} className="border border-border-strong bg-surface-0">
+      <div className="border-b border-border-strong bg-surface-50 px-6 py-2.5">
+        <span className="notation text-[0.8rem] text-ink-500">Sign-in request</span>
+      </div>
+      <div className="margin-rule px-6 py-6">
+        <label className="block text-sm">
+          <span className="notation text-ink-500">Work email</span>
+          <input
+            name="email"
+            type="email"
+            required
+            autoComplete="email"
+            placeholder="you@firm.com"
+            className="mt-1 w-full border-0 border-b border-border-strong bg-transparent px-0 py-2 text-ink-900 placeholder:text-ink-500/55 focus:border-ox-700 focus:outline-none focus:ring-0"
+          />
+        </label>
+        <button
+          type="submit"
+          disabled={status === "submitting"}
+          className="mt-6 w-full cursor-pointer bg-ox-700 px-4 py-3.5 font-semibold text-canary-100 transition-colors hover:bg-ox-900 disabled:cursor-wait disabled:opacity-70"
+        >
+          {status === "submitting" ? "Sending…" : "Email me a sign-in link"}
+        </button>
+        {status === "error" && (
+          <p role="alert" className="mt-3 text-sm text-rule">
+            {message}
+          </p>
+        )}
+      </div>
     </form>
   );
 }
