@@ -1,6 +1,7 @@
 <div align="center">
 
-<img src="docs/hero.png" alt="First Chair — Your next client asked an AI. It named three firms." width="100%" />
+<img width="1882" height="913" alt="image" src="https://github.com/user-attachments/assets/5d8ccdf0-cfe7-4c0e-a816-01c7e4d21d90" />
+
 
 <h1>First Chair</h1>
 
