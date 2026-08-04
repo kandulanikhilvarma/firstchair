@@ -142,10 +142,10 @@ function Processor({ name, role }: { name: string; role: string }) {
 function Mail() {
   return (
     <a
-      href="mailto:privacy@firstchair.ai"
+      href="mailto:kandulanikhilvarma@gmail.com"
       className="border-b border-ox-500/40 text-ox-700 hover:border-ox-700"
     >
-      privacy@firstchair.ai
+      kandulanikhilvarma@gmail.com
     </a>
   );
 }

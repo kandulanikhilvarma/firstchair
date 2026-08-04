@@ -4,6 +4,7 @@ import { createClient } from "@/lib/supabase/server";
 import { brandLimit } from "@/lib/plan";
 import { getBrands } from "../dashboard/data";
 import Shell from "../dashboard/shell";
+import BackLink from "../back-link";
 import SettingsClient from "./settings-client";
 
 export const metadata: Metadata = { title: "Settings — First Chair" };
@@ -61,7 +62,8 @@ export default async function SettingsPage({
     <Shell brandName={brand.name} {...shellProps}>
       <div className="border-b border-border bg-surface-0 px-6 py-6">
         <div className="mx-auto max-w-4xl">
-          <h1 className="font-display text-3xl text-ink-900">Settings</h1>
+          <BackLink href="/dashboard" label="Back to dashboard" />
+          <h1 className="mt-5 font-display text-3xl text-ink-900">Settings</h1>
           <p className="mt-2 text-ink-700">
             Changes apply from the next daily scan.{" "}
             <span className="tnum">

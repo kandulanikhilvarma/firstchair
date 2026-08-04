@@ -1,6 +1,5 @@
 "use client";
 
-import { Check } from "lucide-react";
 import { useState } from "react";
 
 type Interval = "monthly" | "annual";
@@ -11,16 +10,21 @@ const PLANS = [
     name: "Solo",
     monthly: 49,
     annual: 490, // 2 months free
-    blurb: "1 brand, daily scans across all 3 engines.",
-    features: ["1 tracked brand", "Daily scans", "All 3 AI engines", "Weekly email report"],
+    blurb: "One firm, scanned daily across all three engines.",
+    features: ["One tracked firm", "20 questions, daily", "Five competitors", "Weekly email report"],
   },
   {
     id: "agency" as const,
     name: "Agency",
     monthly: 149,
     annual: 1490,
-    blurb: "10 brands — daily for 3 priority, weekly for the rest.",
-    features: ["10 tracked brands", "Priority daily scans", "All 3 AI engines", "Competitor tracking"],
+    blurb: "Ten client firms — daily on three priority, weekly on the rest.",
+    features: [
+      "Ten tracked firms",
+      "Priority daily scans",
+      "Competitors tracked per firm",
+      "Client-ready weekly emails",
+    ],
     highlight: true,
   },
 ];
@@ -76,15 +80,22 @@ export default function BillingClient({
   }
 
   const subscribed = currentPlan === "solo" || currentPlan === "agency";
+  const trialDate = trialEndsAt
+    ? new Date(trialEndsAt).toLocaleDateString("en-US", {
+        day: "numeric",
+        month: "long",
+        year: "numeric",
+      })
+    : null;
 
   return (
-    <div className="mt-4">
-      <div className="flex items-center justify-between">
-        <p className="text-sm text-ink-600">
-          Current plan:{" "}
-          <span className="font-semibold text-ink-900 capitalize">{currentPlan}</span>
-          {currentPlan === "trial" && trialEndsAt && (
-            <> — trial ends {new Date(trialEndsAt).toLocaleDateString()}</>
+    <div className="mt-6">
+      <div className="flex flex-wrap items-baseline justify-between gap-4 border-b border-border-strong pb-4">
+        <p className="text-ink-700">
+          <span className="notation text-ink-500">Current plan</span>{" "}
+          <span className="font-semibold capitalize text-ink-900">{currentPlan}</span>
+          {currentPlan === "trial" && trialDate && (
+            <span className="text-ink-500"> — trial ends {trialDate}</span>
           )}
         </p>
         {subscribed && (
@@ -92,53 +103,74 @@ export default function BillingClient({
             type="button"
             onClick={manage}
             disabled={pending !== null}
-            className="cursor-pointer rounded-lg border border-border bg-surface-0 px-4 py-2 text-sm font-semibold text-primary-700 hover:border-primary-500 disabled:opacity-60"
+            className="notation cursor-pointer border-b-2 border-canary-400 pb-0.5 text-ox-700 hover:border-ox-700 disabled:opacity-60"
           >
             {pending === "portal" ? "Opening…" : "Manage billing"}
           </button>
         )}
       </div>
 
-      {/* interval toggle */}
-      <div className="mt-6 inline-flex rounded-lg border border-border bg-surface-0 p-1">
-        {(["monthly", "annual"] as const).map((i) => (
-          <button
-            key={i}
-            type="button"
-            onClick={() => setInterval(i)}
-            className={`cursor-pointer rounded-md px-4 py-1.5 text-sm font-medium capitalize ${
-              interval === i ? "bg-primary-700 text-white" : "text-ink-600 hover:text-ink-900"
-            }`}
-          >
-            {i}
-            {i === "annual" && <span className="ml-1 text-xs opacity-80">2 months free</span>}
-          </button>
-        ))}
-      </div>
+      {/* Billing interval */}
+      <fieldset className="mt-8">
+        <legend className="notation text-ink-500">Billing interval</legend>
+        <div className="mt-2 inline-flex border border-border-strong">
+          {(["monthly", "annual"] as const).map((i) => (
+            <button
+              key={i}
+              type="button"
+              aria-pressed={interval === i}
+              onClick={() => setInterval(i)}
+              className={`cursor-pointer px-5 py-2 text-sm font-semibold capitalize transition-colors ${
+                interval === i
+                  ? "bg-ox-700 text-canary-100"
+                  : "bg-surface-0 text-ink-700 hover:bg-surface-50"
+              }`}
+            >
+              {i}
+              {i === "annual" && (
+                <span className="ml-2 text-xs font-normal opacity-85">2 months free</span>
+              )}
+            </button>
+          ))}
+        </div>
+      </fieldset>
 
-      <div className="mt-6 grid gap-4 sm:grid-cols-2">
+      <div className="mt-8 grid gap-px border border-border-strong bg-border-strong sm:grid-cols-2">
         {PLANS.map((p) => {
           const price = interval === "monthly" ? p.monthly : p.annual;
           const isCurrent = currentPlan === p.id;
+          const dark = p.highlight;
           return (
             <div
               key={p.id}
-              className={`flex flex-col rounded-xl border bg-surface-0 p-6 shadow-card ${
-                p.highlight ? "border-primary-500" : "border-border"
-              }`}
+              className={`flex flex-col p-8 ${dark ? "bg-ox-900 text-canary-100" : "bg-surface-0"}`}
             >
-              <h2 className="font-heading text-xl font-bold text-ink-900">{p.name}</h2>
-              <p className="mt-1 text-sm text-ink-600">{p.blurb}</p>
-              <p className="tnum mt-4 text-3xl font-bold text-primary-900">
-                ${price}
-                <span className="text-base font-normal text-ink-600">
-                  /{interval === "monthly" ? "mo" : "yr"}
+              <h2
+                className={`font-display text-3xl ${dark ? "text-canary-100" : "text-ink-900"}`}
+              >
+                {p.name}
+              </h2>
+              <p className={`mt-2 text-sm ${dark ? "text-canary-200" : "text-ink-700"}`}>
+                {p.blurb}
+              </p>
+              <p className="mt-5 flex items-baseline gap-1.5">
+                <span
+                  className={`tnum font-display text-5xl ${dark ? "text-canary-100" : "text-ink-900"}`}
+                >
+                  ${price}
+                </span>
+                <span className={`notation ${dark ? "text-canary-200" : "text-ink-500"}`}>
+                  per {interval === "monthly" ? "month" : "year"}
                 </span>
               </p>
-              <ul className="mt-4 flex flex-1 flex-col gap-2">
+              <ul className="mt-6 flex flex-1 flex-col gap-2.5">
                 {p.features.map((f) => (
-                  <li key={f} className="flex items-center gap-2 text-sm text-ink-900">
-                    <Check className="h-4 w-4 text-accent-600" aria-hidden />
+                  <li
+                    key={f}
+                    className={`border-b pb-2.5 last:border-0 ${
+                      dark ? "border-ox-700 text-canary-200" : "border-border text-ink-700"
+                    }`}
+                  >
                     {f}
                   </li>
                 ))}
@@ -147,13 +179,13 @@ export default function BillingClient({
                 type="button"
                 onClick={() => checkout(p.id)}
                 disabled={isCurrent || pending !== null}
-                className="mt-6 cursor-pointer rounded-lg bg-primary-700 px-4 py-2.5 font-semibold text-white transition-colors duration-200 hover:bg-primary-500 disabled:cursor-default disabled:opacity-60"
+                className={`mt-8 cursor-pointer px-4 py-3 font-semibold transition-colors disabled:cursor-default disabled:opacity-60 ${
+                  dark
+                    ? "bg-canary-400 text-ox-900 hover:bg-canary-200"
+                    : "border border-ox-700 text-ox-700 hover:bg-ox-700 hover:text-canary-100"
+                }`}
               >
-                {isCurrent
-                  ? "Current plan"
-                  : pending === p.id
-                    ? "Starting…"
-                    : "Start 7-day trial"}
+                {isCurrent ? "Current plan" : pending === p.id ? "Starting…" : "Start 7-day trial"}
               </button>
             </div>
           );
@@ -161,7 +193,7 @@ export default function BillingClient({
       </div>
 
       {error && (
-        <p role="status" className="mt-4 text-sm text-danger-600">
+        <p role="alert" className="mt-4 text-sm text-rule">
           {error}
         </p>
       )}

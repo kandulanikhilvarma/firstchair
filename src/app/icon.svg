@@ -1,8 +1,7 @@
-<svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="First Chair">
+<svg width="32" height="32" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="First Chair">
   <rect width="32" height="32" fill="#3f1119"/>
-  <!-- Counsel table and the three seats at it. The first one is taken. -->
-  <rect x="4" y="9" width="24" height="1.5" fill="#f7d64a" opacity="0.5"/>
-  <rect x="4" y="14" width="7" height="9" fill="#f7d64a"/>
-  <rect x="13.75" y="14.75" width="5.5" height="7.5" stroke="#f7d64a" stroke-width="1.5" opacity="0.42"/>
-  <rect x="22.25" y="14.75" width="5.5" height="7.5" stroke="#f7d64a" stroke-width="1.5" opacity="0.42"/>
+  <rect x="3" y="8" width="26" height="2" fill="#f7d64a" opacity="0.55"/>
+  <rect x="3" y="13" width="7" height="10" fill="#f7d64a"/>
+  <rect x="12.5" y="13" width="7" height="10" fill="#f7d64a" opacity="0.28"/>
+  <rect x="22" y="13" width="7" height="10" fill="#f7d64a" opacity="0.28"/>
 </svg>

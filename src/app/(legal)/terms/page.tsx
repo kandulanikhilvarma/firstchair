@@ -141,10 +141,10 @@ function List({ items }: { items: string[] }) {
 function Mail() {
   return (
     <a
-      href="mailto:support@firstchair.ai"
+      href="mailto:kandulanikhilvarma@gmail.com"
       className="border-b border-ox-500/40 text-ox-700 hover:border-ox-700"
     >
-      support@firstchair.ai
+      kandulanikhilvarma@gmail.com
     </a>
   );
 }
