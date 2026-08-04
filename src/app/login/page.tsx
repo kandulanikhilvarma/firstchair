@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import BackLink from "../back-link";
+import SiteHeader from "../site-header";
 import LoginForm from "./login-form";
 
 export const metadata: Metadata = { title: "Sign in — First Chair" };
@@ -26,18 +26,15 @@ export default async function LoginPage({
 
   return (
     <div className="flex flex-1 flex-col">
-      <header className="border-b-2 border-ox-900 bg-surface-0">
-        <div className="mx-auto w-full max-w-6xl px-6 py-4">
-          <Link href="/" className="font-display text-2xl tracking-tight text-ox-900">
-            First Chair
-          </Link>
-        </div>
-      </header>
+      <SiteHeader>
+        <Link href="/" className="notation text-ink-700 hover:text-ox-700">
+          Back to site
+        </Link>
+      </SiteHeader>
 
       <main className="flex flex-1 items-center justify-center bg-surface-50 px-6 py-16">
         <div className="w-full max-w-md">
-          <BackLink href="/" label="Back to site" />
-          <h1 className="mt-5 font-display text-4xl text-ink-900">Sign in</h1>
+          <h1 className="font-display text-4xl text-ink-900">Sign in</h1>
           <p className="mt-3 text-ink-700">
             We email you a link. There is no password to remember or lose.
           </p>
