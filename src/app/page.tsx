@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { redirect } from "next/navigation";
 import AuditForm from "./audit-form";
+import Wordmark from "./wordmark";
 
 /* Illustrative record — synthetic. No real firm, no live engine answer.
    Replace with a captured probe response before launch. */
@@ -98,8 +99,8 @@ export default async function Home({
       {/* Masthead — a title page, not a nav bar */}
       <header className="border-b-2 border-ox-900 bg-surface-0">
         <div className="mx-auto flex w-full max-w-6xl items-baseline justify-between px-6 py-4">
-          <Link href="/" className="font-display text-2xl tracking-tight text-ox-900">
-            First Chair
+          <Link href="/" aria-label="First Chair home">
+            <Wordmark />
           </Link>
           <nav className="flex items-baseline gap-6">
             <Link href="/login" className="notation text-ink-700 hover:text-ox-700">
@@ -117,12 +118,15 @@ export default async function Home({
 
       {/* Hero — full oxblood field, headline against a filed form */}
       <section className="bg-ox-900 text-canary-100">
-        <div className="mx-auto grid w-full max-w-6xl gap-12 px-6 py-20 lg:grid-cols-[1.05fr_auto] lg:items-start lg:gap-16">
-          <div className="max-w-[19ch]">
-            <h1 className="font-display text-[clamp(2.75rem,6vw,5rem)] leading-[1.02] text-canary-100">
+        <div className="mx-auto grid w-full max-w-6xl gap-12 px-6 py-20 lg:grid-cols-[minmax(0,1fr)_27rem] lg:items-start lg:gap-16">
+          <div className="min-w-0">
+            {/* Measure lives on the heading, where `ch` resolves against the
+                display face — on the wrapper it resolves against 16px body
+                text and crushes the column to ~150px. */}
+            <h1 className="max-w-[15ch] font-display text-[clamp(2.5rem,5.5vw,4.5rem)] leading-[1.03] text-canary-100">
               Your next client asked an AI. It named three firms.
             </h1>
-            <p className="mt-7 max-w-[62ch] text-lg leading-relaxed text-canary-200">
+            <p className="mt-7 max-w-[54ch] text-lg leading-relaxed text-canary-200">
               People now ask ChatGPT, Gemini and Perplexity which lawyer to call. Those
               answers are being given today, about your practice, whether or not anyone at
               your firm has read one. First Chair reads them every day and keeps the receipt.
@@ -291,7 +295,7 @@ export default async function Home({
       {/* Colophon */}
       <footer className="border-t-2 border-ox-900 bg-surface-0">
         <div className="mx-auto flex w-full max-w-6xl flex-wrap items-baseline justify-between gap-4 px-6 py-10">
-          <span className="font-display text-xl text-ox-900">First Chair</span>
+          <Wordmark markClassName="h-6 w-6 text-ox-900" textClassName="text-xl text-ox-900" />
           <p className="notation text-ink-500">
             AI visibility for law firms — ChatGPT, Gemini, Perplexity
           </p>
