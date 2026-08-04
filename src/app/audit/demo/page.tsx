@@ -1,5 +1,6 @@
 import { Check, Lock, X } from "lucide-react";
 import Link from "next/link";
+import BackLink from "@/app/back-link";
 
 // Audit result — wireframe 1a: sticky score bar, engine cards, blurred locked
 // rows + trial CTA. Demo route; F1 live path renders this with real scan data.
@@ -35,17 +36,22 @@ const ENGINE_CARDS = [
 export default function AuditDemo() {
   return (
     <div className="min-h-screen">
+      <div className="border-b border-border bg-surface-0 px-6 py-3">
+        <div className="mx-auto max-w-3xl">
+          <BackLink href="/" label="Back to site" />
+        </div>
+      </div>
       {/* Sticky score bar — pins for the whole scroll (1a note) */}
-      <header className="sticky top-0 z-10 border-b border-border bg-primary-900 px-6 py-3 text-white">
+      <header className="sticky top-0 z-10 border-b border-border bg-ox-900 px-6 py-3 text-canary-100">
         <div className="mx-auto flex max-w-3xl items-center justify-between">
           <div>
             <p className="font-semibold">Austin Injury Law</p>
-            <p className="tnum text-sm text-white/70">
+            <p className="tnum text-sm text-canary-200">
               AI Visibility Score: 62/100 · found by 2 of 3 engines
             </p>
           </div>
           <span
-            className="tnum flex h-12 w-12 items-center justify-center rounded-full border-2 border-accent-600 text-lg font-bold"
+            className="tnum flex h-12 w-12 items-center justify-center border-2 border-canary-400 text-lg font-bold"
             aria-label="Score 62 out of 100"
           >
             62
@@ -54,24 +60,24 @@ export default function AuditDemo() {
       </header>
 
       <main className="mx-auto max-w-3xl space-y-4 px-6 py-8">
-        <h1 className="text-2xl font-bold text-primary-900">
+        <h1 className="font-display text-3xl text-ink-900">
           What the AI engines say about your firm
         </h1>
 
         {ENGINE_CARDS.map((c) => (
           <section
             key={c.engine}
-            className="rounded-xl border border-border bg-surface-0 p-6 shadow-card"
+            className="border border-border-strong bg-surface-0 p-6"
           >
             <div className="flex items-center justify-between">
               <h2 className="text-lg font-semibold text-ink-900">{c.engine}</h2>
               {c.mentioned ? (
-                <span className="flex items-center gap-1 rounded-full bg-accent-600/10 px-3 py-1 text-sm font-semibold text-accent-600">
+                <span className="flex items-center gap-1 bg-verdict/10 px-3 py-1 text-sm font-semibold text-verdict">
                   <Check className="h-4 w-4" aria-hidden /> mentioned
                   {c.rank !== null && <span className="tnum">· rank {c.rank}</span>}
                 </span>
               ) : (
-                <span className="flex items-center gap-1 rounded-full bg-danger-600/10 px-3 py-1 text-sm font-semibold text-danger-600">
+                <span className="flex items-center gap-1 bg-rule/10 px-3 py-1 text-sm font-semibold text-rule">
                   <X className="h-4 w-4" aria-hidden /> not found
                 </span>
               )}
@@ -92,7 +98,7 @@ export default function AuditDemo() {
         ))}
 
         {/* Locked additional insights */}
-        <section className="rounded-xl border border-dashed border-border bg-surface-50 p-6 text-center">
+        <section className="border border-dashed border-border-strong bg-surface-50 p-6 text-center">
           <p className="flex items-center justify-center gap-2 font-semibold text-ink-900">
             <Lock className="h-4 w-4" aria-hidden /> 2 more insights locked
           </p>
@@ -104,7 +110,7 @@ export default function AuditDemo() {
 
         <Link
           href="/#audit"
-          className="block rounded-lg bg-primary-700 px-6 py-4 text-center text-lg font-semibold text-white transition-colors duration-200 hover:bg-primary-500"
+          className="block bg-ox-700 px-6 py-4 text-center text-lg font-semibold text-canary-100 transition-colors hover:bg-ox-900"
         >
           Start free trial — track all 20 prompts daily
         </Link>

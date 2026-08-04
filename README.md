@@ -1,10 +1,10 @@
-# Rankwell
+# First Chair
 
 **AI visibility tracking for law firms.** See how ChatGPT, Gemini and Perplexity talk about your firm — and how to become the one they recommend.
 
-[![CI](https://github.com/kandulanikhilvarma/rankwell/actions/workflows/ci.yml/badge.svg)](https://github.com/kandulanikhilvarma/rankwell/actions/workflows/ci.yml)
+[![CI](https://github.com/kandulanikhilvarma/firstchair/actions/workflows/ci.yml/badge.svg)](https://github.com/kandulanikhilvarma/firstchair/actions/workflows/ci.yml)
 
-Prospective clients increasingly ask AI assistants — not Google — "who is the best personal injury lawyer in Austin?" Rankwell puts those exact questions to the three major answer engines every day, records what they say, and turns the raw responses into an explainable visibility score, competitor share-of-voice, and a prioritized fix list.
+Prospective clients increasingly ask AI assistants — not Google — "who is the best personal injury lawyer in Austin?" First Chair puts those exact questions to the three major answer engines every day, records what they say, and turns the raw responses into an explainable visibility score, competitor share-of-voice, and a prioritized fix list.
 
 ## How it works
 

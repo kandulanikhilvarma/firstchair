@@ -12,7 +12,7 @@ import { saveOnboarding } from "./actions";
 const STEPS = ["Brand", "Aliases", "Prompts", "Save"] as const;
 
 const inputCls =
-  "w-full rounded-lg border border-border bg-surface-0 px-3 py-2.5 text-ink-900 placeholder:text-ink-600/60 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2";
+  "w-full border border-border-strong bg-surface-0 px-3 py-2.5 text-ink-900 placeholder:text-ink-600/60 focus:border-ox-700 focus:outline-none";
 
 export default function Onboarding() {
   const [step, setStep] = useState(0);
@@ -40,9 +40,9 @@ export default function Onboarding() {
             <span
               className={`tnum flex h-7 w-7 items-center justify-center rounded-full text-sm font-semibold ${
                 i < step
-                  ? "bg-accent-600 text-white"
+                  ? "bg-accent-600 text-canary-100"
                   : i === step
-                    ? "bg-primary-700 text-white"
+                    ? "bg-ox-700 text-canary-100"
                     : "border border-border bg-surface-0 text-ink-600"
               }`}
             >
@@ -58,7 +58,7 @@ export default function Onboarding() {
         ))}
       </ol>
 
-      <div className="mt-8 rounded-xl border border-border bg-surface-0 p-8 shadow-card">
+      <div className="mt-8 border border-border-strong bg-surface-0 p-8">
         {step === 0 && (
           <form
             className="flex flex-col gap-4"
@@ -67,7 +67,7 @@ export default function Onboarding() {
               setStep(1);
             }}
           >
-            <h1 className="text-2xl font-bold text-primary-900">Your firm</h1>
+            <h1 className="font-display text-3xl text-ink-900">Your firm</h1>
             <label className="text-sm font-medium text-ink-900">
               Firm name
               <input
@@ -100,7 +100,7 @@ export default function Onboarding() {
             </label>
             <button
               type="submit"
-              className="mt-2 cursor-pointer self-start rounded-lg bg-primary-700 px-5 py-2.5 font-semibold text-white transition-colors duration-200 hover:bg-primary-500"
+              className="mt-2 cursor-pointer self-start bg-ox-700 px-5 py-2.5 font-semibold text-canary-100 transition-colors duration-200 hover:bg-ox-900"
             >
               Continue
             </button>
@@ -109,7 +109,7 @@ export default function Onboarding() {
 
         {step === 1 && (
           <div className="flex flex-col gap-4">
-            <h1 className="text-2xl font-bold text-primary-900">
+            <h1 className="font-display text-3xl text-ink-900">
               Aliases &amp; competitors
             </h1>
             <label className="text-sm font-medium text-ink-900">
@@ -138,7 +138,7 @@ export default function Onboarding() {
                       setCompetitors([...competitors, competitorDraft.trim()]);
                       setCompetitorDraft("");
                     }}
-                    className="cursor-pointer rounded-lg border border-border bg-surface-0 px-4 font-semibold text-primary-700 hover:border-primary-500 disabled:cursor-default disabled:opacity-50"
+                    className="cursor-pointer border border-border-strong bg-surface-0 px-4 font-semibold text-ox-700 hover:border-ox-700 disabled:cursor-default disabled:opacity-50"
                   >
                     Add
                   </button>
@@ -148,7 +148,7 @@ export default function Onboarding() {
                 {competitors.map((c) => (
                   <li
                     key={c}
-                    className="rounded-full bg-primary-500/10 px-3 py-1 text-sm font-medium text-primary-700"
+                    className="bg-canary-100 px-3 py-1 text-sm font-medium text-ox-700"
                   >
                     {c}
                   </li>
@@ -158,7 +158,7 @@ export default function Onboarding() {
             <button
               type="button"
               onClick={toPrompts}
-              className="mt-2 cursor-pointer self-start rounded-lg bg-primary-700 px-5 py-2.5 font-semibold text-white transition-colors duration-200 hover:bg-primary-500"
+              className="mt-2 cursor-pointer self-start bg-ox-700 px-5 py-2.5 font-semibold text-canary-100 transition-colors duration-200 hover:bg-ox-900"
             >
               Generate my 20 prompts
             </button>
@@ -167,7 +167,7 @@ export default function Onboarding() {
 
         {step === 2 && (
           <div className="flex flex-col gap-4">
-            <h1 className="text-2xl font-bold text-primary-900">
+            <h1 className="font-display text-3xl text-ink-900">
               Your tracked questions
             </h1>
             <p className="text-sm text-ink-600">
@@ -188,7 +188,7 @@ export default function Onboarding() {
                           ),
                         )
                       }
-                      className="mt-0.5 h-4 w-4 accent-primary-700"
+                      className="mt-0.5 h-4 w-4 accent-[#6e1f2c]"
                     />
                     <span className={p.active ? "text-ink-900" : "text-ink-600 line-through"}>
                       {p.text}
@@ -203,7 +203,7 @@ export default function Onboarding() {
             <button
               type="button"
               onClick={() => setStep(3)}
-              className="mt-1 cursor-pointer self-start rounded-lg bg-primary-700 px-5 py-2.5 font-semibold text-white transition-colors duration-200 hover:bg-primary-500"
+              className="mt-1 cursor-pointer self-start bg-ox-700 px-5 py-2.5 font-semibold text-canary-100 transition-colors duration-200 hover:bg-ox-900"
             >
               Save my setup
             </button>
@@ -271,7 +271,7 @@ function SaveStep({
 
   return (
     <div className="flex flex-col gap-4">
-      <h1 className="text-2xl font-bold text-primary-900">
+      <h1 className="font-display text-3xl text-ink-900">
         {state.status === "done" ? "You're all set" : "Setting up your tracker"}
       </h1>
       {state.status === "saving" && (
@@ -303,7 +303,7 @@ function SaveStep({
           </p>
           <Link
             href="/dashboard"
-            className="mt-2 self-start rounded-lg bg-accent-600 px-5 py-2.5 font-semibold text-white transition-colors duration-200 hover:opacity-90"
+            className="mt-2 self-start rounded-lg bg-accent-600 px-5 py-2.5 font-semibold text-canary-100 transition-colors duration-200 hover:opacity-90"
           >
             View my dashboard
           </Link>

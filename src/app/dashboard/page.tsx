@@ -3,7 +3,7 @@ import { ArrowUpRight, BarChart3 } from "lucide-react";
 import { ENGINE_LABELS } from "@/lib/seed";
 import { createClient } from "@/lib/supabase/server";
 import { SovDonut, Sparkline, TrendChart } from "./charts";
-import { getDashboardData } from "./data";
+import { getBrands, getDashboardData } from "./data";
 import Shell from "./shell";
 
 /** Workspace plan for the trial-countdown banner (RLS-scoped, same as /billing).
@@ -19,13 +19,24 @@ async function getPlan(): Promise<{ plan: string | null; trialDaysLeft: number |
   return { plan, trialDaysLeft };
 }
 
-export default async function Dashboard() {
-  const [data, { plan, trialDaysLeft }] = await Promise.all([getDashboardData(), getPlan()]);
+export default async function Dashboard({
+  searchParams,
+}: {
+  searchParams: Promise<{ brand?: string }>;
+}) {
+  const { brand: requestedBrand } = await searchParams;
+  const [data, { plan, trialDaysLeft }, brands] = await Promise.all([
+    getDashboardData(requestedBrand),
+    getPlan(),
+    getBrands(),
+  ]);
+  const currentBrandId = brands.find((b) => b.id === requestedBrand)?.id ?? brands[0]?.id ?? null;
+  const shellProps = { brands, currentBrandId, plan, trialDaysLeft };
 
   // No brand yet — send the user through onboarding.
   if (!data) {
     return (
-      <Shell brandName={null} plan={plan} trialDaysLeft={trialDaysLeft}>
+      <Shell brandName={null} {...shellProps}>
         <EmptyState
           title="Set up your first brand"
           body="Add your firm, competitors and the questions you want tracked. Your first scan runs right after."
@@ -38,7 +49,7 @@ export default async function Dashboard() {
   // Brand exists but no scores yet — first scan is still pending.
   if (!data.hasScans || data.trend.length === 0) {
     return (
-      <Shell brandName={data.brandName} plan={plan} trialDaysLeft={trialDaysLeft}>
+      <Shell brandName={data.brandName} {...shellProps}>
         <EmptyState
           title="Your first scan is on the way"
           body="We run your prompts against ChatGPT, Gemini and Perplexity every day. Scores appear here once the first daily scan completes."
@@ -52,22 +63,22 @@ export default async function Dashboard() {
   const missingCount = citations.filter((c) => !c.brandListed).length;
 
   return (
-    <Shell brandName={data.brandName} plan={plan} trialDaysLeft={trialDaysLeft}>
+    <Shell brandName={data.brandName} {...shellProps}>
       <main className="mx-auto max-w-7xl space-y-6 p-6">
           {/* ① Score hero + ② SOV donut */}
           <div className="grid gap-6 lg:grid-cols-3">
-            <section className="rounded-xl border border-border bg-surface-0 p-6 shadow-card lg:col-span-2">
+            <section className="border border-border-strong bg-surface-0 p-6 lg:col-span-2">
               <h2 className="text-sm font-semibold text-ink-600">
                 Visibility Score — 30 days
               </h2>
               <div className="mt-2 flex items-baseline gap-3">
-                <span className="tnum text-5xl font-bold text-primary-900">{today}</span>
+                <span className="tnum font-display text-6xl text-ox-700">{today}</span>
                 <span className="text-ink-600">/100</span>
                 <span
-                  className={`tnum flex items-center gap-0.5 rounded-full px-2 py-0.5 text-sm font-semibold ${
+                  className={`tnum flex items-center gap-0.5 px-2 py-0.5 text-sm font-semibold ${
                     delta >= 0
-                      ? "bg-accent-600/10 text-accent-600"
-                      : "bg-danger-600/10 text-danger-600"
+                      ? "bg-verdict/10 text-verdict"
+                      : "bg-rule/10 text-rule"
                   }`}
                 >
                   <ArrowUpRight className={`h-4 w-4 ${delta < 0 ? "rotate-90" : ""}`} aria-hidden />
@@ -80,7 +91,7 @@ export default async function Dashboard() {
               </div>
             </section>
 
-            <section className="rounded-xl border border-border bg-surface-0 p-6 shadow-card">
+            <section className="border border-border-strong bg-surface-0 p-6">
               <h2 className="text-sm font-semibold text-ink-600">Share of voice</h2>
               <div className="mt-2">
                 {sov.length > 0 ? (
@@ -95,7 +106,7 @@ export default async function Dashboard() {
           </div>
 
           {/* ③ Trend chart */}
-          <section className="rounded-xl border border-border bg-surface-0 p-6 shadow-card">
+          <section className="border border-border-strong bg-surface-0 p-6">
             <h2 className="flex items-center gap-2 text-sm font-semibold text-ink-600">
               <BarChart3 className="h-4 w-4" aria-hidden /> Score by engine
             </h2>
@@ -105,7 +116,7 @@ export default async function Dashboard() {
           </section>
 
           {/* ④ Prompt results table */}
-          <section className="rounded-xl border border-border bg-surface-0 shadow-card">
+          <section className="border border-border-strong bg-surface-0">
             <h2 className="px-6 pt-6 text-sm font-semibold text-ink-600">
               Latest scan — prompt results
             </h2>
@@ -134,15 +145,15 @@ export default async function Dashboard() {
                       <td className="px-3 py-2 text-ink-600">{ENGINE_LABELS[r.engine]}</td>
                       <td className="px-3 py-2">
                         {r.recommended ? (
-                          <span className="rounded-full bg-accent-600/10 px-2 py-0.5 text-xs font-semibold text-accent-600">
+                          <span className="bg-verdict/10 px-2 py-0.5 text-xs font-semibold text-verdict">
                             Recommended
                           </span>
                         ) : r.mentioned ? (
-                          <span className="rounded-full bg-primary-500/10 px-2 py-0.5 text-xs font-semibold text-primary-500">
+                          <span className="bg-canary-100 px-2 py-0.5 text-xs font-semibold text-ox-700">
                             Mentioned
                           </span>
                         ) : (
-                          <span className="rounded-full bg-surface-50 px-2 py-0.5 text-xs font-semibold text-ink-600">
+                          <span className="bg-surface-50 px-2 py-0.5 text-xs font-semibold text-ink-600">
                             Absent
                           </span>
                         )}
@@ -158,7 +169,7 @@ export default async function Dashboard() {
 
           {/* ⑤ Citations + recommendations (F9) */}
           <div className="grid gap-6 lg:grid-cols-2">
-            <section className="rounded-xl border border-border bg-surface-0 p-6 shadow-card">
+            <section className="border border-border-strong bg-surface-0 p-6">
               <h2 className="text-sm font-semibold text-ink-600">Top cited sources</h2>
               {citations.length > 0 ? (
                 <>
@@ -189,7 +200,7 @@ export default async function Dashboard() {
               )}
             </section>
 
-            <section className="rounded-xl border border-border bg-surface-0 p-6 shadow-card">
+            <section className="border border-border-strong bg-surface-0 p-6">
               <h2 className="text-sm font-semibold text-ink-600">What to fix first</h2>
               {recommendations.length > 0 ? (
                 <ol className="mt-3 space-y-3 text-sm">
@@ -223,12 +234,12 @@ function EmptyState({
 }) {
   return (
     <main className="mx-auto flex max-w-xl flex-col items-center gap-3 px-6 py-24 text-center">
-      <h1 className="font-heading text-2xl font-bold text-primary-900">{title}</h1>
+      <h1 className="font-heading font-display text-3xl text-ink-900">{title}</h1>
       <p className="text-ink-600">{body}</p>
       {cta && (
         <Link
           href={cta.href}
-          className="mt-2 rounded-lg bg-primary-700 px-5 py-2.5 font-semibold text-white hover:bg-primary-500"
+          className="mt-2 bg-ox-700 px-5 py-2.5 font-semibold text-canary-100 hover:bg-ox-900"
         >
           {cta.label}
         </Link>
