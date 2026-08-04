@@ -1,7 +1,9 @@
 import Image from "next/image";
 import Link from "next/link";
 import { redirect } from "next/navigation";
+import { createClient } from "@/lib/supabase/server";
 import AuditForm from "./audit-form";
+import SiteHeader from "./site-header";
 import Wordmark from "./wordmark";
 
 /* Illustrative record — synthetic. No real firm, no live engine answer.
@@ -95,15 +97,25 @@ export default async function Home({
     redirect(`/auth/callback?${forward.toString()}`);
   }
 
+  // Auth-aware nav: a logged-in visitor arriving from "View site" was still
+  // shown "Log in / Start free trial", which reads as being signed out.
+  const supabase = await createClient();
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+
   return (
     <div className="flex flex-1 flex-col">
-      {/* Masthead — a title page, not a nav bar */}
-      <header className="border-b-2 border-ox-900 bg-surface-0">
-        <div className="mx-auto flex w-full max-w-6xl items-baseline justify-between px-6 py-4">
-          <Link href="/" aria-label="First Chair home">
-            <Wordmark />
+      <SiteHeader>
+        {user ? (
+          <Link
+            href="/dashboard"
+            className="notation border-b-2 border-canary-400 pb-0.5 text-ox-900 hover:border-ox-700"
+          >
+            Go to dashboard
           </Link>
-          <nav className="flex items-baseline gap-6">
+        ) : (
+          <>
             <Link href="/login" className="notation text-ink-700 hover:text-ox-700">
               Log in
             </Link>
@@ -113,9 +125,9 @@ export default async function Home({
             >
               Start free trial
             </Link>
-          </nav>
-        </div>
-      </header>
+          </>
+        )}
+      </SiteHeader>
 
       {/* Hero — full oxblood field, headline against a filed form */}
       <section className="bg-ox-900 text-canary-100">
@@ -275,7 +287,7 @@ export default async function Home({
                 <li>Weekly email report</li>
               </ul>
               <Link
-                href="/login"
+                href={user ? "/billing" : "/login"}
                 className="mt-8 block border border-ox-700 px-4 py-3 text-center font-semibold text-ox-700 transition-colors hover:bg-ox-700 hover:text-canary-100"
               >
                 Start trial
@@ -297,7 +309,7 @@ export default async function Home({
                 <li>Client-ready weekly emails</li>
               </ul>
               <Link
-                href="/login"
+                href={user ? "/billing" : "/login"}
                 className="mt-8 block bg-canary-400 px-4 py-3 text-center font-semibold text-ox-900 transition-colors hover:bg-canary-200"
               >
                 Start trial

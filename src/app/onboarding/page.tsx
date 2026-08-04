@@ -3,11 +3,27 @@
 // Onboarding wizard — wireframe 1e. Persists brand/competitors/prompts to
 // Supabase (F3), then triggers the first scan (F5) so the dashboard has data.
 
-import { Check, Loader2 } from "lucide-react";
+import { ArrowLeft, Check, Loader2 } from "lucide-react";
 import Link from "next/link";
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { expandTemplates } from "@/lib/prompts/templates";
+import SiteHeader from "../site-header";
 import { saveOnboarding } from "./actions";
+
+/** Shared back control for the wizard steps — moving backward was impossible,
+ *  so a mistake on an early step meant restarting. */
+function StepBack({ onClick }: { onClick: () => void }) {
+  return (
+    <button
+      type="button"
+      onClick={onClick}
+      className="notation inline-flex items-center gap-1.5 self-start text-ink-500 hover:text-ox-700"
+    >
+      <ArrowLeft className="h-4 w-4" aria-hidden />
+      Back
+    </button>
+  );
+}
 
 const STEPS = ["Brand", "Aliases", "Prompts", "Save"] as const;
 
@@ -32,7 +48,9 @@ export default function Onboarding() {
   }
 
   return (
-    <main className="mx-auto max-w-2xl px-6 py-12">
+    <div className="flex flex-1 flex-col">
+      <SiteHeader homeHref="/dashboard" />
+      <main className="mx-auto w-full max-w-2xl px-6 py-12">
       {/* Step indicator */}
       <ol className="flex items-center gap-2">
         {STEPS.map((label, i) => (
@@ -40,7 +58,7 @@ export default function Onboarding() {
             <span
               className={`tnum flex h-7 w-7 items-center justify-center rounded-full text-sm font-semibold ${
                 i < step
-                  ? "bg-accent-600 text-canary-100"
+                  ? "bg-verdict text-canary-100"
                   : i === step
                     ? "bg-ox-700 text-canary-100"
                     : "border border-border bg-surface-0 text-ink-600"
@@ -155,13 +173,16 @@ export default function Onboarding() {
                 ))}
               </ul>
             </div>
-            <button
-              type="button"
-              onClick={toPrompts}
-              className="mt-2 cursor-pointer self-start bg-ox-700 px-5 py-2.5 font-semibold text-canary-100 transition-colors duration-200 hover:bg-ox-900"
-            >
-              Generate my 20 prompts
-            </button>
+            <div className="mt-2 flex items-center gap-5">
+              <StepBack onClick={() => setStep(0)} />
+              <button
+                type="button"
+                onClick={toPrompts}
+                className="cursor-pointer bg-ox-700 px-5 py-2.5 font-semibold text-canary-100 transition-colors duration-200 hover:bg-ox-900"
+              >
+                Generate my 20 prompts
+              </button>
+            </div>
           </div>
         )}
 
@@ -200,13 +221,16 @@ export default function Onboarding() {
             <p className="tnum text-sm text-ink-600">
               {prompts.filter((p) => p.active).length} of {prompts.length} active
             </p>
-            <button
-              type="button"
-              onClick={() => setStep(3)}
-              className="mt-1 cursor-pointer self-start bg-ox-700 px-5 py-2.5 font-semibold text-canary-100 transition-colors duration-200 hover:bg-ox-900"
-            >
-              Save my setup
-            </button>
+            <div className="mt-1 flex items-center gap-5">
+              <StepBack onClick={() => setStep(1)} />
+              <button
+                type="button"
+                onClick={() => setStep(3)}
+                className="cursor-pointer bg-ox-700 px-5 py-2.5 font-semibold text-canary-100 transition-colors duration-200 hover:bg-ox-900"
+              >
+                Save my setup
+              </button>
+            </div>
           </div>
         )}
 
@@ -226,7 +250,8 @@ export default function Onboarding() {
           />
         )}
       </div>
-    </main>
+      </main>
+    </div>
   );
 }
 
@@ -246,26 +271,29 @@ function SaveStep({
   >({ status: "saving" });
   const started = useRef(false);
 
+  const run = useCallback(async () => {
+    setState({ status: "saving" });
+    const res = await saveOnboarding(input);
+    if (!res.ok) {
+      setState({ status: "error", message: res.error });
+      return;
+    }
+    setState({ status: "scanning" });
+    // First scan is best-effort: if it fails or times out the job stays
+    // queued for the daily cron, so never block the user on it.
+    try {
+      const scan = await fetch("/api/scan/run", { method: "POST" });
+      setState({ status: "done", scanned: scan.ok });
+    } catch {
+      setState({ status: "done", scanned: false });
+    }
+  }, [input]);
+
   useEffect(() => {
     if (started.current) return; // StrictMode double-mount — run exactly once
     started.current = true;
-    (async () => {
-      const res = await saveOnboarding(input);
-      if (!res.ok) {
-        setState({ status: "error", message: res.error });
-        return;
-      }
-      setState({ status: "scanning" });
-      // First scan is best-effort: if it fails or times out the job stays
-      // queued for the daily cron, so never block the user on it.
-      try {
-        const scan = await fetch("/api/scan/run", { method: "POST" });
-        setState({ status: "done", scanned: scan.ok });
-      } catch {
-        setState({ status: "done", scanned: false });
-      }
-    })();
-  }, [input]);
+    run();
+  }, [run]);
 
   const activePrompts = input.prompts.filter((p) => p.active).length;
 
@@ -287,9 +315,18 @@ function SaveStep({
         </p>
       )}
       {state.status === "error" && (
-        <p role="status" className="text-sm text-danger-600">
-          {state.message}
-        </p>
+        <div className="flex flex-col gap-3">
+          <p role="alert" className="text-sm text-rule">
+            {state.message}
+          </p>
+          <button
+            type="button"
+            onClick={run}
+            className="cursor-pointer self-start bg-ox-700 px-5 py-2.5 font-semibold text-canary-100 transition-colors hover:bg-ox-900"
+          >
+            Try again
+          </button>
+        </div>
       )}
       {state.status === "done" && (
         <>
@@ -303,7 +340,7 @@ function SaveStep({
           </p>
           <Link
             href="/dashboard"
-            className="mt-2 self-start rounded-lg bg-accent-600 px-5 py-2.5 font-semibold text-canary-100 transition-colors duration-200 hover:opacity-90"
+            className="mt-2 self-start bg-ox-700 px-5 py-2.5 font-semibold text-canary-100 transition-colors hover:bg-ox-900"
           >
             View my dashboard
           </Link>

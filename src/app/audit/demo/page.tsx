@@ -1,6 +1,6 @@
 import { Check, Lock, X } from "lucide-react";
 import Link from "next/link";
-import BackLink from "@/app/back-link";
+import SiteHeader from "@/app/site-header";
 
 // Audit result — wireframe 1a: sticky score bar, engine cards, blurred locked
 // rows + trial CTA. Demo route; F1 live path renders this with real scan data.
@@ -36,11 +36,11 @@ const ENGINE_CARDS = [
 export default function AuditDemo() {
   return (
     <div className="min-h-screen">
-      <div className="border-b border-border bg-surface-0 px-6 py-3">
-        <div className="mx-auto max-w-3xl">
-          <BackLink href="/" label="Back to site" />
-        </div>
-      </div>
+      <SiteHeader>
+        <Link href="/" className="notation text-ink-700 hover:text-ox-700">
+          Back to site
+        </Link>
+      </SiteHeader>
       {/* Sticky score bar — pins for the whole scroll (1a note) */}
       <header className="sticky top-0 z-10 border-b border-border bg-ox-900 px-6 py-3 text-canary-100">
         <div className="mx-auto flex max-w-3xl items-center justify-between">
