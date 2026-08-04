@@ -1,6 +1,6 @@
 <div align="center">
 
-<img width="1882" height="913" alt="image" src="https://github.com/user-attachments/assets/5d8ccdf0-cfe7-4c0e-a816-01c7e4d21d90" />
+<img width="1810" height="869" alt="firstchaireadme" src="https://github.com/user-attachments/assets/23a11a84-aa8c-41c4-9294-4c1398c64c0a" />
 
 
 <h1>First Chair</h1>
