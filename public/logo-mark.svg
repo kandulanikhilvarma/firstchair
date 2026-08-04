@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="256" height="256" viewBox="0 0 32 32" role="img" aria-label="First Chair">
+  <title>First Chair</title>
+  <rect width="32" height="32" fill="#3f1119"/>
+  <rect x="4" y="9" width="24" height="1.5" fill="#f7d64a" opacity="0.5"/>
+  <rect x="4" y="14" width="7" height="9" fill="#f7d64a"/>
+  <rect x="13.75" y="14.75" width="5.5" height="7.5" stroke="#f7d64a" stroke-width="1.5" fill="none" opacity="0.42"/>
+  <rect x="22.25" y="14.75" width="5.5" height="7.5" stroke="#f7d64a" stroke-width="1.5" fill="none" opacity="0.42"/>
+</svg>

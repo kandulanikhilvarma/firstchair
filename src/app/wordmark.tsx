@@ -1,5 +1,6 @@
-/** The mark: counsel table with three seats, the first one taken.
- *  Drawn rather than set, so it holds at favicon size. */
+/** The mark: a counsel table with three seats, the first one taken.
+ *  Drawn as geometry, not set as type, so it holds at 16px and never
+ *  depends on a font having loaded. */
 export function Mark({ className = "h-7 w-7" }: { className?: string }) {
   return (
     <svg viewBox="0 0 32 32" className={className} aria-hidden focusable="false">
@@ -28,10 +29,12 @@ export function Mark({ className = "h-7 w-7" }: { className?: string }) {
   );
 }
 
+/** Caps Caslon with wide tracking — the lockup reads as a title page, which is
+ *  where the rest of this identity comes from. */
 export default function Wordmark({
   className = "",
   markClassName = "h-7 w-7 text-ox-900",
-  textClassName = "text-2xl text-ox-900",
+  textClassName = "text-lg text-ox-900",
 }: {
   className?: string;
   markClassName?: string;
@@ -40,7 +43,9 @@ export default function Wordmark({
   return (
     <span className={`inline-flex items-center gap-2.5 ${className}`}>
       <Mark className={markClassName} />
-      <span className={`font-display leading-none tracking-tight ${textClassName}`}>
+      <span
+        className={`font-display font-normal uppercase leading-none tracking-[0.12em] ${textClassName}`}
+      >
         First Chair
       </span>
     </span>
