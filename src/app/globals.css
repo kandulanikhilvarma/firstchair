@@ -101,6 +101,12 @@ h4 {
   font-weight: 600;
 }
 
+/* The red margin rule off a legal pad — a structural hairline down the left
+   edge of anything that reads as a filled-in form. */
+.margin-rule {
+  border-left: 1px solid var(--color-rule);
+}
+
 /* Court-transcript block: verbatim machine answers set in Courier, because a
    transcript is Courier. Data, not costume. */
 .transcript {

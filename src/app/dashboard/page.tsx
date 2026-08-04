@@ -180,15 +180,15 @@ export default async function Dashboard({
                         <span className="tnum text-ink-600">
                           cited for {c.citedInPrompts}/{c.totalPrompts} prompts ·{" "}
                           {c.brandListed ? (
-                            <span className="font-semibold text-accent-600">listed</span>
+                            <span className="font-semibold text-verdict">listed</span>
                           ) : (
-                            <span className="font-semibold text-danger-600">missing</span>
+                            <span className="font-semibold text-rule">missing</span>
                           )}
                         </span>
                       </li>
                     ))}
                   </ul>
-                  <p className="mt-3 text-sm text-warn-600">
+                  <p className="mt-3 text-sm text-foil">
                     You&apos;re missing from {missingCount} of {citations.length} top-cited
                     sources.
                   </p>
