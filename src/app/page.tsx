@@ -348,6 +348,9 @@ export default async function Home({
             AI visibility for law firms — ChatGPT, Gemini, Perplexity
           </p>
           <nav className="flex gap-6">
+            <Link href="/about" className="notation text-ink-500 hover:text-ox-700">
+              About
+            </Link>
             <Link href="/privacy" className="notation text-ink-500 hover:text-ox-700">
               Privacy
             </Link>
