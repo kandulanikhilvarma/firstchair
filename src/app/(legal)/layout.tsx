@@ -18,6 +18,9 @@ export default function LegalLayout({ children }: { children: React.ReactNode })
         <div className="mx-auto flex w-full max-w-6xl flex-wrap items-baseline justify-between gap-4 px-6 py-8">
           <Wordmark markClassName="h-6 w-6 text-ox-900" textClassName="text-xl text-ox-900" />
           <nav className="flex gap-6">
+            <Link href="/about" className="notation text-ink-500 hover:text-ox-700">
+              About
+            </Link>
             <Link href="/privacy" className="notation text-ink-500 hover:text-ox-700">
               Privacy
             </Link>
