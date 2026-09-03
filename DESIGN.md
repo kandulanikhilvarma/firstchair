@@ -32,94 +32,93 @@ colors:
   success: "#0e7a4e"
   danger: "#c22645"
   warning: "#b45309"
-colorsDark:
-  bg: "#0b0b10"
-  surface-1: "#14141c"
-  surface-2: "#1c1c26"
-  border: "#2a2a38"
-  border-strong: "#3a3a4c"
-  border-input: "#5c5c76"
-  text-primary: "#ececf5"
-  text-secondary: "#a3a3b8"
-  text-muted: "#7a7a93"
-  brand-50: "#17172c"
-  brand-100: "#1e1e3a"
-  brand-500: "#7c7cf8"
-  brand-600: "#8f8ffa"
-  brand-700: "#a3a3fc"
-  on-brand: "#0b0b10"
-  openai: "#34d399"
-  gemini: "#60a5fa"
-  perplexity: "#fb7185"
-  series-1: "#7c7cf8"
-  series-2: "#34d399"
-  series-3: "#60a5fa"
-  series-4: "#fb7185"
-  series-5: "#fbbf24"
-  series-6: "#a3e635"
-  success: "#34d399"
-  danger: "#fb7185"
-  warning: "#fbbf24"
+  bg-dark: "#0b0b10"
+  surface-1-dark: "#14141c"
+  surface-2-dark: "#1c1c26"
+  border-dark: "#2a2a38"
+  border-strong-dark: "#3a3a4c"
+  border-input-dark: "#5c5c76"
+  text-primary-dark: "#ececf5"
+  text-secondary-dark: "#a3a3b8"
+  text-muted-dark: "#7a7a93"
+  brand-50-dark: "#17172c"
+  brand-100-dark: "#1e1e3a"
+  brand-500-dark: "#7c7cf8"
+  brand-600-dark: "#8f8ffa"
+  brand-700-dark: "#a3a3fc"
+  on-brand-dark: "#0b0b10"
+  openai-dark: "#34d399"
+  gemini-dark: "#60a5fa"
+  perplexity-dark: "#fb7185"
+  series-1-dark: "#7c7cf8"
+  series-2-dark: "#34d399"
+  series-3-dark: "#60a5fa"
+  series-4-dark: "#fb7185"
+  series-5-dark: "#fbbf24"
+  series-6-dark: "#a3e635"
+  success-dark: "#34d399"
+  danger-dark: "#fb7185"
+  warning-dark: "#fbbf24"
 typography:
   display-xl:
-    fontFamily: "Bricolage Grotesque, system-ui, sans-serif"
+    fontFamily: "Archivo, system-ui, sans-serif"
     fontSize: "clamp(2.75rem, 6vw, 4.5rem)"
     fontWeight: 700
     lineHeight: 1.02
     letterSpacing: "-0.035em"
   display:
-    fontFamily: "Bricolage Grotesque, system-ui, sans-serif"
+    fontFamily: "Archivo, system-ui, sans-serif"
     fontSize: "clamp(2.25rem, 4.2vw, 3.25rem)"
     fontWeight: 700
     lineHeight: 1.06
     letterSpacing: "-0.03em"
   headline:
-    fontFamily: "Bricolage Grotesque, system-ui, sans-serif"
+    fontFamily: "Archivo, system-ui, sans-serif"
     fontSize: "clamp(1.75rem, 2.6vw, 2.25rem)"
     fontWeight: 600
     lineHeight: 1.12
     letterSpacing: "-0.025em"
   title:
-    fontFamily: "Bricolage Grotesque, system-ui, sans-serif"
+    fontFamily: "Archivo, system-ui, sans-serif"
     fontSize: "1.375rem"
     fontWeight: 600
     lineHeight: 1.25
     letterSpacing: "-0.02em"
   subtitle:
-    fontFamily: "Inter, system-ui, sans-serif"
+    fontFamily: "IBM Plex Sans, system-ui, sans-serif"
     fontSize: "1.125rem"
     fontWeight: 500
     lineHeight: 1.4
     letterSpacing: "-0.01em"
   body-lg:
-    fontFamily: "Inter, system-ui, sans-serif"
+    fontFamily: "IBM Plex Sans, system-ui, sans-serif"
     fontSize: "1.125rem"
     fontWeight: 400
     lineHeight: 1.65
   body:
-    fontFamily: "Inter, system-ui, sans-serif"
+    fontFamily: "IBM Plex Sans, system-ui, sans-serif"
     fontSize: "1rem"
     fontWeight: 400
     lineHeight: 1.6
   body-sm:
-    fontFamily: "Inter, system-ui, sans-serif"
+    fontFamily: "IBM Plex Sans, system-ui, sans-serif"
     fontSize: "0.875rem"
     fontWeight: 400
     lineHeight: 1.55
   label:
-    fontFamily: "Inter, system-ui, sans-serif"
+    fontFamily: "IBM Plex Sans, system-ui, sans-serif"
     fontSize: "0.75rem"
     fontWeight: 600
     lineHeight: 1.2
     letterSpacing: "0.06em"
     fontFeature: "text-transform: uppercase"
   mono-sm:
-    fontFamily: "JetBrains Mono, ui-monospace, monospace"
+    fontFamily: "IBM Plex Mono, ui-monospace, monospace"
     fontSize: "0.8125rem"
     fontWeight: 400
     lineHeight: 1.5
   numeric:
-    fontFamily: "Bricolage Grotesque, system-ui, sans-serif"
+    fontFamily: "Archivo, system-ui, sans-serif"
     fontSize: "clamp(2.5rem, 5vw, 3.75rem)"
     fontWeight: 700
     lineHeight: 1
@@ -265,10 +264,15 @@ surface step instead.
 
 ## Typography
 
-**Bricolage Grotesque** for display, headlines and numerals — a variable grotesque
-with an optical-size axis, set tight and heavy so a score reads as a figure rather
-than as running text. **Inter** for every piece of UI and body copy. **JetBrains
-Mono** for verbatim engine answers, citations, hex values and IDs.
+**Archivo** for display, headlines and numerals — a wide grotesque set tight and
+heavy, so a score reads as a figure rather than as running text. **IBM Plex Sans**
+for every piece of UI and body copy. **IBM Plex Mono** for verbatim engine answers,
+citations, hex values and IDs.
+
+The UI and mono faces are siblings on purpose. What the machine said and the
+interface reading it back come from one superfamily, so a transcript sits inside
+the product rather than on top of it. Archivo stands apart because display is the
+one place the brand is allowed a voice.
 
 The mono rule is the one thing carried over intact from the previous system, and
 it is carried over because it means something rather than because it looked good:
@@ -359,7 +363,7 @@ line style, a sign, an arrow, a word. Charts must survive greyscale.
 **Measured, Not Eyeballed.** A colour pair enters the system only after the
 contrast test passes. The test is the source of truth, not this document.
 
-**Mono Means Verbatim.** JetBrains Mono is reserved for what a machine actually
+**Mono Means Verbatim.** IBM Plex Mono is reserved for what a machine actually
 said. Never used decoratively.
 
 **Tabular Figures.** Any number that updates is `tabular-nums`, so the column

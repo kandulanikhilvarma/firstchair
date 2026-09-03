@@ -406,11 +406,11 @@
       }
     },
     "typographyMeta": {
-      "display-xl": "Hero figure or landing headline. Bricolage 700, tightest tracking.",
+      "display-xl": "Hero figure or landing headline. Archivo 700, tightest tracking.",
       "display": "Section opener on marketing surfaces.",
       "headline": "Primary heading inside the product.",
       "title": "Panel and card titles.",
-      "subtitle": "Supporting line under a title. Inter 500.",
+      "subtitle": "Supporting line under a title. IBM Plex Sans 500.",
       "body-lg": "Lede paragraph.",
       "body": "Default running text.",
       "body-sm": "Dense UI text, table cells, helper copy.",
