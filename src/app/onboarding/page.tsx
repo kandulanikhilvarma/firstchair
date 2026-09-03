@@ -17,7 +17,7 @@ function StepBack({ onClick }: { onClick: () => void }) {
     <button
       type="button"
       onClick={onClick}
-      className="notation inline-flex items-center gap-1.5 self-start text-ink-500 hover:text-ox-700"
+      className="notation inline-flex items-center gap-1.5 self-start text-fg-muted hover:text-brand-700"
     >
       <ArrowLeft className="h-4 w-4" aria-hidden />
       Back
@@ -28,7 +28,7 @@ function StepBack({ onClick }: { onClick: () => void }) {
 const STEPS = ["Brand", "Aliases", "Prompts", "Save"] as const;
 
 const inputCls =
-  "w-full border border-border-strong bg-surface-0 px-3 py-2.5 text-ink-900 placeholder:text-ink-600/60 focus:border-ox-700 focus:outline-none";
+  "w-full border border-line-strong bg-surface-1 px-3 py-2.5 text-fg placeholder:text-fg-muted/60 focus:border-brand-500 focus:outline-none";
 
 export default function Onboarding() {
   const [step, setStep] = useState(0);
@@ -58,25 +58,25 @@ export default function Onboarding() {
             <span
               className={`tnum flex h-7 w-7 items-center justify-center rounded-full text-sm font-semibold ${
                 i < step
-                  ? "bg-verdict text-canary-100"
+                  ? "bg-success text-on-brand"
                   : i === step
-                    ? "bg-ox-700 text-canary-100"
-                    : "border border-border bg-surface-0 text-ink-600"
+                    ? "bg-brand-500 text-on-brand"
+                    : "border border-line bg-surface-1 text-fg-muted"
               }`}
             >
               {i < step ? <Check className="h-4 w-4" aria-hidden /> : i + 1}
             </span>
             <span
-              className={`text-sm font-medium ${i === step ? "text-ink-900" : "text-ink-600"}`}
+              className={`text-sm font-medium ${i === step ? "text-fg" : "text-fg-muted"}`}
             >
               {label}
             </span>
-            {i < STEPS.length - 1 && <span className="mx-1 h-px w-6 bg-border" />}
+            {i < STEPS.length - 1 && <span className="mx-1 h-px w-6 bg-line" />}
           </li>
         ))}
       </ol>
 
-      <div className="mt-8 border border-border-strong bg-surface-0 p-8">
+      <div className="mt-8 border border-line-strong bg-surface-1 p-8">
         {step === 0 && (
           <form
             className="flex flex-col gap-4"
@@ -85,8 +85,8 @@ export default function Onboarding() {
               setStep(1);
             }}
           >
-            <h1 className="font-display text-3xl text-ink-900">Your firm</h1>
-            <label className="text-sm font-medium text-ink-900">
+            <h1 className="font-display text-3xl text-fg">Your firm</h1>
+            <label className="text-sm font-medium text-fg">
               Firm name
               <input
                 required
@@ -96,7 +96,7 @@ export default function Onboarding() {
                 className={inputCls}
               />
             </label>
-            <label className="text-sm font-medium text-ink-900">
+            <label className="text-sm font-medium text-fg">
               City
               <input
                 required
@@ -106,7 +106,7 @@ export default function Onboarding() {
                 className={inputCls}
               />
             </label>
-            <label className="text-sm font-medium text-ink-900">
+            <label className="text-sm font-medium text-fg">
               Practice area
               <input
                 required
@@ -118,7 +118,7 @@ export default function Onboarding() {
             </label>
             <button
               type="submit"
-              className="mt-2 cursor-pointer self-start bg-ox-700 px-5 py-2.5 font-semibold text-canary-100 transition-colors duration-200 hover:bg-ox-900"
+              className="mt-2 cursor-pointer self-start bg-brand-500 px-5 py-2.5 font-semibold text-on-brand transition-colors duration-200 hover:bg-brand-600"
             >
               Continue
             </button>
@@ -127,10 +127,10 @@ export default function Onboarding() {
 
         {step === 1 && (
           <div className="flex flex-col gap-4">
-            <h1 className="font-display text-3xl text-ink-900">
+            <h1 className="font-display text-3xl text-fg">
               Aliases &amp; competitors
             </h1>
-            <label className="text-sm font-medium text-ink-900">
+            <label className="text-sm font-medium text-fg">
               Other spellings of your firm (comma-separated)
               <input
                 value={aliases}
@@ -140,7 +140,7 @@ export default function Onboarding() {
               />
             </label>
             <div>
-              <label className="text-sm font-medium text-ink-900">
+              <label className="text-sm font-medium text-fg">
                 Competitors (up to 5)
                 <div className="flex gap-2">
                   <input
@@ -156,7 +156,7 @@ export default function Onboarding() {
                       setCompetitors([...competitors, competitorDraft.trim()]);
                       setCompetitorDraft("");
                     }}
-                    className="cursor-pointer border border-border-strong bg-surface-0 px-4 font-semibold text-ox-700 hover:border-ox-700 disabled:cursor-default disabled:opacity-50"
+                    className="cursor-pointer border border-line-strong bg-surface-1 px-4 font-semibold text-brand-700 hover:border-brand-500 disabled:cursor-default disabled:opacity-50"
                   >
                     Add
                   </button>
@@ -166,7 +166,7 @@ export default function Onboarding() {
                 {competitors.map((c) => (
                   <li
                     key={c}
-                    className="bg-canary-100 px-3 py-1 text-sm font-medium text-ox-700"
+                    className="bg-brand-50 px-3 py-1 text-sm font-medium text-brand-700"
                   >
                     {c}
                   </li>
@@ -178,7 +178,7 @@ export default function Onboarding() {
               <button
                 type="button"
                 onClick={toPrompts}
-                className="cursor-pointer bg-ox-700 px-5 py-2.5 font-semibold text-canary-100 transition-colors duration-200 hover:bg-ox-900"
+                className="cursor-pointer bg-brand-500 px-5 py-2.5 font-semibold text-on-brand transition-colors duration-200 hover:bg-brand-600"
               >
                 Generate my 20 prompts
               </button>
@@ -188,17 +188,17 @@ export default function Onboarding() {
 
         {step === 2 && (
           <div className="flex flex-col gap-4">
-            <h1 className="font-display text-3xl text-ink-900">
+            <h1 className="font-display text-3xl text-fg">
               Your tracked questions
             </h1>
-            <p className="text-sm text-ink-600">
+            <p className="text-sm text-fg-muted">
               These are the questions we&apos;ll put to the engines. Toggle off any
               that don&apos;t fit.
             </p>
             <ul className="max-h-80 space-y-1 overflow-y-auto pr-2">
               {prompts.map((p, i) => (
                 <li key={p.text}>
-                  <label className="flex cursor-pointer items-start gap-3 rounded-lg px-2 py-1.5 text-sm hover:bg-surface-50">
+                  <label className="flex cursor-pointer items-start gap-3 rounded-lg px-2 py-1.5 text-sm hover:bg-surface-2">
                     <input
                       type="checkbox"
                       checked={p.active}
@@ -209,16 +209,16 @@ export default function Onboarding() {
                           ),
                         )
                       }
-                      className="mt-0.5 h-4 w-4 accent-[#6e1f2c]"
+                      className="mt-0.5 h-4 w-4 accent-brand-500"
                     />
-                    <span className={p.active ? "text-ink-900" : "text-ink-600 line-through"}>
+                    <span className={p.active ? "text-fg" : "text-fg-muted line-through"}>
                       {p.text}
                     </span>
                   </label>
                 </li>
               ))}
             </ul>
-            <p className="tnum text-sm text-ink-600">
+            <p className="tnum text-sm text-fg-muted">
               {prompts.filter((p) => p.active).length} of {prompts.length} active
             </p>
             <div className="mt-1 flex items-center gap-5">
@@ -226,7 +226,7 @@ export default function Onboarding() {
               <button
                 type="button"
                 onClick={() => setStep(3)}
-                className="cursor-pointer bg-ox-700 px-5 py-2.5 font-semibold text-canary-100 transition-colors duration-200 hover:bg-ox-900"
+                className="cursor-pointer bg-brand-500 px-5 py-2.5 font-semibold text-on-brand transition-colors duration-200 hover:bg-brand-600"
               >
                 Save my setup
               </button>
@@ -299,16 +299,16 @@ function SaveStep({
 
   return (
     <div className="flex flex-col gap-4">
-      <h1 className="font-display text-3xl text-ink-900">
+      <h1 className="font-display text-3xl text-fg">
         {state.status === "done" ? "You're all set" : "Setting up your tracker"}
       </h1>
       {state.status === "saving" && (
-        <p role="status" className="text-sm text-ink-600">
+        <p role="status" className="text-sm text-fg-muted">
           Saving your firm, competitors and prompts…
         </p>
       )}
       {state.status === "scanning" && (
-        <p role="status" className="flex items-center gap-2 text-sm text-ink-600">
+        <p role="status" className="flex items-center gap-2 text-sm text-fg-muted">
           <Loader2 className="h-4 w-4 animate-spin" aria-hidden />
           Running your first scan across ChatGPT, Gemini and Perplexity — this
           takes about a minute.
@@ -316,13 +316,13 @@ function SaveStep({
       )}
       {state.status === "error" && (
         <div className="flex flex-col gap-3">
-          <p role="alert" className="text-sm text-rule">
+          <p role="alert" className="text-sm text-danger">
             {state.message}
           </p>
           <button
             type="button"
             onClick={run}
-            className="cursor-pointer self-start bg-ox-700 px-5 py-2.5 font-semibold text-canary-100 transition-colors hover:bg-ox-900"
+            className="cursor-pointer self-start bg-brand-500 px-5 py-2.5 font-semibold text-on-brand transition-colors hover:bg-brand-600"
           >
             Try again
           </button>
@@ -330,7 +330,7 @@ function SaveStep({
       )}
       {state.status === "done" && (
         <>
-          <p role="status" className="text-sm text-ink-600">
+          <p role="status" className="text-sm text-fg-muted">
             {activePrompts} prompts tracked for {input.name} vs{" "}
             {input.competitors.length} competitor
             {input.competitors.length === 1 ? "" : "s"}.{" "}
@@ -340,7 +340,7 @@ function SaveStep({
           </p>
           <Link
             href="/dashboard"
-            className="mt-2 self-start bg-ox-700 px-5 py-2.5 font-semibold text-canary-100 transition-colors hover:bg-ox-900"
+            className="mt-2 self-start bg-brand-500 px-5 py-2.5 font-semibold text-on-brand transition-colors hover:bg-brand-600"
           >
             View my dashboard
           </Link>

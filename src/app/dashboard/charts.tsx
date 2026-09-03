@@ -15,13 +15,28 @@ import {
 import type { EngineName } from "@/lib/engines/types";
 import { ENGINE_LABELS, ENGINES, type SovSlice, type TrendPoint } from "@/lib/seed";
 
-// hex mirrors @theme tokens in globals.css (recharts can't read CSS vars in SSR)
+// Prism tokens, resolved at paint so dark mode adapts. One hue per engine.
 const SERIES: Record<EngineName, string> = {
-  openai: "#2563eb",
-  gemini: "#059669",
-  perplexity: "#d97706",
+  openai: "var(--color-openai)",
+  gemini: "var(--color-gemini)",
+  perplexity: "var(--color-perplexity)",
 };
-const DONUT_COLORS = ["#2563eb", "#059669", "#d97706", "#7c3aed", "#db2777", "#0891b2"];
+// Never Colour Alone: each engine also owns a line style, so a greyscale print
+// still separates them. ChatGPT solid, Gemini dashed, Perplexity dotted.
+const SERIES_DASH: Record<EngineName, string | undefined> = {
+  openai: undefined,
+  gemini: "6 4",
+  perplexity: "1 4",
+};
+// series-1 is always the user's firm; the rest are competitors.
+const DONUT_COLORS = [
+  "var(--color-series-1)",
+  "var(--color-series-2)",
+  "var(--color-series-3)",
+  "var(--color-series-4)",
+  "var(--color-series-5)",
+  "var(--color-series-6)",
+];
 
 export function Sparkline({ data }: { data: TrendPoint[] }) {
   const avg = data.map((p) => ({
@@ -31,7 +46,13 @@ export function Sparkline({ data }: { data: TrendPoint[] }) {
   return (
     <ResponsiveContainer width="100%" height={48}>
       <LineChart data={avg}>
-        <Line type="monotone" dataKey="score" stroke="#2563eb" strokeWidth={2} dot={false} />
+        <Line
+          type="monotone"
+          dataKey="score"
+          stroke="var(--color-brand-500)"
+          strokeWidth={2}
+          dot={false}
+        />
       </LineChart>
     </ResponsiveContainer>
   );
@@ -52,10 +73,10 @@ export function TrendChart({ data }: { data: TrendPoint[] }) {
             type="button"
             aria-pressed={visible[e]}
             onClick={() => setVisible((v) => ({ ...v, [e]: !v[e] }))}
-            className={`cursor-pointer rounded-full border px-3 py-1 text-sm font-medium transition-colors duration-150 ${
+            className={`cursor-pointer rounded-md border px-3 py-1 text-sm font-medium transition-colors duration-150 ${
               visible[e]
-                ? "border-transparent text-white"
-                : "border-border bg-surface-0 text-ink-600"
+                ? "border-transparent text-on-brand"
+                : "border-line bg-surface-1 text-fg-muted"
             }`}
             style={visible[e] ? { backgroundColor: SERIES[e] } : undefined}
           >
@@ -75,6 +96,7 @@ export function TrendChart({ data }: { data: TrendPoint[] }) {
               dataKey={e}
               name={ENGINE_LABELS[e]}
               stroke={SERIES[e]}
+              strokeDasharray={SERIES_DASH[e]}
               strokeWidth={2}
               dot={false}
             />
@@ -113,8 +135,8 @@ export function SovDonut({ data }: { data: SovSlice[] }) {
               className="inline-block h-2.5 w-2.5 rounded-full"
               style={{ backgroundColor: DONUT_COLORS[i % DONUT_COLORS.length] }}
             />
-            <span className="text-ink-900">{s.name}</span>
-            <span className="tnum text-ink-600">
+            <span className="text-fg">{s.name}</span>
+            <span className="tnum text-fg-muted">
               {Math.round((100 * s.mentions) / total)}%
             </span>
           </li>

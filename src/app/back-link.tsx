@@ -19,7 +19,7 @@ export default function BackLink({
   return (
     <Link
       href={href}
-      className={`notation inline-flex items-center gap-1.5 text-ink-500 transition-colors hover:text-ox-700 ${className}`}
+      className={`notation inline-flex items-center gap-1.5 text-fg-muted transition-colors hover:text-brand-700 ${className}`}
     >
       <ArrowLeft className="h-4 w-4" aria-hidden />
       {label}

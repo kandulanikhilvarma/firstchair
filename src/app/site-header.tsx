@@ -12,7 +12,7 @@ export default function SiteHeader({
   children?: React.ReactNode;
 }) {
   return (
-    <header className="border-b-2 border-ox-900 bg-surface-0">
+    <header className="border-b-2 border-brand-700 bg-surface-1">
       <div className="mx-auto flex w-full max-w-6xl items-center justify-between px-6 py-4">
         <Link href={homeHref} aria-label="First Chair home">
           <Wordmark />

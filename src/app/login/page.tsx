@@ -27,22 +27,22 @@ export default async function LoginPage({
   return (
     <div className="flex flex-1 flex-col">
       <SiteHeader>
-        <Link href="/" className="notation text-ink-700 hover:text-ox-700">
+        <Link href="/" className="notation text-fg hover:text-brand-700">
           Back to site
         </Link>
       </SiteHeader>
 
-      <main className="flex flex-1 items-center justify-center bg-surface-50 px-6 py-16">
+      <main className="flex flex-1 items-center justify-center bg-surface-2 px-6 py-16">
         <div className="w-full max-w-md">
-          <h1 className="font-display text-4xl text-ink-900">Sign in</h1>
-          <p className="mt-3 text-ink-700">
+          <h1 className="font-display text-4xl text-fg">Sign in</h1>
+          <p className="mt-3 text-fg">
             We email you a link. There is no password to remember or lose.
           </p>
 
           {message && (
             <p
               role="alert"
-              className="margin-rule mt-6 bg-surface-0 px-4 py-3 text-sm text-ink-900"
+              className="mt-6 bg-surface-1 px-4 py-3 text-sm text-fg"
             >
               {message}
             </p>

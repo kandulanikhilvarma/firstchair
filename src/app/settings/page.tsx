@@ -30,13 +30,13 @@ export default async function SettingsPage({
     return (
       <Shell brandName={null} {...shellProps}>
         <div className="mx-auto max-w-xl px-6 py-24 text-center">
-          <h1 className="font-display text-3xl text-ink-900">Nothing to configure yet</h1>
-          <p className="mt-3 text-ink-700">
+          <h1 className="font-display text-3xl text-fg">Nothing to configure yet</h1>
+          <p className="mt-3 text-fg">
             Add your first firm and its questions, then this page lets you change them.
           </p>
           <Link
             href="/onboarding"
-            className="mt-6 inline-block bg-ox-700 px-6 py-3 font-semibold text-canary-100 hover:bg-ox-900"
+            className="mt-6 inline-block bg-brand-500 px-6 py-3 font-semibold text-on-brand hover:bg-brand-600"
           >
             Add a firm
           </Link>
@@ -60,11 +60,11 @@ export default async function SettingsPage({
 
   return (
     <Shell brandName={brand.name} {...shellProps}>
-      <div className="border-b border-border bg-surface-0 px-6 py-6">
+      <div className="border-b border-line bg-surface-1 px-6 py-6">
         <div className="mx-auto max-w-4xl">
           <BackLink href="/dashboard" label="Back to dashboard" />
-          <h1 className="mt-5 font-display text-3xl text-ink-900">Settings</h1>
-          <p className="mt-2 text-ink-700">
+          <h1 className="mt-5 font-display text-3xl text-fg">Settings</h1>
+          <p className="mt-2 text-fg">
             Changes apply from the next daily scan.{" "}
             <span className="tnum">
               {brands.length} of {limit}

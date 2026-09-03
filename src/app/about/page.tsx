@@ -100,29 +100,29 @@ export default function AboutPage() {
   return (
     <div className="flex flex-1 flex-col">
       <SiteHeader>
-        <Link href="/" className="notation text-ink-700 hover:text-ox-700">
+        <Link href="/" className="notation text-fg hover:text-brand-700">
           Back to site
         </Link>
         <Link
           href="/login"
-          className="notation border-b-2 border-canary-400 pb-0.5 text-ox-900 hover:border-ox-700"
+          className="notation border-b-2 border-warning pb-0.5 text-fg hover:border-brand-500"
         >
           Start free trial
         </Link>
       </SiteHeader>
 
       {/* Hero — the committed field, same as the home page opens on */}
-      <section className="bg-ox-900 text-canary-100">
+      <section className="bg-brand-700 text-on-brand">
         <div className="mx-auto w-full max-w-6xl px-6 py-20">
-          <h1 className="max-w-[16ch] font-display text-[clamp(2.5rem,5.5vw,4.5rem)] leading-[1.03] text-canary-100">
+          <h1 className="max-w-[16ch] font-display text-[clamp(2.5rem,5.5vw,4.5rem)] leading-[1.03] text-on-brand">
             Built by someone who ships.
           </h1>
-          <p className="mt-7 max-w-[62ch] text-lg leading-relaxed text-canary-200">
+          <p className="mt-7 max-w-[62ch] text-lg leading-relaxed text-on-brand">
             First Chair is built and run by Nikhilvarma Kandula — a founder and AI engineer
             in Germany, previously eighteen months in US fintech. One person writes the
             scan engine, reads the engine answers, and answers the support email.
           </p>
-          <blockquote className="ink-in mt-10 max-w-[54ch] border-l-2 border-canary-400 pl-6 font-display text-[clamp(1.5rem,2.6vw,2rem)] leading-[1.15] text-canary-100">
+          <blockquote className="ink-in mt-10 max-w-[54ch] border-l-2 border-warning pl-6 font-display text-[clamp(1.5rem,2.6vw,2rem)] leading-[1.15] text-on-brand">
             The best data work is invisible. The pipeline nobody notices because it never
             breaks.
           </blockquote>
@@ -132,7 +132,7 @@ export default function AboutPage() {
       {/* 01 — background, with the checkable record filed beside it */}
       <Section n="01" title="Background">
         <div className="grid items-start gap-10 lg:grid-cols-[1fr_minmax(0,26rem)] lg:gap-16">
-          <div className="space-y-5 text-ink-700">
+          <div className="space-y-5 text-fg">
             <p className="text-lg">
               Eighteen months at MicroIntech, a US fintech, went from data engineer to lead
               developer. The work was rebuilding a monolithic financial platform into
@@ -163,19 +163,19 @@ export default function AboutPage() {
 
           <dl className="grid gap-x-10 gap-y-6 sm:grid-cols-2 lg:grid-cols-1">
             {RECORD.map((item) => (
-              <div key={item.term} className="border-t border-border-strong pt-3">
-                <dt className="notation text-ink-500">{item.term}</dt>
-                <dd className="mt-1 text-ink-900">{item.detail}</dd>
+              <div key={item.term} className="border-t border-line-strong pt-3">
+                <dt className="notation text-fg-muted">{item.term}</dt>
+                <dd className="mt-1 text-fg">{item.detail}</dd>
               </div>
             ))}
           </dl>
         </div>
 
-        <div className="mt-14 grid gap-px border border-border-strong bg-border-strong sm:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-14 grid gap-px border border-line-strong bg-line-strong sm:grid-cols-2 lg:grid-cols-4">
           {FIGURES.map((f) => (
-            <div key={f.label} className="bg-surface-0 px-6 py-7">
-              <p className="tnum font-display text-5xl leading-none text-ox-700">{f.value}</p>
-              <p className="notation mt-3 text-ink-500">{f.label}</p>
+            <div key={f.label} className="bg-surface-1 px-6 py-7">
+              <p className="tnum font-display text-5xl leading-none text-brand-700">{f.value}</p>
+              <p className="notation mt-3 text-fg-muted">{f.label}</p>
             </div>
           ))}
         </div>
@@ -183,7 +183,7 @@ export default function AboutPage() {
 
       {/* 02 — the positions that decide how the product is built */}
       <Section n="02" title="How this one is built" tone="ruled">
-        <p className="max-w-[62ch] text-lg text-ink-700">
+        <p className="max-w-[62ch] text-lg text-fg">
           Not values. Four positions paid for at least once, each one visible in a decision
           this product actually made.
         </p>
@@ -191,12 +191,12 @@ export default function AboutPage() {
           {POSITIONS.map((p) => (
             <li
               key={p.n}
-              className="grid gap-x-8 gap-y-2 border-t border-border-strong bg-surface-0/70 px-6 py-7 md:grid-cols-[5rem_1fr]"
+              className="grid gap-x-8 gap-y-2 border-t border-line-strong bg-surface-1/70 px-6 py-7 md:grid-cols-[5rem_1fr]"
             >
-              <span className="notation tnum pt-1 text-rule">{p.n}</span>
+              <span className="notation tnum pt-1 text-danger">{p.n}</span>
               <div>
-                <h3 className="font-display text-2xl text-ink-900">{p.title}</h3>
-                <p className="mt-2 max-w-[66ch] text-ink-700">{p.body}</p>
+                <h3 className="font-display text-2xl text-fg">{p.title}</h3>
+                <p className="mt-2 max-w-[66ch] text-fg">{p.body}</p>
               </div>
             </li>
           ))}
@@ -205,22 +205,22 @@ export default function AboutPage() {
 
       {/* 03 — the other live products, so "ships" is checkable */}
       <Section n="03" title="Other things that are live">
-        <p className="max-w-[62ch] text-lg text-ink-700">
+        <p className="max-w-[62ch] text-lg text-fg">
           Each of these is running, not a screenshot in a deck. First Chair is the one you
           are reading.
         </p>
         <dl className="mt-12 grid gap-x-16 gap-y-10 md:grid-cols-2">
           {LIVE.map((item) => (
-            <div key={item.name} className="border-t border-border-strong pt-5">
-              <dt className="font-display text-2xl text-ox-700">{item.name}</dt>
-              <dd className="mt-2 max-w-[58ch] text-ink-700">{item.body}</dd>
+            <div key={item.name} className="border-t border-line-strong pt-5">
+              <dt className="font-display text-2xl text-brand-700">{item.name}</dt>
+              <dd className="mt-2 max-w-[58ch] text-fg">{item.body}</dd>
             </div>
           ))}
         </dl>
         <p className="mt-10">
           <a
             href="https://kandula.studio"
-            className="notation border-b border-ox-500/50 pb-0.5 text-ox-700 hover:border-ox-700"
+            className="notation border-b border-brand-500/50 pb-0.5 text-brand-700 hover:border-brand-500"
           >
             See all of it at kandula.studio
           </a>
@@ -230,7 +230,7 @@ export default function AboutPage() {
       {/* 04 — the name, and the mark that carries it */}
       <Section n="04" title="Why it is called First Chair">
         <div className="grid items-start gap-10 lg:grid-cols-[1fr_minmax(0,20rem)] lg:gap-16">
-          <div className="space-y-5 text-ink-700">
+          <div className="space-y-5 text-fg">
             <p className="text-lg">
               At counsel table, first chair is the lawyer who runs the case — the one who
               stands up, examines the witness, and is answerable for what ends up in the
@@ -250,28 +250,28 @@ export default function AboutPage() {
           </div>
 
           <div
-            className="flex items-center justify-center border border-border-strong bg-surface-50 p-10"
+            className="flex items-center justify-center border border-line-strong bg-surface-2 p-10"
             aria-hidden
           >
-            <Mark className="h-32 w-32 text-ox-900" />
+            <Mark className="h-32 w-32 text-fg" />
           </div>
         </div>
       </Section>
 
       {/* 05 — contact */}
       <Section n="05" title="Get in touch">
-        <p className="max-w-[62ch] text-lg text-ink-700">
+        <p className="max-w-[62ch] text-lg text-fg">
           Questions about the scan engine, the evidence behind a number, or working
           together. Email reaches a person, usually the same day.
         </p>
-        <dl className="mt-10 grid gap-px border border-border-strong bg-border-strong sm:grid-cols-2 lg:grid-cols-4">
+        <dl className="mt-10 grid gap-px border border-line-strong bg-line-strong sm:grid-cols-2 lg:grid-cols-4">
           {ELSEWHERE.map((item) => (
-            <div key={item.label} className="bg-surface-0 px-6 py-6">
-              <dt className="notation text-ink-500">{item.label}</dt>
+            <div key={item.label} className="bg-surface-1 px-6 py-6">
+              <dt className="notation text-fg-muted">{item.label}</dt>
               <dd className="mt-2">
                 <a
                   href={item.href}
-                  className="border-b border-ox-500/40 pb-0.5 text-ox-700 hover:border-ox-700"
+                  className="border-b border-brand-500/40 pb-0.5 text-brand-700 hover:border-brand-500"
                 >
                   {item.value}
                 </a>
@@ -282,40 +282,40 @@ export default function AboutPage() {
       </Section>
 
       {/* The ask */}
-      <section className="bg-ox-900 text-canary-100">
+      <section className="bg-brand-700 text-on-brand">
         <div className="mx-auto flex w-full max-w-6xl flex-wrap items-center justify-between gap-8 px-6 py-16">
           <div>
-            <h2 className="max-w-[20ch] font-display text-[clamp(1.75rem,3.2vw,2.5rem)] leading-[1.08] text-canary-100">
+            <h2 className="max-w-[20ch] font-display text-[clamp(1.75rem,3.2vw,2.5rem)] leading-[1.08] text-on-brand">
               Find out what the engines say about your firm.
             </h2>
-            <p className="mt-3 max-w-[52ch] text-canary-200">
+            <p className="mt-3 max-w-[52ch] text-on-brand">
               A free audit runs twenty questions against ChatGPT, Gemini and Perplexity and
               returns the answers verbatim.
             </p>
           </div>
           <Link
             href="/"
-            className="bg-canary-400 px-5 py-3 font-semibold text-ox-900 transition-colors hover:bg-canary-200"
+            className="bg-warning px-5 py-3 font-semibold text-fg transition-colors hover:bg-brand-100"
           >
             Run a free audit
           </Link>
         </div>
       </section>
 
-      <footer className="border-t-2 border-ox-900 bg-surface-0">
+      <footer className="border-t-2 border-brand-700 bg-surface-1">
         <div className="mx-auto flex w-full max-w-6xl flex-wrap items-baseline justify-between gap-4 px-6 py-10">
-          <Wordmark markClassName="h-6 w-6 text-ox-900" textClassName="text-xl text-ox-900" />
-          <p className="notation text-ink-500">
+          <Wordmark markClassName="h-6 w-6 text-fg" textClassName="text-xl text-fg" />
+          <p className="notation text-fg-muted">
             AI visibility for law firms — ChatGPT, Gemini, Perplexity
           </p>
           <nav className="flex gap-6">
-            <Link href="/about" className="notation text-ink-500 hover:text-ox-700">
+            <Link href="/about" className="notation text-fg-muted hover:text-brand-700">
               About
             </Link>
-            <Link href="/privacy" className="notation text-ink-500 hover:text-ox-700">
+            <Link href="/privacy" className="notation text-fg-muted hover:text-brand-700">
               Privacy
             </Link>
-            <Link href="/terms" className="notation text-ink-500 hover:text-ox-700">
+            <Link href="/terms" className="notation text-fg-muted hover:text-brand-700">
               Terms
             </Link>
           </nav>
@@ -339,12 +339,12 @@ function Section({
   children: React.ReactNode;
 }) {
   const field =
-    tone === "ruled" ? "ruled border-b border-border bg-canary-100" : "border-b border-border bg-surface-0";
+    tone === "ruled" ? "border-b border-line bg-brand-50" : "border-b border-line bg-surface-1";
   return (
     <section className={field}>
       <div className="mx-auto w-full max-w-6xl px-6 py-20">
-        <h2 className="flex items-baseline gap-5 text-[clamp(2rem,3.6vw,3rem)] text-ink-900">
-          <span className="notation tnum text-rule">{n}</span>
+        <h2 className="flex items-baseline gap-5 text-[clamp(2rem,3.6vw,3rem)] text-fg">
+          <span className="notation tnum text-danger">{n}</span>
           <span>{title}</span>
         </h2>
         <div className="mt-10">{children}</div>

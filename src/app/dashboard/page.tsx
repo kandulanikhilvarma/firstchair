@@ -67,18 +67,18 @@ export default async function Dashboard({
       <main className="mx-auto max-w-7xl space-y-6 p-6">
           {/* ① Score hero + ② SOV donut */}
           <div className="grid gap-6 lg:grid-cols-3">
-            <section className="border border-border-strong bg-surface-0 p-6 lg:col-span-2">
-              <h2 className="text-sm font-semibold text-ink-600">
+            <section className="border border-line-strong bg-surface-1 p-6 lg:col-span-2">
+              <h2 className="text-sm font-semibold text-fg-muted">
                 Visibility Score — 30 days
               </h2>
               <div className="mt-2 flex items-baseline gap-3">
-                <span className="tnum font-display text-6xl text-ox-700">{today}</span>
-                <span className="text-ink-600">/100</span>
+                <span className="tnum font-display text-6xl text-brand-700">{today}</span>
+                <span className="text-fg-muted">/100</span>
                 <span
                   className={`tnum flex items-center gap-0.5 px-2 py-0.5 text-sm font-semibold ${
                     delta >= 0
-                      ? "bg-verdict/10 text-verdict"
-                      : "bg-rule/10 text-rule"
+                      ? "bg-success/10 text-success"
+                      : "bg-danger/10 text-danger"
                   }`}
                 >
                   <ArrowUpRight className={`h-4 w-4 ${delta < 0 ? "rotate-90" : ""}`} aria-hidden />
@@ -91,13 +91,13 @@ export default async function Dashboard({
               </div>
             </section>
 
-            <section className="border border-border-strong bg-surface-0 p-6">
-              <h2 className="text-sm font-semibold text-ink-600">Share of voice</h2>
+            <section className="border border-line-strong bg-surface-1 p-6">
+              <h2 className="text-sm font-semibold text-fg-muted">Share of voice</h2>
               <div className="mt-2">
                 {sov.length > 0 ? (
                   <SovDonut data={sov} />
                 ) : (
-                  <p className="py-8 text-center text-sm text-ink-600">
+                  <p className="py-8 text-center text-sm text-fg-muted">
                     No firm mentions in the latest scan.
                   </p>
                 )}
@@ -106,8 +106,8 @@ export default async function Dashboard({
           </div>
 
           {/* ③ Trend chart */}
-          <section className="border border-border-strong bg-surface-0 p-6">
-            <h2 className="flex items-center gap-2 text-sm font-semibold text-ink-600">
+          <section className="border border-line-strong bg-surface-1 p-6">
+            <h2 className="flex items-center gap-2 text-sm font-semibold text-fg-muted">
               <BarChart3 className="h-4 w-4" aria-hidden /> Score by engine
             </h2>
             <div className="mt-4">
@@ -116,14 +116,14 @@ export default async function Dashboard({
           </section>
 
           {/* ④ Prompt results table */}
-          <section className="border border-border-strong bg-surface-0">
-            <h2 className="px-6 pt-6 text-sm font-semibold text-ink-600">
+          <section className="border border-line-strong bg-surface-1">
+            <h2 className="px-6 pt-6 text-sm font-semibold text-fg-muted">
               Latest scan — prompt results
             </h2>
             <div className="mt-3 overflow-x-auto">
               <table className="w-full text-left text-sm">
                 <thead>
-                  <tr className="border-b border-border text-ink-600">
+                  <tr className="border-b border-line text-fg-muted">
                     <th className="px-6 py-2 font-medium">Prompt</th>
                     <th className="px-3 py-2 font-medium">Engine</th>
                     <th className="px-3 py-2 font-medium">Mention</th>
@@ -134,32 +134,32 @@ export default async function Dashboard({
                 <tbody>
                   {prompts.length === 0 && (
                     <tr>
-                      <td colSpan={5} className="px-6 py-6 text-center text-ink-600">
+                      <td colSpan={5} className="px-6 py-6 text-center text-fg-muted">
                         No responses recorded in the latest scan.
                       </td>
                     </tr>
                   )}
                   {prompts.map((r, i) => (
-                    <tr key={i} className="border-b border-border last:border-0">
-                      <td className="max-w-md truncate px-6 py-2 text-ink-900">{r.prompt}</td>
-                      <td className="px-3 py-2 text-ink-600">{ENGINE_LABELS[r.engine]}</td>
+                    <tr key={i} className="border-b border-line last:border-0">
+                      <td className="max-w-md truncate px-6 py-2 text-fg">{r.prompt}</td>
+                      <td className="px-3 py-2 text-fg-muted">{ENGINE_LABELS[r.engine]}</td>
                       <td className="px-3 py-2">
                         {r.recommended ? (
-                          <span className="bg-verdict/10 px-2 py-0.5 text-xs font-semibold text-verdict">
+                          <span className="bg-success/10 px-2 py-0.5 text-xs font-semibold text-success">
                             Recommended
                           </span>
                         ) : r.mentioned ? (
-                          <span className="bg-canary-100 px-2 py-0.5 text-xs font-semibold text-ox-700">
+                          <span className="bg-brand-50 px-2 py-0.5 text-xs font-semibold text-brand-700">
                             Mentioned
                           </span>
                         ) : (
-                          <span className="bg-surface-50 px-2 py-0.5 text-xs font-semibold text-ink-600">
+                          <span className="bg-surface-2 px-2 py-0.5 text-xs font-semibold text-fg-muted">
                             Absent
                           </span>
                         )}
                       </td>
-                      <td className="tnum px-3 py-2 text-ink-900">{r.position ?? "—"}</td>
-                      <td className="px-6 py-2 text-ink-600">{r.sentiment ?? "—"}</td>
+                      <td className="tnum px-3 py-2 text-fg">{r.position ?? "—"}</td>
+                      <td className="px-6 py-2 text-fg-muted">{r.sentiment ?? "—"}</td>
                     </tr>
                   ))}
                 </tbody>
@@ -169,50 +169,50 @@ export default async function Dashboard({
 
           {/* ⑤ Citations + recommendations (F9) */}
           <div className="grid gap-6 lg:grid-cols-2">
-            <section className="border border-border-strong bg-surface-0 p-6">
-              <h2 className="text-sm font-semibold text-ink-600">Top cited sources</h2>
+            <section className="border border-line-strong bg-surface-1 p-6">
+              <h2 className="text-sm font-semibold text-fg-muted">Top cited sources</h2>
               {citations.length > 0 ? (
                 <>
                   <ul className="mt-3 space-y-2 text-sm">
                     {citations.map((c) => (
                       <li key={c.domain} className="flex items-center justify-between">
-                        <span className="font-medium text-ink-900">{c.domain}</span>
-                        <span className="tnum text-ink-600">
+                        <span className="font-medium text-fg">{c.domain}</span>
+                        <span className="tnum text-fg-muted">
                           cited for {c.citedInPrompts}/{c.totalPrompts} prompts ·{" "}
                           {c.brandListed ? (
-                            <span className="font-semibold text-verdict">listed</span>
+                            <span className="font-semibold text-success">listed</span>
                           ) : (
-                            <span className="font-semibold text-rule">missing</span>
+                            <span className="font-semibold text-danger">missing</span>
                           )}
                         </span>
                       </li>
                     ))}
                   </ul>
-                  <p className="mt-3 text-sm text-foil">
+                  <p className="mt-3 text-sm text-warning">
                     You&apos;re missing from {missingCount} of {citations.length} top-cited
                     sources.
                   </p>
                 </>
               ) : (
-                <p className="mt-3 text-sm text-ink-600">
+                <p className="mt-3 text-sm text-fg-muted">
                   No sources were cited in the latest scan yet.
                 </p>
               )}
             </section>
 
-            <section className="border border-border-strong bg-surface-0 p-6">
-              <h2 className="text-sm font-semibold text-ink-600">What to fix first</h2>
+            <section className="border border-line-strong bg-surface-1 p-6">
+              <h2 className="text-sm font-semibold text-fg-muted">What to fix first</h2>
               {recommendations.length > 0 ? (
                 <ol className="mt-3 space-y-3 text-sm">
                   {recommendations.map((r) => (
                     <li key={r.action}>
-                      <p className="font-semibold text-ink-900">{r.action}</p>
-                      <p className="text-ink-600">{r.evidence}</p>
+                      <p className="font-semibold text-fg">{r.action}</p>
+                      <p className="text-fg-muted">{r.evidence}</p>
                     </li>
                   ))}
                 </ol>
               ) : (
-                <p className="mt-3 text-sm text-ink-600">
+                <p className="mt-3 text-sm text-fg-muted">
                   No citation gaps found — you&apos;re listed on the sources the engines cite.
                 </p>
               )}
@@ -234,12 +234,12 @@ function EmptyState({
 }) {
   return (
     <main className="mx-auto flex max-w-xl flex-col items-center gap-3 px-6 py-24 text-center">
-      <h1 className="font-heading font-display text-3xl text-ink-900">{title}</h1>
-      <p className="text-ink-600">{body}</p>
+      <h1 className="font-display text-3xl text-fg">{title}</h1>
+      <p className="text-fg-muted">{body}</p>
       {cta && (
         <Link
           href={cta.href}
-          className="mt-2 bg-ox-700 px-5 py-2.5 font-semibold text-canary-100 hover:bg-ox-900"
+          className="mt-2 bg-brand-500 px-5 py-2.5 font-semibold text-on-brand hover:bg-brand-600"
         >
           {cta.label}
         </Link>

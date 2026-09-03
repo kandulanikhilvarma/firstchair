@@ -55,10 +55,10 @@ function Panel({
   children: React.ReactNode;
 }) {
   return (
-    <section className="border border-border-strong bg-surface-0">
-      <div className="border-b border-border-strong bg-surface-50 px-6 py-3">
-        <h2 className="font-display text-xl text-ink-900">{title}</h2>
-        <p className="mt-0.5 text-sm text-ink-500">{hint}</p>
+    <section className="border border-line-strong bg-surface-1">
+      <div className="border-b border-line-strong bg-surface-2 px-6 py-3">
+        <h2 className="font-display text-xl text-fg">{title}</h2>
+        <p className="mt-0.5 text-sm text-fg-muted">{hint}</p>
       </div>
       <div className="px-6 py-6">{children}</div>
     </section>
@@ -66,12 +66,12 @@ function Panel({
 }
 
 const fieldCls =
-  "mt-1 w-full border-0 border-b border-border-strong bg-transparent px-0 py-2 text-ink-900 placeholder:text-ink-500/55 focus:border-ox-700 focus:outline-none focus:ring-0";
+  "mt-1 w-full border-0 border-b border-line-strong bg-transparent px-0 py-2 text-fg placeholder:text-fg-muted/55 focus:border-brand-500 focus:outline-none focus:ring-0";
 
 function Notice({ state }: { state: { ok: boolean; msg: string } | null }) {
   if (!state) return null;
   return (
-    <p role="status" className={`mt-3 text-sm ${state.ok ? "text-verdict" : "text-rule"}`}>
+    <p role="status" className={`mt-3 text-sm ${state.ok ? "text-success" : "text-danger"}`}>
       {state.msg}
     </p>
   );
@@ -115,26 +115,26 @@ function Details({
     <Panel title="Firm details" hint="How this firm is matched in engine answers.">
       <form onSubmit={onSubmit} className="grid gap-4 sm:grid-cols-2">
         <label className="block text-sm">
-          <span className="notation text-ink-500">Firm name</span>
+          <span className="notation text-fg-muted">Firm name</span>
           <input name="name" defaultValue={name} required className={fieldCls} />
         </label>
         <label className="block text-sm">
-          <span className="notation text-ink-500">City</span>
+          <span className="notation text-fg-muted">City</span>
           <input name="city" defaultValue={city} required className={fieldCls} />
         </label>
         <label className="block text-sm">
-          <span className="notation text-ink-500">Practice area</span>
+          <span className="notation text-fg-muted">Practice area</span>
           <input name="practice" defaultValue={practice} required className={fieldCls} />
         </label>
         <label className="block text-sm">
-          <span className="notation text-ink-500">Also known as</span>
+          <span className="notation text-fg-muted">Also known as</span>
           <input
             name="aliases"
             defaultValue={aliases.join(", ")}
             placeholder="Smith Jones, S&amp;J Law"
             className={fieldCls}
           />
-          <span className="mt-1 block text-xs text-ink-500">
+          <span className="mt-1 block text-xs text-fg-muted">
             Comma separated. Every spelling an engine might use.
           </span>
         </label>
@@ -142,7 +142,7 @@ function Details({
           <button
             type="submit"
             disabled={pending}
-            className="cursor-pointer bg-ox-700 px-6 py-3 font-semibold text-canary-100 transition-colors hover:bg-ox-900 disabled:cursor-wait disabled:opacity-70"
+            className="cursor-pointer bg-brand-500 px-6 py-3 font-semibold text-on-brand transition-colors hover:bg-brand-600 disabled:cursor-wait disabled:opacity-70"
           >
             {pending ? "Saving…" : "Save details"}
           </button>
@@ -184,20 +184,20 @@ function Competitors({
   return (
     <Panel title="Competitors" hint="Up to five. Share of voice is measured against these.">
       {competitors.length === 0 ? (
-        <p className="text-ink-500">No competitors tracked yet.</p>
+        <p className="text-fg-muted">No competitors tracked yet.</p>
       ) : (
         <ul>
           {competitors.map((c) => (
             <li
               key={c.id}
-              className="flex items-center justify-between border-b border-border py-2.5 last:border-0"
+              className="flex items-center justify-between border-b border-line py-2.5 last:border-0"
             >
-              <span className="text-ink-900">{c.name}</span>
+              <span className="text-fg">{c.name}</span>
               <button
                 type="button"
                 onClick={() => onRemove(c.id, c.name)}
                 disabled={pending}
-                className="notation cursor-pointer text-rule hover:underline disabled:opacity-50"
+                className="notation cursor-pointer text-danger hover:underline disabled:opacity-50"
               >
                 Remove
               </button>
@@ -208,13 +208,13 @@ function Competitors({
 
       <form onSubmit={onAdd} className="mt-5 flex flex-wrap items-end gap-3">
         <label className="block flex-1 text-sm">
-          <span className="notation text-ink-500">Add a competitor</span>
+          <span className="notation text-fg-muted">Add a competitor</span>
           <input name="name" required placeholder="Barnes Whitfield" className={fieldCls} />
         </label>
         <button
           type="submit"
           disabled={pending || competitors.length >= 5}
-          className="cursor-pointer border border-ox-700 px-5 py-2.5 font-semibold text-ox-700 transition-colors hover:bg-ox-700 hover:text-canary-100 disabled:cursor-not-allowed disabled:opacity-45"
+          className="cursor-pointer border border-brand-500 px-5 py-2.5 font-semibold text-brand-700 transition-colors hover:bg-brand-600 hover:text-on-brand disabled:cursor-not-allowed disabled:opacity-45"
         >
           Add
         </button>
@@ -251,18 +251,18 @@ function Questions({ prompts }: { prompts: Prompt[] }) {
     >
       <ul>
         {local.map((p) => (
-          <li key={p.id} className="flex items-start gap-3 border-b border-border py-3 last:border-0">
+          <li key={p.id} className="flex items-start gap-3 border-b border-line py-3 last:border-0">
             <input
               id={`q-${p.id}`}
               type="checkbox"
               checked={p.is_active}
               disabled={pending}
               onChange={(e) => toggle(p.id, e.target.checked)}
-              className="mt-1 h-4 w-4 shrink-0 accent-[#6e1f2c]"
+              className="mt-1 h-4 w-4 shrink-0 accent-brand-500"
             />
             <label
               htmlFor={`q-${p.id}`}
-              className={`cursor-pointer text-sm ${p.is_active ? "text-ink-900" : "text-ink-500 line-through"}`}
+              className={`cursor-pointer text-sm ${p.is_active ? "text-fg" : "text-fg-muted line-through"}`}
             >
               {p.text}
             </label>
