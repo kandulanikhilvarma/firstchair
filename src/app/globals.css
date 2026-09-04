@@ -291,11 +291,17 @@ h4 {
     background-color 160ms var(--ease-out),
     color 160ms var(--ease-out),
     border-color 160ms var(--ease-out),
-    transform 160ms var(--ease-out);
+    box-shadow 200ms var(--ease-out),
+    transform 200ms var(--ease-out);
 }
 /* Every pressable thing answers back. */
 .ds-btn:active {
   transform: scale(0.97);
+}
+.ds-btn-primary:hover:not(:disabled),
+.ds-btn-outline:hover:not(:disabled) {
+  transform: translateY(-1px);
+  box-shadow: var(--p-shadow-md);
 }
 .ds-btn:disabled {
   opacity: 0.55;
@@ -485,6 +491,21 @@ h4 {
   .ds-lift:hover {
     transform: translateY(-1px);
   }
+  /* Text links: an underline that wipes in from the left on hover. */
+  .u-link {
+    background-image: linear-gradient(var(--p-brand-500), var(--p-brand-500));
+    background-position: 0 100%;
+    background-repeat: no-repeat;
+    background-size: 0% 2px;
+    padding-bottom: 2px;
+    transition:
+      background-size 220ms var(--ease-out),
+      color 160ms var(--ease-out);
+  }
+  .u-link:hover {
+    background-size: 100% 2px;
+    color: var(--p-brand-700);
+  }
 }
 
 /* Reduced motion means fewer and gentler, not none: opacity and colour still
@@ -505,11 +526,19 @@ h4 {
   .ds-skeleton {
     animation: none;
   }
-  .ds-btn:active {
+  .ds-btn:active,
+  .ds-btn-primary:hover:not(:disabled),
+  .ds-btn-outline:hover:not(:disabled) {
     transform: none;
   }
   .ds-lift:hover {
     transform: none;
+  }
+  .u-link {
+    transition: color 160ms var(--ease-out);
+  }
+  .u-link:hover {
+    background-size: 0 2px;
   }
   .ds-pop {
     transition-duration: 1ms;
