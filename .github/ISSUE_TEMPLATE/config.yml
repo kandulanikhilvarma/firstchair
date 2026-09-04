@@ -1,0 +1,5 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Security vulnerability
+    url: https://github.com/kandulanikhilvarma/firstchair/blob/main/SECURITY.md
+    about: Report privately by email — do not open a public issue. See SECURITY.md.

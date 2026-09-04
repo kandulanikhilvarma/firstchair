@@ -1,14 +1,14 @@
 cff-version: 1.2.0
 message: "If you use this work, please cite it as below."
-title: "Rankwell: GEO / AI-Visibility Tracker for Law Firms"
+title: "First Chair: GEO / AI-Visibility Tracker for Law Firms"
 authors:
   - family-names: Kandula
     given-names: Nikhilvarma
     email: kandulanikhilvarma@gmail.com
     website: "https://kandula.studio"
 type: software
-url: "https://github.com/kandulanikhilvarma/rankwell"
-repository-code: "https://github.com/kandulanikhilvarma/rankwell"
+url: "https://github.com/kandulanikhilvarma/firstchair"
+repository-code: "https://github.com/kandulanikhilvarma/firstchair"
 license: MIT
 keywords:
   - geo
