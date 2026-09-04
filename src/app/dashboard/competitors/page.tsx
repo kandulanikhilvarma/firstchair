@@ -43,12 +43,12 @@ export default async function CompetitorsPage({
                 by mentions in the latest scan
                 {ahead.length > 0 ? (
                   <>
-                    {" "}
-                    — <span className="font-semibold text-danger">{ahead.length}</span> competitor
+                    {". "}
+                    <span className="font-semibold text-danger">{ahead.length}</span> competitor
                     {ahead.length === 1 ? " is" : "s are"} named more often than you.
                   </>
                 ) : (
-                  <> — no tracked competitor is named more often than you.</>
+                  <>. No tracked competitor is named more often than you.</>
                 )}
               </>
             ) : (

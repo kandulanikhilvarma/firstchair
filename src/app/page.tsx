@@ -30,7 +30,7 @@ const RECORD = [
   {
     term: "Share of voice",
     detail:
-      "How often the engines name you against every competitor you track — question by question, not in aggregate hand-waving.",
+      "How often the engines name you against each competitor you track. We count it question by question, not as one blended average.",
   },
   {
     term: "Cited sources",
@@ -58,7 +58,7 @@ const PROCEEDINGS = [
   {
     step: "Finally",
     title: "The record is entered",
-    body: "Mentions, recommendations, position, and citations are extracted and scored. Movement — yours or a competitor's — reaches you by email each week.",
+    body: "We extract and score every mention, recommendation, position, and citation. Each week you get an email when your standing or a competitor's changes.",
   },
 ];
 
@@ -162,7 +162,7 @@ export default async function Home({
         <div className="border-t border-brand-500">
           <div className="mx-auto w-full max-w-6xl px-6 py-14">
             <p className="notation text-on-brand/80">
-              Asked of {TRANSCRIPT.engine} — “{TRANSCRIPT.question}”
+              Asked of {TRANSCRIPT.engine}: “{TRANSCRIPT.question}”
             </p>
             <blockquote className="ink-in transcript mt-5 max-w-[74ch] border-l-2 border-on-brand/40 pl-6 text-lg text-on-brand">
               {TRANSCRIPT.answer.map((part, i) =>
@@ -180,7 +180,7 @@ export default async function Home({
               <span className="transcript text-lg">not mentioned</span>
             </p>
             <p className="mt-8 text-xs text-on-brand/70">
-              Illustrative example. Not a real firm and not a live answer — your audit
+              Illustrative example. Not a real firm and not a live answer. Your audit
               returns your own.
             </p>
           </div>
@@ -248,7 +248,7 @@ export default async function Home({
                 <span className="notation text-fg-muted">per month</span>
               </p>
               <p className="tnum mt-1 text-sm text-fg-muted">
-                or $490 a year — <span className="font-medium text-success">save $98</span>
+                or $490 a year, <span className="font-medium text-success">save $98</span>
               </p>
               <ul className="mt-6 space-y-2.5 text-fg">
                 <li className="border-b border-line pb-2.5">One firm</li>
@@ -270,7 +270,7 @@ export default async function Home({
                 <span className="tnum font-display text-5xl">$149</span>
                 <span className="notation text-on-brand">per month</span>
               </p>
-              <p className="tnum mt-1 text-sm text-on-brand/85">or $1,490 a year — save $298</p>
+              <p className="tnum mt-1 text-sm text-on-brand/85">or $1,490 a year, save $298</p>
               <ul className="mt-6 space-y-2.5 text-on-brand">
                 <li className="border-b border-brand-500 pb-2.5">Ten client firms</li>
                 <li className="border-b border-brand-500 pb-2.5">
@@ -316,7 +316,7 @@ export default async function Home({
         <div className="mx-auto flex w-full max-w-6xl flex-wrap items-baseline justify-between gap-4 px-6 py-10">
           <Wordmark markClassName="h-6 w-6 text-fg" textClassName="text-xl text-fg" />
           <p className="notation text-fg-muted">
-            AI visibility for law firms — ChatGPT, Gemini, Perplexity
+            AI visibility for law firms. ChatGPT, Gemini, Perplexity.
           </p>
           <nav className="flex gap-6">
             <Link href="/about" className="notation text-fg-muted hover:text-brand-700">

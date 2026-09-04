@@ -18,7 +18,7 @@ const PLANS = [
     name: "Agency",
     monthly: 149,
     annual: 1490,
-    blurb: "Ten client firms — daily on three priority, weekly on the rest.",
+    blurb: "Ten client firms. Daily on three priority, weekly on the rest.",
     features: [
       "Ten tracked firms",
       "Priority daily scans",
@@ -98,7 +98,7 @@ export default function BillingClient({
           <span className="notation text-fg-muted">Current plan</span>{" "}
           <span className="font-semibold capitalize text-fg">{currentPlan}</span>
           {currentPlan === "trial" && trialDate && (
-            <span className="text-fg-muted"> — trial ends {trialDate}</span>
+            <span className="text-fg-muted">, ends {trialDate}</span>
           )}
         </p>
         {subscribed && (
@@ -225,7 +225,7 @@ export default function BillingClient({
                   setCopied(true);
                   window.setTimeout(() => setCopied(false), 2000);
                 } catch {
-                  setError("Could not copy — select the link and copy it manually.");
+                  setError("Could not copy. Select the link and copy it manually.");
                 }
               }}
               className="cursor-pointer bg-brand-500 px-4 py-2 text-sm font-semibold text-on-brand transition-colors hover:bg-brand-600"

@@ -17,7 +17,7 @@ const shell = (title: string, inner: string) => `
   <h1 style="font-size:20px;color:#0b5a52;margin:0 0 4px">${esc(title)}</h1>
   ${inner}
   <p style="font-size:12px;color:#55534b;margin-top:24px;border-top:1px solid #e2e0d9;padding-top:12px">
-    First Chair — AI visibility for law firms. Scores from ChatGPT, Gemini and Perplexity.
+    First Chair. AI visibility for law firms. Scores from ChatGPT, Gemini and Perplexity.
   </p>
 </div>`;
 
@@ -57,7 +57,7 @@ export function renderAuditEmail(a: AuditEmailInput): { subject: string; html: s
     )}</strong> for ${esc(a.practiceArea)} in ${esc(a.city)}.</p>
     <p style="font-size:32px;font-weight:700;color:#0b5a52;margin:8px 0">${a.overallScore}<span style="font-size:16px;color:#55534b">/100 visibility</span></p>
     <table style="width:100%;border-collapse:collapse;font-size:14px">${rows}</table>
-    <a href="${APP_URL}/login" style="display:inline-block;margin-top:16px;background:#0b5a52;color:#fff;text-decoration:none;padding:10px 18px;border-radius:2px;font-weight:600">Track this daily — start free trial</a>`;
+    <a href="${APP_URL}/login" style="display:inline-block;margin-top:16px;background:#0b5a52;color:#fff;text-decoration:none;padding:10px 18px;border-radius:2px;font-weight:600">Track this daily. Start free trial</a>`;
   return { subject: `${a.firmName}: ${a.overallScore}/100 AI visibility`, html: shell("Your AI visibility audit", inner) };
 }
 

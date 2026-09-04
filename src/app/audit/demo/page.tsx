@@ -28,7 +28,7 @@ const ENGINE_CARDS = [
     mentioned: false,
     rank: null,
     detail:
-      "Recommends Smith & Jones LLP and Lone Star Legal. Your firm does not appear — Avvo listing gap is the likely cause.",
+      "Recommends Smith & Jones LLP and Lone Star Legal. Your firm does not appear. An Avvo listing gap is the likely cause.",
     locked: true,
   },
 ];
@@ -112,7 +112,7 @@ export default function AuditDemo() {
           href="/#audit"
           className="block bg-brand-500 px-6 py-4 text-center text-lg font-semibold text-on-brand transition-colors hover:bg-brand-600"
         >
-          Start free trial — track all 20 prompts daily
+          Start free trial. Track all 20 prompts daily
         </Link>
         <p className="text-center text-sm text-fg-muted">
           7-day trial · card required, nothing charged until it ends · cancel in one

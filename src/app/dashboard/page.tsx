@@ -55,7 +55,7 @@ export default async function Dashboard({
           <div className="grid gap-6 lg:grid-cols-3">
             <section className="border border-line-strong bg-surface-1 p-6 lg:col-span-2">
               <h2 className="text-sm font-semibold text-fg-muted">
-                Visibility Score — 30 days
+                Visibility Score, last 30 days
               </h2>
               <div className="mt-2 flex items-baseline gap-3">
                 <span className="tnum font-display text-6xl text-brand-700">{today}</span>
@@ -104,7 +104,7 @@ export default async function Dashboard({
           {/* ④ Prompt results table */}
           <section className="border border-line-strong bg-surface-1">
             <h2 className="px-6 pt-6 text-sm font-semibold text-fg-muted">
-              Latest scan — prompt results
+              Latest scan: prompt results
             </h2>
             <div className="mt-3 overflow-x-auto">
               <table className="w-full text-left text-sm">
@@ -199,7 +199,7 @@ export default async function Dashboard({
                 </ol>
               ) : (
                 <p className="mt-3 text-sm text-fg-muted">
-                  No citation gaps found — you&apos;re listed on the sources the engines cite.
+                  No citation gaps found. You&apos;re listed on the sources the engines cite.
                 </p>
               )}
             </section>

@@ -19,8 +19,8 @@ export default function TermsPage() {
 
       <Section title="What the service does">
         <p>
-          First Chair sends questions to public AI assistants — currently ChatGPT, Gemini and
-          Perplexity — through their official APIs, records the answers, and scores whether a
+          First Chair sends questions to public AI assistants (currently ChatGPT, Gemini and
+          Perplexity) through their official APIs. It records the answers and scores whether a
           firm you track is recommended, mentioned, or absent.
         </p>
       </Section>
@@ -42,7 +42,7 @@ export default function TermsPage() {
       <Section title="Your account">
         <p>
           You need a working email address, and you are responsible for what happens under
-          your account. Sign-in links are personal — treat them like a password. Tell us at{" "}
+          your account. Sign-in links are personal. Treat them like a password. Tell us at{" "}
           <Mail /> if you think someone else has access.
         </p>
         <p>
@@ -70,7 +70,7 @@ export default function TermsPage() {
         <p>
           Plan limits are real limits, not suggestions. Do not resell raw access, script the
           service, or attempt to circumvent the brand limits on your plan. Agencies are
-          expressly welcome to report on results to their own clients — that is the Agency
+          expressly welcome to report on results to their own clients. That is the Agency
           plan working as intended.
         </p>
       </Section>

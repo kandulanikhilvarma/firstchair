@@ -4,7 +4,12 @@
  *  ChatGPT emerald, Gemini azure, Perplexity rose. Tokens, so dark mode adapts. */
 export function Mark({ className = "h-8 w-8" }: { className?: string }) {
   return (
-    <svg viewBox="0 0 32 32" className={className} aria-hidden focusable="false">
+    <svg
+      viewBox="0 0 32 32"
+      className={`transition-transform duration-300 ease-out group-hover:scale-110 motion-reduce:transition-none motion-reduce:group-hover:scale-100 ${className}`}
+      aria-hidden
+      focusable="false"
+    >
       <g fill="none" strokeWidth={3.5} strokeLinecap="round" strokeLinejoin="round">
         <path d="M8 6 L19 16 L8 26" stroke="var(--color-brand-500)" />
         <path d="M21 15 L29 9" stroke="var(--color-openai)" />
@@ -15,7 +20,8 @@ export function Mark({ className = "h-8 w-8" }: { className?: string }) {
   );
 }
 
-/** Archivo set tight — the lockup reads as a figure, matching the display face. */
+/** Fraunces set tight — the serif gives the lockup a voice the quiet sans UI
+ *  deliberately withholds. The mark answers on hover (see Mark). */
 export default function Wordmark({
   className = "",
   markClassName = "h-8 w-8",
@@ -26,9 +32,9 @@ export default function Wordmark({
   textClassName?: string;
 }) {
   return (
-    <span className={`inline-flex items-center gap-2.5 ${className}`}>
+    <span className={`group inline-flex items-center gap-2.5 ${className}`}>
       <Mark className={markClassName} />
-      <span className={`font-display font-semibold leading-none tracking-tight ${textClassName}`}>
+      <span className={`font-serif font-medium leading-none tracking-tight ${textClassName}`}>
         First Chair
       </span>
     </span>

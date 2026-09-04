@@ -5,7 +5,7 @@ export default function Error({ reset }: { error: Error; reset: () => void }) {
     <main className="mx-auto flex max-w-md flex-1 flex-col items-center justify-center gap-3 px-6 py-24 text-center">
       <h1 className="font-display text-3xl text-fg">Something went wrong</h1>
       <p className="text-fg-muted">
-        We hit an unexpected error. Try again — if it keeps happening, contact support.
+        We hit an unexpected error. Try again. If it keeps happening, contact support.
       </p>
       <button
         type="button"

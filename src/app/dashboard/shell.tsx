@@ -107,7 +107,7 @@ function PlanBanner({ plan, trialDaysLeft }: { plan: string | null; trialDaysLef
   if (plan === "canceled") {
     return (
       <div className="flex flex-wrap items-center justify-between gap-2 border-b border-line bg-danger/10 px-4 py-2 text-sm lg:px-6">
-        <span className="font-medium text-fg">Your trial has ended — scans are paused.</span>
+        <span className="font-medium text-fg">Your trial has ended. Scans are paused.</span>
         <Link href="/billing" className="font-semibold text-brand-700 hover:text-brand-700">
           Reactivate →
         </Link>

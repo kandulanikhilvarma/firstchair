@@ -46,7 +46,7 @@ export default function AuditForm() {
       const body = await res.json();
       if (res.ok) {
         setStatus("ok");
-        setMessage(body.message ?? "Audit started — results will be emailed.");
+        setMessage(body.message ?? "Audit started. We will email your results.");
         setResult(body.result ?? null);
       } else {
         setStatus("error");
@@ -94,7 +94,7 @@ export default function AuditForm() {
             href="/login"
             className="mt-5 block bg-brand-500 px-4 py-3.5 text-center font-semibold text-on-brand transition-colors hover:bg-brand-600"
           >
-            Track this daily — start free trial
+            Track this daily. Start free trial
           </a>
         </div>
       </div>
