@@ -3,127 +3,137 @@ name: First Chair
 description: AI-visibility tracking for law firms, drawn as an instrument that splits one question into three answers.
 colors:
   bg: "#ffffff"
-  surface-1: "#fafafd"
-  surface-2: "#f5f5fa"
-  border: "#e0e0ea"
-  border-strong: "#c9c9d8"
-  border-input: "#8e8ea8"
-  text-primary: "#14141a"
-  text-secondary: "#5a5a72"
-  text-muted: "#73738b"
-  brand-50: "#f3f3ff"
-  brand-100: "#e8e8ff"
-  brand-500: "#5b5bf5"
-  brand-600: "#4a45e0"
-  brand-700: "#3a34c4"
+  surface-1: "#f7f6f3"
+  surface-2: "#efeee9"
+  border: "#e2e0d9"
+  border-strong: "#ccc9bf"
+  border-input: "#86847a"
+  text-primary: "#1b1a17"
+  text-secondary: "#55534b"
+  text-muted: "#6c6a5f"
+  brand-50: "#eef6f4"
+  brand-100: "#dcede9"
+  brand-500: "#147d72"
+  brand-600: "#0f6b62"
+  brand-700: "#0b5a52"
   on-brand: "#ffffff"
-  openai: "#0e9f6e"
-  openai-text: "#07734f"
-  gemini: "#2e90fa"
-  gemini-text: "#1667c4"
-  perplexity: "#f04f6a"
-  perplexity-text: "#c22645"
-  series-1: "#5b5bf5"
-  series-2: "#0e9f6e"
-  series-3: "#2e90fa"
-  series-4: "#f04f6a"
-  series-5: "#f59e0b"
-  series-6: "#65a30d"
-  success: "#0e7a4e"
-  danger: "#c22645"
-  warning: "#b45309"
-  bg-dark: "#0b0b10"
-  surface-1-dark: "#14141c"
-  surface-2-dark: "#1c1c26"
-  border-dark: "#2a2a38"
-  border-strong-dark: "#3a3a4c"
-  border-input-dark: "#5c5c76"
-  text-primary-dark: "#ececf5"
-  text-secondary-dark: "#a3a3b8"
-  text-muted-dark: "#7a7a93"
-  brand-50-dark: "#17172c"
-  brand-100-dark: "#1e1e3a"
-  brand-500-dark: "#7c7cf8"
-  brand-600-dark: "#8f8ffa"
-  brand-700-dark: "#a3a3fc"
-  on-brand-dark: "#0b0b10"
-  openai-dark: "#34d399"
-  gemini-dark: "#60a5fa"
-  perplexity-dark: "#fb7185"
-  series-1-dark: "#7c7cf8"
-  series-2-dark: "#34d399"
-  series-3-dark: "#60a5fa"
-  series-4-dark: "#fb7185"
-  series-5-dark: "#fbbf24"
-  series-6-dark: "#a3e635"
-  success-dark: "#34d399"
-  danger-dark: "#fb7185"
-  warning-dark: "#fbbf24"
+  openai: "#b8623f"
+  openai-text: "#8f4626"
+  gemini: "#4f6bb0"
+  gemini-text: "#3a5290"
+  perplexity: "#9c5aa0"
+  perplexity-text: "#7d3f82"
+  series-1: "#147d72"
+  series-2: "#b8623f"
+  series-3: "#4f6bb0"
+  series-4: "#9c5aa0"
+  series-5: "#c69324"
+  series-6: "#6f8a3f"
+  success: "#2f7a4e"
+  danger: "#b23b47"
+  warning: "#8f6212"
+  accent: "#96611a"
+  accent-2: "#a8465a"
+  bg-dark: "#12120f"
+  surface-1-dark: "#1b1b16"
+  surface-2-dark: "#24241e"
+  border-dark: "#33332b"
+  border-strong-dark: "#45453a"
+  border-input-dark: "#6a6a5a"
+  text-primary-dark: "#edece4"
+  text-secondary-dark: "#a8a596"
+  text-muted-dark: "#85826f"
+  brand-50-dark: "#12241f"
+  brand-100-dark: "#163029"
+  brand-500-dark: "#3fb3a4"
+  brand-600-dark: "#55c2b3"
+  brand-700-dark: "#74d3c4"
+  on-brand-dark: "#12120f"
+  openai-dark: "#d98a63"
+  gemini-dark: "#7d9be0"
+  perplexity-dark: "#c589c9"
+  series-1-dark: "#3fb3a4"
+  series-2-dark: "#d98a63"
+  series-3-dark: "#7d9be0"
+  series-4-dark: "#c589c9"
+  series-5-dark: "#dcb44e"
+  series-6-dark: "#9fbf63"
+  success-dark: "#46b878"
+  danger-dark: "#e06b78"
+  warning-dark: "#dcb44e"
+  accent-dark: "#e0b45a"
+  accent-2-dark: "#eb8a9c"
 typography:
   display-xl:
-    fontFamily: "Archivo, system-ui, sans-serif"
+    fontFamily: "Hanken Grotesk, system-ui, sans-serif"
     fontSize: "clamp(2.75rem, 6vw, 4.5rem)"
     fontWeight: 700
     lineHeight: 1.02
     letterSpacing: "-0.035em"
   display:
-    fontFamily: "Archivo, system-ui, sans-serif"
+    fontFamily: "Hanken Grotesk, system-ui, sans-serif"
     fontSize: "clamp(2.25rem, 4.2vw, 3.25rem)"
     fontWeight: 700
     lineHeight: 1.06
     letterSpacing: "-0.03em"
   headline:
-    fontFamily: "Archivo, system-ui, sans-serif"
+    fontFamily: "Hanken Grotesk, system-ui, sans-serif"
     fontSize: "clamp(1.75rem, 2.6vw, 2.25rem)"
     fontWeight: 600
     lineHeight: 1.12
     letterSpacing: "-0.025em"
   title:
-    fontFamily: "Archivo, system-ui, sans-serif"
+    fontFamily: "Hanken Grotesk, system-ui, sans-serif"
     fontSize: "1.375rem"
     fontWeight: 600
     lineHeight: 1.25
     letterSpacing: "-0.02em"
   subtitle:
-    fontFamily: "IBM Plex Sans, system-ui, sans-serif"
+    fontFamily: "Inter, system-ui, sans-serif"
     fontSize: "1.125rem"
     fontWeight: 500
     lineHeight: 1.4
     letterSpacing: "-0.01em"
   body-lg:
-    fontFamily: "IBM Plex Sans, system-ui, sans-serif"
+    fontFamily: "Inter, system-ui, sans-serif"
     fontSize: "1.125rem"
     fontWeight: 400
     lineHeight: 1.65
   body:
-    fontFamily: "IBM Plex Sans, system-ui, sans-serif"
+    fontFamily: "Inter, system-ui, sans-serif"
     fontSize: "1rem"
     fontWeight: 400
     lineHeight: 1.6
   body-sm:
-    fontFamily: "IBM Plex Sans, system-ui, sans-serif"
+    fontFamily: "Inter, system-ui, sans-serif"
     fontSize: "0.875rem"
     fontWeight: 400
     lineHeight: 1.55
   label:
-    fontFamily: "IBM Plex Sans, system-ui, sans-serif"
+    fontFamily: "Inter, system-ui, sans-serif"
     fontSize: "0.75rem"
     fontWeight: 600
     lineHeight: 1.2
     letterSpacing: "0.06em"
     fontFeature: "text-transform: uppercase"
   mono-sm:
-    fontFamily: "IBM Plex Mono, ui-monospace, monospace"
+    fontFamily: "JetBrains Mono, ui-monospace, monospace"
     fontSize: "0.8125rem"
     fontWeight: 400
     lineHeight: 1.5
   numeric:
-    fontFamily: "Archivo, system-ui, sans-serif"
+    fontFamily: "Hanken Grotesk, system-ui, sans-serif"
     fontSize: "clamp(2.5rem, 5vw, 3.75rem)"
     fontWeight: 700
     lineHeight: 1
     letterSpacing: "-0.03em"
     fontFeature: "font-variant-numeric: tabular-nums"
+  quote:
+    fontFamily: "Fraunces, Georgia, serif"
+    fontSize: "clamp(1.5rem, 2.6vw, 2rem)"
+    fontWeight: 400
+    lineHeight: 1.2
+    fontFeature: "font-style: italic"
 rounded:
   sm: "6px"
   md: "10px"
@@ -211,13 +221,13 @@ of the split. The product surfaces are quiet, dense, and fast.
 
 ### The one idea
 
-**Indigo is always you.** `brand-500` never means anything else — not a link
+**Teal is always you.** `brand-500` never means anything else — not a link
 colour that happens to be blue, not a generic accent. When a chart line, a badge
-or a legend swatch is indigo, that is the user's own firm. Every competitor and
+or a legend swatch is teal, that is the user's own firm. Every competitor and
 every neutral takes something else.
 
-**Each engine owns a hue, permanently.** ChatGPT is emerald, Gemini is azure,
-Perplexity is rose, in the mark, the charts, the badges, the tables and the email.
+**Each engine owns a hue, permanently.** ChatGPT is clay, Gemini is slate blue,
+Perplexity is plum, in the mark, the charts, the badges, the tables and the email.
 A reader learns three colours once and then never reads a legend again.
 
 Because the mark hue is tuned for fills and strokes, it does not pass AA as small
@@ -264,15 +274,16 @@ surface step instead.
 
 ## Typography
 
-**Archivo** for display, headlines and numerals — a wide grotesque set tight and
-heavy, so a score reads as a figure rather than as running text. **IBM Plex Sans**
-for every piece of UI and body copy. **IBM Plex Mono** for verbatim engine answers,
-citations, hex values and IDs.
+Quiet sans-serifs. **Hanken Grotesk** for display, headlines and numerals — a calm
+neutral grotesque with heavy weights, so a score reads as a figure without
+shouting. **Inter** for every piece of UI and body copy. **JetBrains Mono** for
+verbatim engine answers, citations, hex values and IDs. **Fraunces**, a serif, is
+the one exception — pull-quotes and editorial moments only, sparingly, for warmth
+against the sans.
 
-The UI and mono faces are siblings on purpose. What the machine said and the
-interface reading it back come from one superfamily, so a transcript sits inside
-the product rather than on top of it. Archivo stands apart because display is the
-one place the brand is allowed a voice.
+Display and body stay in the same quiet register on purpose, so hierarchy comes
+from weight and size rather than from a loud face. What the machine said, in mono,
+still sits inside the product rather than on top of it.
 
 The mono rule is the one thing carried over intact from the previous system, and
 it is carried over because it means something rather than because it looked good:
@@ -351,7 +362,7 @@ intentional:
 
 **Indigo Means You.** `brand-500` identifies the user's own firm and nothing else.
 
-**One Hue Per Engine.** ChatGPT emerald, Gemini azure, Perplexity rose, everywhere,
+**One Hue Per Engine.** ChatGPT clay, Gemini slate blue, Perplexity plum, everywhere,
 forever. A reader should never need the legend twice.
 
 **Graphic Hue, Text Hue.** The engine mark colour is for strokes and fills; the
@@ -363,7 +374,7 @@ line style, a sign, an arrow, a word. Charts must survive greyscale.
 **Measured, Not Eyeballed.** A colour pair enters the system only after the
 contrast test passes. The test is the source of truth, not this document.
 
-**Mono Means Verbatim.** IBM Plex Mono is reserved for what a machine actually
+**Mono Means Verbatim.** JetBrains Mono is reserved for what a machine actually
 said. Never used decoratively.
 
 **Tabular Figures.** Any number that updates is `tabular-nums`, so the column
