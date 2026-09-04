@@ -1,23 +1,9 @@
 import Link from "next/link";
 import { ArrowUpRight, BarChart3 } from "lucide-react";
 import { ENGINE_LABELS } from "@/lib/seed";
-import { createClient } from "@/lib/supabase/server";
 import { SovDonut, Sparkline, TrendChart } from "./charts";
-import { getBrands, getDashboardData } from "./data";
+import { getBrands, getDashboardData, getPlan } from "./data";
 import Shell from "./shell";
-
-/** Workspace plan for the trial-countdown banner (RLS-scoped, same as /billing).
- *  Days-left computed here — the client Shell must stay pure (no Date.now in render). */
-async function getPlan(): Promise<{ plan: string | null; trialDaysLeft: number | null }> {
-  const supabase = await createClient();
-  const { data } = await supabase.from("workspaces").select("plan, trial_ends_at").limit(1);
-  const plan = data?.[0]?.plan ?? null;
-  const ends = data?.[0]?.trial_ends_at;
-  const trialDaysLeft = ends
-    ? Math.max(0, Math.ceil((new Date(ends).getTime() - Date.now()) / 86400_000))
-    : null;
-  return { plan, trialDaysLeft };
-}
 
 export default async function Dashboard({
   searchParams,

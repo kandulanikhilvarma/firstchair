@@ -21,9 +21,9 @@ import Wordmark from "../wordmark";
 // disabled instead of a dead "#" link.
 const NAV = [
   { label: "Dashboard", icon: LayoutDashboard, href: "/dashboard" },
-  { label: "Prompts", icon: MessageSquareText, soon: true },
-  { label: "Competitors", icon: Users, soon: true },
-  { label: "Reports", icon: FileText, soon: true },
+  { label: "Prompts", icon: MessageSquareText, href: "/dashboard/prompts" },
+  { label: "Competitors", icon: Users, href: "/dashboard/competitors" },
+  { label: "Reports", icon: FileText, href: "/dashboard/reports" },
   { label: "Billing", icon: CreditCard, href: "/billing" },
   { label: "Settings", icon: Settings, href: "/settings" },
 ] as const;
@@ -36,21 +36,6 @@ function NavItems({ onNavigate }: { onNavigate?: () => void }) {
     <>
       {NAV.map((item) => {
         const base = "flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium";
-        if (!("href" in item)) {
-          return (
-            <span
-              key={item.label}
-              aria-disabled
-              className={`${base} cursor-default text-fg-muted/50`}
-            >
-              <item.icon className="h-5 w-5" aria-hidden />
-              {item.label}
-              <span className="ml-auto rounded-full bg-surface-2 px-2 py-0.5 text-xs font-semibold text-fg-muted">
-                Soon
-              </span>
-            </span>
-          );
-        }
         const active = pathname === item.href;
         return (
           <Link

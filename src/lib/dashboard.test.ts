@@ -2,9 +2,12 @@ import { describe, expect, it } from "vitest";
 import {
   assembleTrend,
   buildCitationGaps,
+  competitorStanding,
   computeSov,
+  groupPromptOutcomes,
   heroStats,
   promptRowsFromScan,
+  reportHistory,
   type DailyScoreDbRow,
   type ScanResponseRow,
 } from "./dashboard";
@@ -72,6 +75,49 @@ describe("promptRowsFromScan", () => {
     const rows = promptRowsFromScan(RESP, text, "brand");
     expect(rows[0]).toMatchObject({ prompt: "Best PI lawyer?", mentioned: true, position: 1, recommended: true });
     expect(rows[1]).toMatchObject({ prompt: "Top attorney?", mentioned: false, position: null, recommended: false });
+  });
+});
+
+describe("groupPromptOutcomes", () => {
+  it("gives each engine its outcome, null where no response, absent where unmentioned", () => {
+    const prompts = [
+      { id: "p1", text: "Best PI lawyer?", source: "template" as const, is_active: true },
+      { id: "p2", text: "Top attorney?", source: "custom" as const, is_active: false },
+    ];
+    const views = groupPromptOutcomes(RESP, prompts, "brand");
+    // p1/openai: brand recommended; other engines have no response for p1 -> null
+    expect(views[0].byEngine).toEqual({ openai: "recommended", gemini: null, perplexity: null });
+    // p2/gemini: only comp1 mentioned, so main brand is absent
+    expect(views[1].byEngine).toEqual({ openai: null, gemini: "absent", perplexity: null });
+    expect(views[1]).toMatchObject({ source: "custom", isActive: false });
+  });
+});
+
+describe("competitorStanding", () => {
+  it("ranks by mentions with SOV%, you winning ties, computes recommended", () => {
+    const tracked = [
+      { id: "brand", name: "My Firm" },
+      { id: "comp1", name: "Rival LLP" },
+    ];
+    const rows = competitorStanding(RESP, tracked, "brand");
+    expect(rows.map((r) => r.name)).toEqual(["Rival LLP", "My Firm"]); // comp1 has 2 mentions
+    const you = rows.find((r) => r.isYou)!;
+    expect(you).toMatchObject({ mentions: 1, recommended: 1, sovPct: 33 }); // 1 of 3 total
+    expect(rows[0]).toMatchObject({ mentions: 2, recommended: 1, sovPct: 67 });
+  });
+});
+
+describe("reportHistory", () => {
+  it("blends engines per day, sums counts, deltas vs prior day, newest first", () => {
+    const rows: DailyScoreDbRow[] = [
+      { date: "2026-07-01", engine: "openai", visibility_score: 40, share_of_voice: 0, mention_count: 2, recommendation_count: 1 },
+      { date: "2026-07-01", engine: "gemini", visibility_score: 60, share_of_voice: 0, mention_count: 1, recommendation_count: 0 },
+      { date: "2026-07-02", engine: "openai", visibility_score: 80, share_of_voice: 0, mention_count: 3, recommendation_count: 2 },
+    ];
+    const hist = reportHistory(rows);
+    expect(hist.map((r) => r.date)).toEqual(["2026-07-02", "2026-07-01"]); // newest first
+    expect(hist[1]).toMatchObject({ score: 50, delta: null, mentions: 3, recommendations: 1 });
+    expect(hist[0]).toMatchObject({ score: 80, delta: 30, mentions: 3, recommendations: 2 });
   });
 });
 
