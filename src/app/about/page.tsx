@@ -43,7 +43,7 @@ const POSITIONS = [
   {
     n: "01",
     title: "Define the metric before you improve it",
-    body: "A percentage quoted afterwards is unfalsifiable. That is why the visibility score prints its own arithmetic — recommended 1.0, first-mentioned 0.6, mentioned 0.4 — next to the number, where a partner can check it.",
+    body: "A percentage quoted afterwards is unfalsifiable. So the visibility score prints its own arithmetic next to the number: recommended 1.0, first-mentioned 0.6, mentioned 0.4. A partner can check it.",
   },
   {
     n: "02",
@@ -118,9 +118,9 @@ export default function AboutPage() {
             Built by someone who ships.
           </h1>
           <p className="mt-7 max-w-[62ch] text-lg leading-relaxed text-on-brand">
-            First Chair is built and run by Nikhilvarma Kandula — a founder and AI engineer
-            in Germany, previously eighteen months in US fintech. One person writes the
-            scan engine, reads the engine answers, and answers the support email.
+            First Chair is built and run by Nikhilvarma Kandula, a founder and AI engineer
+            in Germany. He spent eighteen months in US fintech before this. One person writes
+            the scan engine, reads the answers, and answers the support email.
           </p>
           <blockquote className="ink-in mt-10 max-w-[54ch] border-l-2 border-on-brand/40 pl-6 font-serif text-[clamp(1.5rem,2.6vw,2rem)] leading-[1.2] italic text-on-brand">
             The best data work is invisible. The pipeline nobody notices because it never
@@ -143,21 +143,21 @@ export default function AboutPage() {
             <p>
               The habits behind this product come from there: idempotent decisions, logged
               propensities, and the assumption that anything unlogged did not happen. It is
-              also where the confidence routing came from — the engineering that sends a
-              doubtful case to a human rather than letting a model guess.
+              also where the confidence routing came from: the engineering that sends a
+              doubtful case to a human instead of letting a model guess.
             </p>
             <p>
               Alongside it, Lead Developer at EngineeredPrompts, a premium AI-prompt
-              platform — the prompt library and model orchestration behind it, the paid
-              tier end to end, and the two developers building on it. That title is
+              platform. He built the prompt library and model orchestration behind it, the
+              paid tier end to end, and led the two developers on it. That title is
               published on their own team page, which is the only version of the claim
               worth anything.
             </p>
             <p>
               Now in Germany reading for an M.Sc. in Big Data & Business Analytics at FOM
               Hochschule through August 2027, alongside peer-reviewed research on rainfall
-              estimation by data fusion — probability of detection 0.58, beating Kriging
-              with External Drift on the same dataset.
+              estimation by data fusion. It reached a probability of detection of 0.58,
+              beating Kriging with External Drift on the same dataset.
             </p>
           </div>
 
@@ -232,8 +232,8 @@ export default function AboutPage() {
         <div className="grid items-start gap-10 lg:grid-cols-[1fr_minmax(0,20rem)] lg:gap-16">
           <div className="space-y-5 text-fg">
             <p className="text-lg">
-              At counsel table, first chair is the lawyer who runs the case — the one who
-              stands up, examines the witness, and is answerable for what ends up in the
+              At counsel table, first chair is the lawyer who runs the case. That lawyer
+              stands up, examines the witness, and answers for what ends up in the
               record. Second chair does real work and is not the name anyone repeats
               afterwards.
             </p>
@@ -306,7 +306,7 @@ export default function AboutPage() {
         <div className="mx-auto flex w-full max-w-6xl flex-wrap items-baseline justify-between gap-4 px-6 py-10">
           <Wordmark markClassName="h-6 w-6 text-fg" textClassName="text-xl text-fg" />
           <p className="notation text-fg-muted">
-            AI visibility for law firms — ChatGPT, Gemini, Perplexity
+            AI visibility for law firms. ChatGPT, Gemini, Perplexity.
           </p>
           <nav className="flex gap-6">
             <Link href="/about" className="notation text-fg-muted hover:text-brand-700">

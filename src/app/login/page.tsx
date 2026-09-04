@@ -9,12 +9,12 @@ export const metadata: Metadata = { title: "Sign in — First Chair" };
  *  the way out — previously these bounced back silently. */
 const ERRORS: Record<string, string> = {
   link_invalid_or_expired:
-    "That sign-in link has already been used or has expired. Links are good for one use — request a fresh one below.",
+    "This link has expired, or you already used it. Each link works one time only. Request a new link below.",
   missing_code:
-    "That link arrived without its sign-in code, which usually means an email client rewrote it. Request a new one and open it directly.",
+    "This link has no sign-in code. Your email app possibly changed it. Request a new link. Then open it directly.",
 };
 
-const FALLBACK_ERROR = "We could not complete that sign-in. Request a new link below.";
+const FALLBACK_ERROR = "We could not sign you in. Request a new link below.";
 
 export default async function LoginPage({
   searchParams,
@@ -36,7 +36,7 @@ export default async function LoginPage({
         <div className="w-full max-w-md">
           <h1 className="font-display text-4xl text-fg">Sign in</h1>
           <p className="mt-3 text-fg">
-            We email you a link. There is no password to remember or lose.
+            We email you a sign-in link. You do not need a password.
           </p>
 
           {message && (

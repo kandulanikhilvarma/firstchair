@@ -24,9 +24,9 @@ export default function PrivacyPage() {
         <p>Three things, and nothing else:</p>
         <List
           items={[
-            "Account data — your email address, and the workspace created when you first sign in. We use magic links, so we never receive or store a password.",
-            "Firm data you enter — the firm names, aliases, cities, practice areas, competitors, and questions you choose to track. This is your input, not data we gather about you.",
-            "Scan results — the answers public AI engines return to those questions, stored verbatim, along with the scores derived from them.",
+            "Account data: your email address, and the workspace created when you first sign in. We use magic links, so we never receive or store a password.",
+            "Firm data you enter: the firm names, aliases, cities, practice areas, competitors, and questions you choose to track. This is your input, not data we gather about you.",
+            "Scan results: the answers public AI engines return to those questions, stored verbatim, along with the scores derived from them.",
           ]}
         />
         <p className="mt-4">
@@ -45,7 +45,7 @@ export default function PrivacyPage() {
           <Processor name="Vercel" role="Hosting. Processes requests and standard server logs." />
           <Processor
             name="OpenAI, Google, Perplexity"
-            role="The engines we query. They receive the tracking questions — for example “best personal injury lawyer in Austin” — never your email or account details."
+            role="The engines we query. They receive the tracking questions, for example “best personal injury lawyer in Austin”. They never receive your email or account details."
           />
           <Processor name="Stripe" role="Payments. Stripe handles card details directly; we never see or store a card number." />
           <Processor name="Resend" role="Email delivery for sign-in links and weekly reports." />
@@ -55,7 +55,7 @@ export default function PrivacyPage() {
       <Section title="A note on the questions we send">
         <p>
           The questions sent to AI engines are the kind any member of the public could type.
-          They contain firm names and practice areas — business information, not personal
+          They contain firm names and practice areas. That is business information, not personal
           information about your clients. Do not enter client names, matter details, or any
           privileged information into First Chair. The product has no use for it, and it
           would leave our systems as part of a query.
@@ -65,7 +65,7 @@ export default function PrivacyPage() {
       <Section title="How long we keep it">
         <p>
           Account and firm data are kept while your account is open. Raw engine responses are
-          retained so that every score stays auditable — that traceability is the point of
+          retained so that every score stays auditable. That traceability is the point of
           the product. Close your account and we delete both, along with any workspace that
           has no remaining members.
         </p>

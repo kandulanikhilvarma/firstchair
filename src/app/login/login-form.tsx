@@ -43,7 +43,7 @@ export default function LoginForm() {
     // Supabase's built-in SMTP rate-limits hard — a cooldown stops users
     // burning their quota by hammering resend.
     if (Date.now() - lastSentAt < RESEND_COOLDOWN_MS) {
-      setMessage("Just sent — give it a moment, then check spam.");
+      setMessage("Just sent. Wait a moment, then check your spam folder.");
       return;
     }
     setResending(true);
@@ -64,7 +64,7 @@ export default function LoginForm() {
             {message}
           </p>
           <p className="mt-3 text-sm text-fg">
-            Not there within a minute? Check spam, then send another.
+            Not there in one minute? Check your spam folder. Then send another link.
           </p>
           <button
             type="button"
@@ -99,7 +99,7 @@ export default function LoginForm() {
         <button
           type="submit"
           disabled={status === "submitting"}
-          className="mt-6 w-full cursor-pointer bg-brand-500 px-4 py-3.5 font-semibold text-on-brand transition-colors hover:bg-brand-600 disabled:cursor-wait disabled:opacity-70"
+          className="mt-6 w-full cursor-pointer bg-brand-500 px-4 py-3.5 font-semibold text-on-brand shadow-sm transition-all duration-200 ease-out hover:-translate-y-0.5 hover:bg-brand-600 hover:shadow-md active:translate-y-0 disabled:cursor-wait disabled:opacity-70 motion-reduce:transition-colors motion-reduce:hover:translate-y-0"
         >
           {status === "submitting" ? "Sending…" : "Email me a sign-in link"}
         </button>

@@ -310,7 +310,7 @@ function SaveStep({
       {state.status === "scanning" && (
         <p role="status" className="flex items-center gap-2 text-sm text-fg-muted">
           <Loader2 className="h-4 w-4 animate-spin" aria-hidden />
-          Running your first scan across ChatGPT, Gemini and Perplexity — this
+          Running your first scan across ChatGPT, Gemini and Perplexity. This
           takes about a minute.
         </p>
       )}
