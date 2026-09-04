@@ -1,78 +1,234 @@
 @import "tailwindcss";
 
-/* First Chair — Editorial Law Review.
-   Drawn from legal publishing's SATURATED range (West reporter buckram, canary
-   legal pad, blue-backed pleadings, red margin rule) — deliberately not the
-   cream/parchment rendition. Oxblood carries whole regions; it is a field,
-   not an accent. */
+/* ============================================================================
+   First Chair — PRISM
+   One question enters, three engines answer. Indigo is always "your firm";
+   each engine owns a hue permanently, in the mark, the charts and the badges.
+   Every pair below is measured, not eyeballed — src/lib/tokens.test.ts parses
+   this file and fails the build on a WCAG AA regression.
+   ========================================================================= */
+
 :root {
-  --background: #ffffff;
-  --foreground: #12161f;
+  color-scheme: light;
+
+  /* Neutrals — a slight violet cast so they sit under indigo, never cold grey */
+  --p-bg: #ffffff;
+  --p-surface-1: #fafafd;
+  --p-surface-2: #f5f5fa;
+  --p-border: #e0e0ea;
+  --p-border-strong: #c9c9d8;
+  --p-border-input: #8e8ea8; /* 3.19:1 — a field boundary must be identifiable */
+  --p-text-primary: #14141a;
+  --p-text-secondary: #5a5a72;
+  --p-text-muted: #73738b; /* 4.61:1 — hints are content, not decoration */
+
+  /* Brand — "your firm", everywhere */
+  --p-brand-50: #f3f3ff;
+  --p-brand-100: #e8e8ff;
+  --p-brand-500: #5b5bf5;
+  --p-brand-600: #4a45e0;
+  --p-brand-700: #3a34c4;
+  --p-on-brand: #ffffff;
+
+  /* Engines — mark hue for fills and strokes, text hue where it carries words */
+  --p-openai: #0e9f6e;
+  --p-openai-text: #07734f;
+  --p-gemini: #2e90fa;
+  --p-gemini-text: #1667c4;
+  --p-perplexity: #f04f6a;
+  --p-perplexity-text: #c22645;
+
+  /* Series — competitor charts. 1 is always you. */
+  --p-series-1: #5b5bf5;
+  --p-series-2: #0e9f6e;
+  --p-series-3: #2e90fa;
+  --p-series-4: #f04f6a;
+  --p-series-5: #f59e0b;
+  --p-series-6: #65a30d;
+
+  --p-success: #0e7a4e;
+  --p-danger: #c22645;
+  --p-warning: #b45309;
+
+  --p-shadow-sm: 0 1px 2px rgb(20 20 26 / 0.06);
+  --p-shadow-md: 0 4px 12px -2px rgb(20 20 26 / 0.08);
+  --p-shadow-lg: 0 12px 32px -8px rgb(20 20 26 / 0.14);
+}
+
+/* Dark is a peer, not an inversion: surfaces lift with borders because a
+   shadow is invisible on a dark ground. */
+:root[data-theme="dark"] {
+  color-scheme: dark;
+
+  --p-bg: #0b0b10;
+  --p-surface-1: #14141c;
+  --p-surface-2: #1c1c26;
+  --p-border: #2a2a38;
+  --p-border-strong: #3a3a4c;
+  --p-border-input: #5c5c76;
+  --p-text-primary: #ececf5;
+  --p-text-secondary: #a3a3b8;
+  --p-text-muted: #7a7a93;
+
+  --p-brand-50: #17172c;
+  --p-brand-100: #1e1e3a;
+  --p-brand-500: #7c7cf8;
+  --p-brand-600: #8f8ffa;
+  --p-brand-700: #a3a3fc;
+  --p-on-brand: #0b0b10;
+
+  --p-openai: #34d399;
+  --p-openai-text: #34d399;
+  --p-gemini: #60a5fa;
+  --p-gemini-text: #60a5fa;
+  --p-perplexity: #fb7185;
+  --p-perplexity-text: #fb7185;
+
+  --p-series-1: #7c7cf8;
+  --p-series-2: #34d399;
+  --p-series-3: #60a5fa;
+  --p-series-4: #fb7185;
+  --p-series-5: #fbbf24;
+  --p-series-6: #a3e635;
+
+  --p-success: #34d399;
+  --p-danger: #fb7185;
+  --p-warning: #fbbf24;
+
+  --p-shadow-sm: none;
+  --p-shadow-md: none;
+  --p-shadow-lg: none;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+
+    --p-bg: #0b0b10;
+    --p-surface-1: #14141c;
+    --p-surface-2: #1c1c26;
+    --p-border: #2a2a38;
+    --p-border-strong: #3a3a4c;
+    --p-border-input: #5c5c76;
+    --p-text-primary: #ececf5;
+    --p-text-secondary: #a3a3b8;
+    --p-text-muted: #7a7a93;
+
+    --p-brand-50: #17172c;
+    --p-brand-100: #1e1e3a;
+    --p-brand-500: #7c7cf8;
+    --p-brand-600: #8f8ffa;
+    --p-brand-700: #a3a3fc;
+    --p-on-brand: #0b0b10;
+
+    --p-openai: #34d399;
+    --p-openai-text: #34d399;
+    --p-gemini: #60a5fa;
+    --p-gemini-text: #60a5fa;
+    --p-perplexity: #fb7185;
+    --p-perplexity-text: #fb7185;
+
+    --p-series-1: #7c7cf8;
+    --p-series-2: #34d399;
+    --p-series-3: #60a5fa;
+    --p-series-4: #fb7185;
+    --p-series-5: #fbbf24;
+    --p-series-6: #a3e635;
+
+    --p-success: #34d399;
+    --p-danger: #fb7185;
+    --p-warning: #fbbf24;
+
+    --p-shadow-sm: none;
+    --p-shadow-md: none;
+    --p-shadow-lg: none;
+  }
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
+  --color-bg: var(--p-bg);
+  --color-surface-1: var(--p-surface-1);
+  --color-surface-2: var(--p-surface-2);
+  --color-line: var(--p-border);
+  --color-line-strong: var(--p-border-strong);
+  --color-line-input: var(--p-border-input);
+  --color-fg: var(--p-text-primary);
+  --color-fg-muted: var(--p-text-secondary);
+  --color-fg-subtle: var(--p-text-muted);
 
-  /* Pleading ink — blue-black, never neutral gray */
+  --color-brand-50: var(--p-brand-50);
+  --color-brand-100: var(--p-brand-100);
+  --color-brand-500: var(--p-brand-500);
+  --color-brand-600: var(--p-brand-600);
+  --color-brand-700: var(--p-brand-700);
+  --color-on-brand: var(--p-on-brand);
+
+  --color-openai: var(--p-openai);
+  --color-openai-text: var(--p-openai-text);
+  --color-gemini: var(--p-gemini);
+  --color-gemini-text: var(--p-gemini-text);
+  --color-perplexity: var(--p-perplexity);
+  --color-perplexity-text: var(--p-perplexity-text);
+
+  --color-series-1: var(--p-series-1);
+  --color-series-2: var(--p-series-2);
+  --color-series-3: var(--p-series-3);
+  --color-series-4: var(--p-series-4);
+  --color-series-5: var(--p-series-5);
+  --color-series-6: var(--p-series-6);
+
+  --color-success: var(--p-success);
+  --color-danger: var(--p-danger);
+  --color-warning: var(--p-warning);
+
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+
+  --shadow-sm: var(--p-shadow-sm);
+  --shadow-md: var(--p-shadow-md);
+  --shadow-lg: var(--p-shadow-lg);
+
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
+  --ease-drawer: cubic-bezier(0.32, 0.72, 0, 1);
+}
+
+/* ---------------------------------------------------------------------------
+   LEGACY — Editorial Law Review. Every surface still renders in the old world
+   until Phase 2 rewrites it. Deleted per-surface as each is migrated; when this
+   block is empty the rebrand is done. Do not use these in new work.
+   ------------------------------------------------------------------------ */
+@theme inline {
+  --color-background: #ffffff;
+  --color-foreground: #12161f;
   --color-ink-900: #12161f;
   --color-ink-700: #2b3444;
+  --color-ink-600: #4a5160;
   --color-ink-500: #4a5160;
-
-  /* Oxblood buckram — reporter spines */
   --color-ox-900: #3f1119;
   --color-ox-700: #6e1f2c;
   --color-ox-500: #8e2a3a;
-
-  /* Canary legal pad — the signal color */
   --color-canary-400: #f7d64a;
   --color-canary-200: #f3e4a6;
   --color-canary-100: #fbf4d6;
-
-  /* Red margin rule, foil stamping, court green */
   --color-rule: #c8102e;
   --color-foil: #a8843a;
   --color-verdict: #3f6212;
-
-  /* Stock */
   --color-surface-0: #ffffff;
   --color-surface-50: #f7f6f2;
   --color-border: #ddd8ce;
   --color-border-strong: #b9b2a4;
 
-  /* Legacy aliases — existing surfaces render in the new world until each is
-     rebuilt. Remove once every surface is rewritten. */
-  --color-primary-900: #3f1119;
-  --color-primary-700: #6e1f2c;
-  --color-primary-500: #8e2a3a;
-  --color-accent-600: #3f6212;
-  --color-danger-600: #c8102e;
-  --color-warn-600: #a8843a;
-  --color-ink-600: #4a5160;
-
-  /* Engine series — from this world, not a chart-library default */
-  --color-chart-1: #6e1f2c;
-  --color-chart-2: #1d4e5f;
-  --color-chart-3: #a8843a;
-  --color-chart-4: #3f6212;
-  --color-chart-5: #7c2d5c;
-  --color-chart-6: #4a5160;
-
   --font-display: var(--font-caslon-display);
   --font-sans: var(--font-public-sans);
   --font-heading: var(--font-caslon-display);
   --font-mono: var(--font-courier-prime);
-
-  --radius-input: 2px;
-  --radius-card: 3px;
-
-  --shadow-card: 0 1px 2px rgb(63 17 25 / 0.08);
-  --shadow-card-hover: 0 6px 16px -4px rgb(63 17 25 / 0.16);
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
+  background: var(--color-background);
+  color: var(--color-foreground);
   font-family: var(--font-public-sans), system-ui, sans-serif;
   line-height: 1.6;
 }
@@ -87,36 +243,30 @@ h4 {
   font-weight: 400;
 }
 
-/* Scores and table numbers: aligned columns, no delta jitter */
 .tnum {
   font-variant-numeric: tabular-nums;
 }
-
-/* Bluebook run-in label: small caps, letterspaced — the notation this audience
-   reads daily. Lives inline in copy and table headers, never stacked above a
-   heading as an eyebrow. */
 .notation {
   font-variant-caps: all-small-caps;
   letter-spacing: 0.11em;
   font-weight: 600;
 }
-
-/* The red margin rule off a legal pad — a structural hairline down the left
-   edge of anything that reads as a filled-in form. */
 .margin-rule {
   border-left: 1px solid var(--color-rule);
 }
-
-/* Court-transcript block: verbatim machine answers set in Courier, because a
-   transcript is Courier. Data, not costume. */
 .transcript {
   font-family: var(--font-courier-prime), ui-monospace, monospace;
   line-height: 1.7;
 }
-
-/* The one authored motion moment: a verdict inking onto the page as a stamp
-   presses. Used once per surface, on the proof block — never as a generic
-   section entrance. Content is visible by default; this only reveals. */
+.ruled {
+  background-image: repeating-linear-gradient(
+    to bottom,
+    transparent 0,
+    transparent 31px,
+    var(--color-canary-200) 31px,
+    var(--color-canary-200) 32px
+  );
+}
 @keyframes ink-in {
   from {
     clip-path: inset(0 100% 0 0);
@@ -127,15 +277,244 @@ h4 {
     opacity: 1;
   }
 }
-
 .ink-in {
   animation: ink-in 900ms cubic-bezier(0.16, 1, 0.3, 1) both;
 }
+.ink-in-1 {
+  animation-delay: 160ms;
+}
+.ink-in-2 {
+  animation-delay: 320ms;
+}
+.ink-in-3 {
+  animation-delay: 480ms;
+}
 
-.ink-in-1 { animation-delay: 160ms; }
-.ink-in-2 { animation-delay: 320ms; }
-.ink-in-3 { animation-delay: 480ms; }
+/* ---------------------------------------------------------------------------
+   PRISM COMPONENTS
+   Defined once here so a button is a button everywhere. The old system wrote
+   these inline at every call site, which is why it drifted.
+   ------------------------------------------------------------------------ */
 
+/* Focus is never removed, only restyled. */
+:where(a, button, input, select, textarea, [tabindex]):focus-visible {
+  outline: 2px solid var(--p-brand-500);
+  outline-offset: 2px;
+}
+
+.ds-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border-radius: var(--radius-md);
+  padding: 10px 16px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  line-height: 1.2;
+  cursor: pointer;
+  transition:
+    background-color 160ms var(--ease-out),
+    color 160ms var(--ease-out),
+    border-color 160ms var(--ease-out),
+    transform 160ms var(--ease-out);
+}
+/* Every pressable thing answers back. */
+.ds-btn:active {
+  transform: scale(0.97);
+}
+.ds-btn:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.ds-btn-primary {
+  background: var(--p-brand-500);
+  color: var(--p-on-brand);
+  border: 1px solid transparent;
+}
+.ds-btn-primary:hover:not(:disabled) {
+  background: var(--p-brand-600);
+}
+.ds-btn-outline {
+  background: transparent;
+  color: var(--p-brand-500);
+  border: 1px solid var(--p-border-input);
+}
+.ds-btn-outline:hover:not(:disabled) {
+  background: var(--p-brand-50);
+  border-color: var(--p-brand-500);
+}
+.ds-btn-ghost {
+  background: transparent;
+  color: var(--p-text-secondary);
+  border: 1px solid transparent;
+}
+.ds-btn-ghost:hover:not(:disabled) {
+  background: var(--p-surface-2);
+  color: var(--p-text-primary);
+}
+.ds-btn-danger {
+  background: var(--p-danger);
+  color: #ffffff;
+  border: 1px solid transparent;
+}
+
+.ds-field {
+  width: 100%;
+  background: var(--p-bg);
+  color: var(--p-text-primary);
+  border: 1px solid var(--p-border-input);
+  border-radius: var(--radius-sm);
+  padding: 9px 12px;
+  font-size: 0.875rem;
+  transition: border-color 160ms var(--ease-out);
+}
+.ds-field::placeholder {
+  color: var(--p-text-muted);
+}
+.ds-field:hover {
+  border-color: var(--p-text-muted);
+}
+
+.ds-panel {
+  background: var(--p-surface-1);
+  border: 1px solid var(--p-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--p-shadow-sm);
+}
+.ds-panel-header {
+  background: var(--p-surface-2);
+  color: var(--p-text-secondary);
+  border-bottom: 1px solid var(--p-border);
+  border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+  padding: 10px 16px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.ds-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  border-radius: var(--radius-sm);
+  padding: 2px 8px;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+.ds-badge-recommended {
+  background: color-mix(in srgb, var(--p-success) 14%, transparent);
+  color: var(--p-success);
+}
+.ds-badge-mentioned {
+  background: var(--p-brand-100);
+  color: var(--p-brand-700);
+}
+.ds-badge-absent {
+  background: var(--p-surface-2);
+  color: var(--p-text-muted);
+}
+
+.ds-skeleton {
+  background: linear-gradient(
+    90deg,
+    var(--p-surface-2) 25%,
+    var(--p-surface-1) 37%,
+    var(--p-surface-2) 63%
+  );
+  background-size: 400% 100%;
+  border-radius: var(--radius-sm);
+  animation: ds-shimmer 1400ms linear infinite;
+}
+@keyframes ds-shimmer {
+  from {
+    background-position: 100% 0;
+  }
+  to {
+    background-position: 0 0;
+  }
+}
+
+/* ---------------------------------------------------------------------------
+   PRISM MOTION — enter from 0.95, never 0; transitions over keyframes for
+   anything re-triggered; nothing but transform and opacity.
+   ------------------------------------------------------------------------ */
+.ds-pop {
+  transform-origin: var(--ds-origin, center);
+  transition:
+    opacity 180ms var(--ease-out),
+    transform 180ms var(--ease-out);
+}
+@starting-style {
+  .ds-pop {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+}
+
+.ds-cascade > * {
+  opacity: 0;
+  transform: translateY(8px);
+  animation: ds-rise 300ms var(--ease-out) forwards;
+}
+.ds-cascade > *:nth-child(1) {
+  animation-delay: 0ms;
+}
+.ds-cascade > *:nth-child(2) {
+  animation-delay: 40ms;
+}
+.ds-cascade > *:nth-child(3) {
+  animation-delay: 80ms;
+}
+.ds-cascade > *:nth-child(4) {
+  animation-delay: 120ms;
+}
+.ds-cascade > *:nth-child(5) {
+  animation-delay: 160ms;
+}
+.ds-cascade > *:nth-child(6) {
+  animation-delay: 200ms;
+}
+.ds-cascade > *:nth-child(7) {
+  animation-delay: 240ms;
+}
+.ds-cascade > *:nth-child(8) {
+  animation-delay: 280ms;
+}
+.ds-cascade > *:nth-child(n + 9) {
+  animation-delay: 320ms;
+}
+@keyframes ds-rise {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.ds-pulse {
+  animation: ds-pulse 200ms var(--ease-out);
+}
+@keyframes ds-pulse {
+  50% {
+    transform: scale(1.06);
+  }
+}
+
+/* Hover is a pointer idea. On touch it fires on tap and lies. */
+@media (hover: hover) and (pointer: fine) {
+  .ds-lift {
+    transition: transform 160ms var(--ease-out);
+  }
+  .ds-lift:hover {
+    transform: translateY(-1px);
+  }
+}
+
+/* Reduced motion means fewer and gentler, not none: opacity and colour still
+   carry meaning, movement does not. */
 @media (prefers-reduced-motion: reduce) {
   .ink-in,
   .ink-in-1,
@@ -143,15 +522,22 @@ h4 {
   .ink-in-3 {
     animation: none;
   }
-}
-
-/* Ruled stock — the horizontal lines of a legal pad, as field texture */
-.ruled {
-  background-image: repeating-linear-gradient(
-    to bottom,
-    transparent 0,
-    transparent 31px,
-    var(--color-canary-200) 31px,
-    var(--color-canary-200) 32px
-  );
+  .ds-cascade > * {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+  .ds-pulse,
+  .ds-skeleton {
+    animation: none;
+  }
+  .ds-btn:active {
+    transform: none;
+  }
+  .ds-lift:hover {
+    transform: none;
+  }
+  .ds-pop {
+    transition-duration: 1ms;
+  }
 }

@@ -1,336 +1,411 @@
 ---
 name: First Chair
-description: AI-visibility tracking for law firms, set the way legal publishing sets a record.
+description: AI-visibility tracking for law firms, drawn as an instrument that splits one question into three answers.
 colors:
-  ox-900: "#3f1119"
-  ox-700: "#6e1f2c"
-  ox-500: "#8e2a3a"
-  canary-400: "#f7d64a"
-  canary-200: "#f3e4a6"
-  canary-100: "#fbf4d6"
-  ink-900: "#12161f"
-  ink-700: "#2b3444"
-  ink-500: "#4a5160"
-  rule: "#c8102e"
-  foil: "#a8843a"
-  verdict: "#3f6212"
-  surface-0: "#ffffff"
-  surface-50: "#f7f6f2"
-  border: "#ddd8ce"
-  border-strong: "#b9b2a4"
-  chart-1: "#6e1f2c"
-  chart-2: "#1d4e5f"
-  chart-3: "#a8843a"
-  chart-4: "#3f6212"
-  chart-5: "#7c2d5c"
-  chart-6: "#4a5160"
+  bg: "#ffffff"
+  surface-1: "#fafafd"
+  surface-2: "#f5f5fa"
+  border: "#e0e0ea"
+  border-strong: "#c9c9d8"
+  border-input: "#8e8ea8"
+  text-primary: "#14141a"
+  text-secondary: "#5a5a72"
+  text-muted: "#73738b"
+  brand-50: "#f3f3ff"
+  brand-100: "#e8e8ff"
+  brand-500: "#5b5bf5"
+  brand-600: "#4a45e0"
+  brand-700: "#3a34c4"
+  on-brand: "#ffffff"
+  openai: "#0e9f6e"
+  openai-text: "#07734f"
+  gemini: "#2e90fa"
+  gemini-text: "#1667c4"
+  perplexity: "#f04f6a"
+  perplexity-text: "#c22645"
+  series-1: "#5b5bf5"
+  series-2: "#0e9f6e"
+  series-3: "#2e90fa"
+  series-4: "#f04f6a"
+  series-5: "#f59e0b"
+  series-6: "#65a30d"
+  success: "#0e7a4e"
+  danger: "#c22645"
+  warning: "#b45309"
+  bg-dark: "#0b0b10"
+  surface-1-dark: "#14141c"
+  surface-2-dark: "#1c1c26"
+  border-dark: "#2a2a38"
+  border-strong-dark: "#3a3a4c"
+  border-input-dark: "#5c5c76"
+  text-primary-dark: "#ececf5"
+  text-secondary-dark: "#a3a3b8"
+  text-muted-dark: "#7a7a93"
+  brand-50-dark: "#17172c"
+  brand-100-dark: "#1e1e3a"
+  brand-500-dark: "#7c7cf8"
+  brand-600-dark: "#8f8ffa"
+  brand-700-dark: "#a3a3fc"
+  on-brand-dark: "#0b0b10"
+  openai-dark: "#34d399"
+  gemini-dark: "#60a5fa"
+  perplexity-dark: "#fb7185"
+  series-1-dark: "#7c7cf8"
+  series-2-dark: "#34d399"
+  series-3-dark: "#60a5fa"
+  series-4-dark: "#fb7185"
+  series-5-dark: "#fbbf24"
+  series-6-dark: "#a3e635"
+  success-dark: "#34d399"
+  danger-dark: "#fb7185"
+  warning-dark: "#fbbf24"
 typography:
+  display-xl:
+    fontFamily: "Archivo, system-ui, sans-serif"
+    fontSize: "clamp(2.75rem, 6vw, 4.5rem)"
+    fontWeight: 700
+    lineHeight: 1.02
+    letterSpacing: "-0.035em"
   display:
-    fontFamily: "Libre Caslon Display, Georgia, serif"
-    fontSize: "clamp(2.5rem, 5.5vw, 4.5rem)"
-    fontWeight: 400
-    lineHeight: 1.03
-    letterSpacing: "-0.02em"
+    fontFamily: "Archivo, system-ui, sans-serif"
+    fontSize: "clamp(2.25rem, 4.2vw, 3.25rem)"
+    fontWeight: 700
+    lineHeight: 1.06
+    letterSpacing: "-0.03em"
   headline:
-    fontFamily: "Libre Caslon Display, Georgia, serif"
-    fontSize: "clamp(2rem, 3.6vw, 3rem)"
-    fontWeight: 400
-    lineHeight: 1.08
-    letterSpacing: "-0.02em"
+    fontFamily: "Archivo, system-ui, sans-serif"
+    fontSize: "clamp(1.75rem, 2.6vw, 2.25rem)"
+    fontWeight: 600
+    lineHeight: 1.12
+    letterSpacing: "-0.025em"
   title:
-    fontFamily: "Libre Caslon Display, Georgia, serif"
-    fontSize: "1.5rem"
-    fontWeight: 400
-    lineHeight: 1.08
+    fontFamily: "Archivo, system-ui, sans-serif"
+    fontSize: "1.375rem"
+    fontWeight: 600
+    lineHeight: 1.25
     letterSpacing: "-0.02em"
+  subtitle:
+    fontFamily: "IBM Plex Sans, system-ui, sans-serif"
+    fontSize: "1.125rem"
+    fontWeight: 500
+    lineHeight: 1.4
+    letterSpacing: "-0.01em"
+  body-lg:
+    fontFamily: "IBM Plex Sans, system-ui, sans-serif"
+    fontSize: "1.125rem"
+    fontWeight: 400
+    lineHeight: 1.65
   body:
-    fontFamily: "Public Sans, system-ui, sans-serif"
+    fontFamily: "IBM Plex Sans, system-ui, sans-serif"
     fontSize: "1rem"
     fontWeight: 400
     lineHeight: 1.6
-  label:
-    fontFamily: "Public Sans, system-ui, sans-serif"
+  body-sm:
+    fontFamily: "IBM Plex Sans, system-ui, sans-serif"
     fontSize: "0.875rem"
+    fontWeight: 400
+    lineHeight: 1.55
+  label:
+    fontFamily: "IBM Plex Sans, system-ui, sans-serif"
+    fontSize: "0.75rem"
     fontWeight: 600
-    letterSpacing: "0.11em"
-    fontFeature: "font-variant-caps: all-small-caps"
-  transcript:
-    fontFamily: "Courier Prime, ui-monospace, monospace"
-    fontSize: "1.125rem"
+    lineHeight: 1.2
+    letterSpacing: "0.06em"
+    fontFeature: "text-transform: uppercase"
+  mono-sm:
+    fontFamily: "IBM Plex Mono, ui-monospace, monospace"
+    fontSize: "0.8125rem"
     fontWeight: 400
-    lineHeight: 1.7
+    lineHeight: 1.5
   numeric:
-    fontFamily: "Libre Caslon Display, Georgia, serif"
-    fontSize: "3.75rem"
-    fontWeight: 400
+    fontFamily: "Archivo, system-ui, sans-serif"
+    fontSize: "clamp(2.5rem, 5vw, 3.75rem)"
+    fontWeight: 700
     lineHeight: 1
+    letterSpacing: "-0.03em"
     fontFeature: "font-variant-numeric: tabular-nums"
 rounded:
-  input: "2px"
-  card: "3px"
+  sm: "6px"
+  md: "10px"
+  lg: "14px"
+  full: "999px"
 spacing:
+  base: "4px"
+  scale: "4 8 12 16 20 24 32 40 56 80 120"
+  sectionMarketing: "80px"
+  sectionApp: "32px"
+  panel: "16px"
   gutter: "24px"
-  section: "80px"
-  block: "56px"
-  panel: "24px"
-  stack: "24px"
+motion:
+  ease-out: "cubic-bezier(0.23, 1, 0.32, 1)"
+  ease-in-out: "cubic-bezier(0.77, 0, 0.175, 1)"
+  ease-drawer: "cubic-bezier(0.32, 0.72, 0, 1)"
 components:
   button-primary:
-    backgroundColor: "{colors.ox-700}"
-    textColor: "{colors.canary-100}"
-    typography: "{typography.body}"
-    padding: "14px 16px"
+    backgroundColor: "{colors.brand-500}"
+    textColor: "{colors.on-brand}"
+    typography: "{typography.body-sm}"
+    padding: "10px 16px"
+    radius: "{rounded.md}"
   button-primary-hover:
-    backgroundColor: "{colors.ox-900}"
-    textColor: "{colors.canary-100}"
-  button-signal:
-    backgroundColor: "{colors.canary-400}"
-    textColor: "{colors.ox-900}"
-    typography: "{typography.body}"
-    padding: "12px 16px"
-  button-signal-hover:
-    backgroundColor: "{colors.canary-200}"
-    textColor: "{colors.ox-900}"
+    backgroundColor: "{colors.brand-600}"
   button-outline:
-    backgroundColor: "{colors.surface-0}"
-    textColor: "{colors.ox-700}"
-    typography: "{typography.body}"
-    padding: "12px 16px"
-  button-outline-hover:
-    backgroundColor: "{colors.ox-700}"
-    textColor: "{colors.canary-100}"
-  input-field:
     backgroundColor: "transparent"
-    textColor: "{colors.ink-900}"
-    typography: "{typography.body}"
-    padding: "8px 0"
+    textColor: "{colors.brand-500}"
+    border: "1px solid {colors.border-input}"
+    padding: "10px 16px"
+  button-ghost:
+    backgroundColor: "transparent"
+    textColor: "{colors.text-secondary}"
+    padding: "10px 16px"
+  field:
+    backgroundColor: "{colors.bg}"
+    textColor: "{colors.text-primary}"
+    border: "1px solid {colors.border-input}"
+    radius: "{rounded.sm}"
+    padding: "9px 12px"
   panel:
-    backgroundColor: "{colors.surface-0}"
-    textColor: "{colors.ink-900}"
-    padding: "24px"
+    backgroundColor: "{colors.surface-1}"
+    border: "1px solid {colors.border}"
+    radius: "{rounded.lg}"
   panel-header:
-    backgroundColor: "{colors.surface-50}"
-    textColor: "{colors.ink-500}"
+    backgroundColor: "{colors.surface-2}"
+    textColor: "{colors.text-secondary}"
     typography: "{typography.label}"
-    padding: "10px 24px"
+    padding: "10px 16px"
   badge-recommended:
-    backgroundColor: "#3f62121a"
-    textColor: "{colors.verdict}"
+    backgroundColor: "{colors.success} at 14%"
+    textColor: "{colors.success}"
     padding: "2px 8px"
   badge-mentioned:
-    backgroundColor: "{colors.canary-100}"
-    textColor: "{colors.ox-700}"
+    backgroundColor: "{colors.brand-100}"
+    textColor: "{colors.brand-700}"
     padding: "2px 8px"
   badge-absent:
-    backgroundColor: "{colors.surface-50}"
-    textColor: "{colors.ink-500}"
+    backgroundColor: "{colors.surface-2}"
+    textColor: "{colors.text-muted}"
     padding: "2px 8px"
-  nav-link:
-    textColor: "{colors.ink-700}"
-    typography: "{typography.label}"
-  nav-link-active:
-    backgroundColor: "{colors.ox-700}"
-    textColor: "{colors.canary-100}"
-    padding: "8px 12px"
 ---
 
 # Design System: First Chair
 
 ## Overview
 
-**Creative North Star: "The Editorial Law Review"**
+North star: **the Prism.** A prospective client asks one question. Three engines
+answer it differently. The whole product exists to hold those three answers side
+by side and tell you where you stand in each — so the identity is the instrument
+that does the splitting, not a metaphor borrowed from law.
 
-The committed direction, recorded verbatim from the build's direction contract (`DIRECTION_CONTRACT`, seed `993d9e85`, in `src/app/layout.tsx`):
+This replaces "The Editorial Law Review", the previous direction. That system was
+built from legal publishing — oxblood buckram, canary legal pad, Caslon, a red
+margin rule. It was coherent, and it was wrong for what the product had become: a
+paper metaphor cannot carry six chart series, a dark mode, or a per-engine colour
+system, and the code had already drifted away from it (charts rendered in stock
+Tailwind hexes, 43 call sites used a deprecated token, `:focus-visible` existed
+nowhere). Prism is chosen to be operable at data density, not to be atmospheric.
 
-> **THESIS:** An AI answer is a record, so this surface is set as legal publishing sets a record — refusing the light-SaaS hero-with-floating-dashboard the GEO category ships.
->
-> **OWN-WORLD:** West reporter oxblood as committed field, canary legal-pad yellow as the only signal, blue-black pleading ink, red margin rule as structural hairline, foil for detail. Caslon display, Public Sans UI, Courier for verbatim answers. Square corners, hairline rules, no cards-as-scaffold.
+Two registers, one system: the marketing surfaces are allowed the full expression
+of the split. The product surfaces are quiet, dense, and fast.
 
-The world is drawn from legal publishing's **saturated** range — buckram reporter spines, the canary legal pad, blue-backed pleadings, the red margin rule, foil stamping on a spine — and deliberately not the cream-and-parchment rendition that "law firm website" usually means. Nothing here is beige. The surface is white stock with a saturated oxblood field pressed onto it.
+## Colour
 
-Density is editorial, not dashboard. Content is set as definition lists, ordered proceedings, ruled tables and transcript blocks rather than as a grid of cards. Structure is carried by hairline rules and by 1px gaps that let a background color read as a grid line, not by boxes with shadows floating over a gray page. The single piece of authored motion in the entire system is a verdict inking onto the page.
+### The one idea
 
-**Key Characteristics:**
-- Oxblood is a **field**, not an accent: whole sections and whole pricing panels are set in it.
-- Canary is the only signal color; it marks the one thing that matters on a surface.
-- Square corners (2–3px) throughout; the form language is a printed page, not a chip.
-- Three faces with three jobs: Caslon sets, Public Sans operates, Courier quotes.
-- Every number is tabular and traces back to the sentence it came from.
-- Depth is achieved by tone and rule, not by shadow.
+**Indigo is always you.** `brand-500` never means anything else — not a link
+colour that happens to be blue, not a generic accent. When a chart line, a badge
+or a legend swatch is indigo, that is the user's own firm. Every competitor and
+every neutral takes something else.
 
-## Colors
+**Each engine owns a hue, permanently.** ChatGPT is emerald, Gemini is azure,
+Perplexity is rose, in the mark, the charts, the badges, the tables and the email.
+A reader learns three colours once and then never reads a legend again.
 
-A saturated legal-publishing palette: three ranges of pigment (oxblood, canary, pleading ink) over uncoated white stock, with red, foil and court green reserved for single-purpose marks.
+Because the mark hue is tuned for fills and strokes, it does not pass AA as small
+text. Every engine therefore has two values: `openai` for graphics, `openai-text`
+for words. Using the graphic value on a label is a bug, not a preference. In dark
+mode the two converge, because the lifted hue clears 4.5:1 on the dark ground.
 
-### Primary
+Colour is never the only cue. Each engine also carries a line style — ChatGPT
+solid, Gemini dashed, Perplexity dotted — so the charts survive greyscale
+printing and colour-vision deficiency.
 
-- **Oxblood Buckram** (`ox-900` #3f1119, `ox-700` #6e1f2c, `ox-500` #8e2a3a): the reporter spine. `ox-900` is the committed field — full-bleed hero, the highlighted pricing panel, the 2px masthead and footer rules. `ox-700` is the interactive weight: primary buttons, active nav, links on white, score numerals, focused input underlines. `ox-500` appears only at low alpha as a link underline.
+### Measurement, not taste
 
-### Secondary
+Every foreground/background pair in this system is measured. `src/lib/tokens.test.ts`
+parses `globals.css`, recomputes WCAG contrast for 20 pairs in each mode, and fails
+the build on a regression. Two values in the first draft were corrected by that
+check before they ever shipped: `text-muted` (4.17:1, now `#73738b` at 4.61:1) and
+the input boundary, which needed a token of its own — `border-strong` sits at
+1.64:1 and cannot legally identify a form field, so `border-input` exists at
+3.19:1 and is the only border allowed on a control.
 
-- **Canary Legal Pad** (`canary-400` #f7d64a, `canary-200` #f3e4a6, `canary-100` #fbf4d6): the signal. `canary-400` is the highlighter — the struck competitor name in a transcript, the 2px underline under the one live link in a nav, the signal button on oxblood, the seats in the mark. `canary-200` is body copy on the oxblood field and the ruled-stock line. `canary-100` is the reversed-out heading color on oxblood and the pale legal-pad ground on white surfaces.
+The test also pins the two dark-mode declarations — the `[data-theme="dark"]`
+block and the `prefers-color-scheme` block — to identical values, because a
+palette written twice drifts.
 
-### Tertiary
+### Roles
 
-- **Margin Rule Red** (`rule` #c8102e): the red rule of a legal pad and the correction pen. Sequence markers ("First / Then / Finally"), transcript Q. markers, and error text. Never a background at full strength; the trial-ended banner uses it at 10%.
-- **Verdict Green** (`verdict` #3f6212): a favorable finding only — success messages, the "Recommended" state, positive deltas.
-- **Foil** (`foil` #a8843a): spine stamping. Appears as a chart series and as advisory text; the quietest of the three.
-- **Engine Series** (`chart-1`…`chart-6`): a six-step categorical scale drawn from this world (oxblood, court blue-green, foil, verdict, plum, ink) so charts read as part of the publication rather than as a library default.
+`bg` is the page. `surface-1` is anything raised onto it. `surface-2` is the inset
+tone: panel headers, table header rows, disabled grounds. `border` divides;
+`border-strong` bounds; `border-input` identifies a control. Text runs
+primary → secondary → muted, and muted is still content, so it still clears 4.5:1.
 
-### Neutral
+`success` / `danger` / `warning` are states, never decoration. A score that went
+down is `danger` **and** carries a minus sign and a down arrow, because the
+Grayscale Rule below forbids meaning that lives only in hue.
 
-- **Pleading Ink** (`ink-900` #12161f, `ink-700` #2b3444, `ink-500` #4a5160): blue-black, never a neutral gray. `ink-900` is body and heading text on white, `ink-700` is running prose, `ink-500` is notation labels and secondary detail.
-- **Stock** (`surface-0` #ffffff, `surface-50` #f7f6f2): the page and the warm panel header/inset tone.
-- **Rules** (`border` #ddd8ce, `border-strong` #b9b2a4): warm paper-toned hairlines. `border` divides list items and table rows; `border-strong` bounds panels, tops a definition entry, and underlines an input.
+### Dark
 
-### Named Rules
-
-**The Committed Field Rule.** Oxblood is applied as a region, not as a highlight. A surface either commits — the whole hero, the whole panel, the whole masthead rule — or it stays on white. There is no 8%-oxblood-tint decoration.
-
-**The One Signal Rule.** Canary marks exactly one thing per region: the struck name in the transcript, the primary action in a nav, the live plan. Two canary elements competing in the same field means one of them is not the signal.
-
-**The Blue-Black Rule.** Text is never neutral gray. All ink is the blue-black `ink-*` range, because pleading ink is blue-black.
-
-**The Grayscale Rule.** No state is carried by hue alone. A score state, a delta, or a citation gap must survive a grayscale screenshot — the "Recommended / Mentioned / Absent" badges each carry a word, the delta carries a sign and an arrow.
+Dark is a peer mode, not an inversion. Light is the default; the OS preference is
+honoured; an explicit choice overrides it and persists. The one structural
+difference: **shadows are switched off in dark mode**, because a shadow is
+invisible on a dark ground. Elevation there is carried by `border` and a lighter
+surface step instead.
 
 ## Typography
 
-**Display Font:** Libre Caslon Display (with Georgia, serif)
-**Body Font:** Public Sans (with system-ui, sans-serif)
-**Verbatim/Mono Font:** Courier Prime (with ui-monospace, monospace)
+**Archivo** for display, headlines and numerals — a wide grotesque set tight and
+heavy, so a score reads as a figure rather than as running text. **IBM Plex Sans**
+for every piece of UI and body copy. **IBM Plex Mono** for verbatim engine answers,
+citations, hex values and IDs.
 
-**Character:** Caslon is the historic face of American legal printing and sets everything a reader would call a title. Public Sans carries the US federal design-system lineage and does the operating work without asking to be noticed. Courier is not a retro gesture — a court transcript *is* Courier, so machine answers are set in it because that is what they are.
+The UI and mono faces are siblings on purpose. What the machine said and the
+interface reading it back come from one superfamily, so a transcript sits inside
+the product rather than on top of it. Archivo stands apart because display is the
+one place the brand is allowed a voice.
 
-### Hierarchy
+The mono rule is the one thing carried over intact from the previous system, and
+it is carried over because it means something rather than because it looked good:
+**a verbatim machine answer is always set in mono.** That is the reader's cue that
+they are looking at what the engine actually said, not at our summary of it.
 
-- **Display** (Caslon, 400, `clamp(2.5rem, 5.5vw, 4.5rem)`, line-height 1.03): one per surface, the hero headline. Measure is set on the heading itself (`max-w-[15ch]`) so `ch` resolves against the display face.
-- **Headline** (Caslon, 400, `clamp(2rem, 3.6vw, 3rem)`, line-height 1.08): section openers on the landing and legal surfaces.
-- **Title** (Caslon, 400, 1.25–2rem): panel headings, plan names, definition terms, proceeding steps.
-- **Body** (Public Sans, 400, 1rem/1.6; lead paragraphs at 1.125rem): all running prose. Measure is held between 54ch and 76ch; the Read surface container is `max-w-[74ch]`.
-- **Notation / Label** (`.notation` — Public Sans, 600, all-small-caps, letter-spacing 0.11em): the Bluebook run-in label. Field labels, table headers, nav links, metadata lines, "of 100 visibility".
-- **Transcript** (`.transcript` — Courier Prime, 400, line-height 1.7): verbatim engine answers, Q./A. pairs, docket-style detail lines.
-- **Numeric** (`.tnum` — tabular figures, usually Caslon at 3rem–3.75rem): visibility scores, prices, deltas, any figure in a column.
+Measure is held at 60–75ch. Numerals are always tabular so a changing score does
+not shift the column.
 
-### Named Rules
+### Containers
 
-**The Notation Rule.** Small-caps notation runs **inline** — in copy, in a table header, next to a value. It is never stacked above a heading as an eyebrow or kicker. The eyebrow pattern is banned in this world; `.notation` is what replaced it.
+Four, declared, so a fifth does not appear by accident: marketing `max-w-6xl`,
+application `max-w-7xl`, forms and settings `max-w-3xl`, long-form reading
+`max-w-[70ch]`.
 
-**The Courier Means Verbatim Rule.** Courier is a claim about provenance, not a texture. If text is set in Courier it is either a machine's exact words or a docket-style identifier. Never use it for UI chrome or headings.
+## Shape and elevation
 
-**The Tabular Figures Rule.** Every number that sits in a column, updates, or is compared to another number carries `.tnum`. Score displays and price rows must not jitter between renders.
+Radius is `6 / 10 / 14`, with `full` reserved for avatars and status dots only.
+This is the sharpest break from the previous system, which was square by
+conviction at 2–3px.
 
-## Layout
+Elevation is `shadow-sm / md / lg`, tinted with the ink colour rather than pure
+black, and disabled entirely in dark mode.
 
-Three container widths, one per surface mode. The **Persuade** surface (landing) and its masthead run at `max-w-6xl` (72rem) with a 24px gutter (`px-6`) at every breakpoint. The **Operate** surfaces (dashboard) run at `max-w-7xl` (80rem) with 24px padding; settings runs `max-w-4xl`. The **Read** surface (legal) is measure-bound at `max-w-[74ch]`.
+## Focus
 
-Vertical rhythm on editorial surfaces is 80px section padding (`py-20`), 56px for the proof block, with 24–56px steps inside. Operate surfaces use a 24px section gap and 24px panel padding. The spacing scale in use is coarse and small — 2, 4, 6, 8, 12, 14, 20 in Tailwind steps — with no invented intermediate values.
+The previous system removed focus rings at five call sites and replaced them with
+a border-colour shift, and `:focus-visible` appeared nowhere in the codebase. In
+Prism, focus is never removed, only restyled: a 2px `brand-500` outline at 2px
+offset, applied through a `:where()` base rule so every interactive element gets
+it for free and a component has to work to lose it.
 
-Asymmetry is the default composition: the hero is a `minmax(0,1fr)_27rem` two-column split with the audit form filed to the right; content sections pair a text column with a `minmax(0,26rem)` or `20rem` image column. The dashboard uses a 3-column grid where the score hero spans 2 and the share-of-voice donut takes 1.
+## Motion
 
-Responsive behavior is a single collapse at `lg`. Above it: persistent 15rem sidebar, desktop header with the brand switcher, multi-column grids. Below it: a top bar with a right-hand drawer over an ink-900/40 scrim, and every grid stacks to one column. The decorative library band is height-bound (`h-[40vh] min-h-64`) so it never dominates a short viewport.
+Motion here is functional. The test for whether something animates is how often a
+user will see it: something seen a hundred times a day gets no animation at all,
+because animation is a delay you are asking them to pay repeatedly.
 
-**The Gap-as-Rule Rule.** Multi-panel groups are built as a `gap-px` grid over a `border-strong` background, so the divider between panels is a true hairline the grid produces rather than a border each panel draws.
+Curves are custom, because the built-in CSS easings are too weak to read as
+intentional:
 
-## Elevation & Depth
+```
+--ease-out:    cubic-bezier(0.23, 1, 0.32, 1)
+--ease-in-out: cubic-bezier(0.77, 0, 0.175, 1)
+--ease-drawer: cubic-bezier(0.32, 0.72, 0, 1)
+```
 
-This system is **flat**. Depth comes from tone and from rule weight, not from shadow. A panel is distinguished by a `border-strong` hairline and, where it has a header, by a `surface-50` band above a hairline. A region is distinguished by committing to a color field. Hierarchy between the masthead and the page below it is a 2px oxblood rule versus a 1px paper rule.
+| Moment | Duration | Where |
+|---|---|---|
+| `press` | 160ms | `scale(0.97)` on `:active`, every pressable element |
+| `ds-pop` | 180ms | popovers and dropdowns, `scale(0.95)` from the trigger |
+| `ds-cascade` | 300ms | list and table rows, 40ms stagger, capped |
+| `ds-pulse` | 200ms | the score delta, once, when the value changes |
+| `ds-skeleton` | loop | loading placeholders |
+| `chart-draw` | 600ms | line series drawing in, 60ms per engine |
+| `score-count` | 700ms | the hero score, first paint per session only |
+| `prism-shift` | 8s loop | marketing only, the three hues refracting |
 
-Two shadow tokens exist. Only one is in use, and only where the page genuinely lifts off itself.
+### Motion rules
 
-### Shadow Vocabulary
+- Never `ease-in` on UI. It delays the first frame, which is the frame the user is
+  watching, so it reads as lag.
+- Nothing appears from `scale(0)`. Enter from `0.95` with opacity — nothing in the
+  physical world resolves out of nothing.
+- Only `transform` and `opacity` animate. Never `transition: all`.
+- Transitions, not keyframes, for anything that can be re-triggered quickly;
+  keyframes restart from zero, transitions retarget from where they are.
+- Popovers scale from their trigger. Modals are the exception and stay centred,
+  because they are not anchored to anything.
+- Hover effects sit behind `@media (hover: hover) and (pointer: fine)`, or a touch
+  tap fires them and lies.
+- `prefers-reduced-motion` means fewer and gentler, not none: opacity and colour
+  transitions that aid comprehension stay, movement goes.
 
-- **Drawer lift** (`--shadow-card-hover`: `0 6px 16px -4px rgb(63 17 25 / 0.16)`): the mobile navigation drawer, which floats above a scrim. Tinted with oxblood, never neutral black.
-- **Card rest** (`--shadow-card`: `0 1px 2px rgb(63 17 25 / 0.08)`): defined but not applied by any shipped surface. Available for a genuinely floating overlay; it is not the resting state of a panel.
+## Named rules
 
-### Named Rules
+**Indigo Means You.** `brand-500` identifies the user's own firm and nothing else.
 
-**The No Card Scaffold Rule.** Content is not wrapped in a shadowed card to give it presence. If a group needs separation, it gets a hairline, a tone change, or a field. Shadow is reserved for elements that actually overlay the page.
+**One Hue Per Engine.** ChatGPT emerald, Gemini azure, Perplexity rose, everywhere,
+forever. A reader should never need the legend twice.
 
-## Shapes
+**Graphic Hue, Text Hue.** The engine mark colour is for strokes and fills; the
+`-text` variant is for words. They are not interchangeable.
 
-Square is the form language. The two radius tokens are deliberately near-zero: 2px on inputs and 3px on panels — enough to keep a corner from looking chipped, not enough to read as rounded. Nothing in this world is a pill, and nothing is a soft card.
+**Never Colour Alone.** Every colour-coded distinction carries a second cue — a
+line style, a sign, an arrow, a word. Charts must survive greyscale.
 
-Borders do the structural work. Hairlines (1px `border` / `border-strong`) divide rows, list items and definition entries; 2px oxblood rules cap the masthead and footer; a 2px canary left border marks a quoted transcript and a 2px canary bottom border marks the primary link in a nav. Inputs are bottom-ruled only — a form field is a line to write on, not a box.
+**Measured, Not Eyeballed.** A colour pair enters the system only after the
+contrast test passes. The test is the source of truth, not this document.
 
-The identity mark is drawn as geometry, not set as type: a filled square with a counsel table rule and three seats, the first one taken. It is SVG so it holds at 16px and does not depend on a font having loaded.
+**Mono Means Verbatim.** IBM Plex Mono is reserved for what a machine actually
+said. Never used decoratively.
 
-**The Underline-Not-Box Rule.** Text inputs and selects have no box: `border-0 border-b border-border-strong` on a transparent ground, shifting to `ox-700` on focus.
+**Tabular Figures.** Any number that updates is `tabular-nums`, so the column
+never jitters.
 
-## Components
+**Focus Is Never Removed.** Only restyled.
 
-### Buttons
+**Frequency Decides Motion.** Seen constantly means no animation. Seen rarely
+earns delight.
 
-- **Shape:** square (no radius applied; the 2–3px tokens belong to inputs and panels).
-- **Primary:** oxblood field (`ox-700`) with canary-100 text, semibold Public Sans, 14px vertical / 16px horizontal padding. Full-width inside a form.
-- **Signal:** canary-400 with `ox-900` text — used only on an oxblood field, where it is the one bright object.
-- **Outline:** 1px `ox-700` border, `ox-700` text on white; inverts to a filled oxblood button on hover.
-- **Hover / Focus:** `transition-colors` only. Primary darkens to `ox-900`, signal lightens to `canary-200`, outline fills. No lift, no scale, no shadow.
-- **Disabled:** `opacity-70`/`opacity-60` with `cursor-wait` while a request is in flight; the label changes to state text ("Querying the engines…", "Starting…").
+**Components, Not Call Sites.** A button is `.ds-btn`. The previous system defined
+eleven component tokens and implemented none of them as classes, so every button
+was retyped inline and drifted apart. Anything used more than twice becomes a
+class here.
 
-### Badges (score states)
+**Two Registers.** Marketing may be expressive. The product is quiet and fast.
 
-- **Style:** square, 2px/8px padding, 0.75rem semibold. Recommended = verdict green on a 10% verdict wash; Mentioned = `ox-700` on `canary-100`; Absent = `ink-500` on `surface-50`. Deltas use the same pattern (verdict wash up, rule wash down) plus an arrow that rotates for a negative.
-- **State:** the word is the state. Color reinforces; it never carries the meaning alone.
+## Don'ts
 
-### Panels / Containers
+- No chart colour outside `series-1…6` and the engine hues. Not the chart
+  library's defaults — that is precisely how the last system drifted.
+- No raw hex in JSX. Tokens only.
+- No emoji in the interface. Lucide icons at 16–24px, `aria-hidden` beside a text
+  label.
+- No `rounded-full` outside avatars and status dots.
+- No shadow in dark mode.
+- No `text-white` as a generic light colour; use `on-brand` or `text-primary`.
+- No fifth container width.
+- No new font size off the ramp above.
+- No animation on a keyboard-initiated action.
+- No legacy Editorial token (`ox-*`, `canary-*`, `ink-600`, `rule`, `foil`,
+  `verdict`, `surface-0`, `surface-50`) in new work. They remain in `globals.css`
+  only until every surface is migrated; when that block is empty, delete it.
 
-- **Corner Style:** square (3px token available for panels).
-- **Background:** `surface-0`, or `ox-900` when the panel is the committed one in a pair.
-- **Header:** an optional `surface-50` band with a `.notation` label, separated by a `border-strong` hairline — the cover sheet of a filed form.
-- **Shadow Strategy:** none at rest (see Elevation & Depth).
-- **Border:** 1px `border-strong` around; 1px `border` between internal rows.
-- **Internal Padding:** 24px both axes; 32px on pricing panels.
+## The mark
 
-### Inputs / Fields
+A chevron splits into three rays, one per engine — the product's whole thesis in
+four strokes. Drawn as geometry rather than set as type, so it holds at 16px and
+never waits on a font.
 
-- **Style:** transparent ground, bottom hairline in `border-strong`, 8px vertical padding, no horizontal inset. Label above in `.notation` at `ink-500`; placeholder at `ink-500/55`.
-- **Focus:** the underline becomes `ox-700`. Default ring removed (`focus:ring-0`, `focus:outline-none`) — the color shift on the rule is the focus signal.
-- **Error:** message text in `rule` red with `role="status"`; success in `verdict`.
-- **Select:** same underline treatment, no box, no custom chevron.
-
-### Navigation
-
-- **Masthead (Persuade / Read):** mark + Caslon wordmark left, `.notation` links right, all baseline-aligned, on a 2px `ox-900` bottom rule. The primary link carries a 2px canary underline.
-- **Sidebar (Operate):** 15rem, `surface-0`, right hairline. Items are Lucide icon + label at 0.875rem medium, `ink-500`. Active item is a filled `ox-700` block with canary-100 text, driven by the real pathname and `aria-current="page"`. Unbuilt destinations render as a disabled span with a "Soon" tag rather than a dead link.
-- **Mobile:** top bar with a hamburger; right-hand 16rem drawer over an `ink-900/40` scrim, closing on scrim click or the X.
-
-### The Transcript Block (signature)
-
-A verbatim engine answer, set in Courier at 1.125rem with a 2px canary left rule and 24px inset, capped at 74ch. Firm names are `<mark>` on canary-400 with `ox-900` bold text. Above it sits a `.notation` provenance line naming the engine and the question; below it, the finding ("Your firm — not mentioned"). This is the proof object of the product and the reason Courier is in the system at all.
-
-### The Ink-In Reveal (signature motion)
-
-`.ink-in` — the single authored motion moment. A verdict inks onto the page as a stamp presses: `clip-path` wipes from `inset(0 100% 0 0)` to `inset(0 0 0 0)` with opacity 0.4 → 1 over 900ms on `cubic-bezier(0.16, 1, 0.3, 1)`. Stagger classes `.ink-in-1/2/3` add 160/320/480ms delays. Content is visible by default — the animation only reveals. Fully disabled under `prefers-reduced-motion: reduce`.
-
-**The One Moment Rule.** `.ink-in` is used once per surface, on the proof block. It is not a generic section-entrance animation, and no second motion vocabulary exists in this system.
-
-### Ruled Stock
-
-`.ruled` — a repeating 32px canary-200 hairline gradient, the horizontal lines of a legal pad, used as field texture behind a section (paired with a `canary-100` ground). Content sits on `surface-0/70` blocks so the ruling reads behind the page, not through the text.
-
-## Do's and Don'ts
-
-### Do:
-
-- **Do** commit oxblood as a whole region — a full-bleed hero, a full pricing panel, a full active nav item — rather than tinting.
-- **Do** run small-caps notation (`.notation`) inline: as a field label, a table header, or a run-in before a value.
-- **Do** set every verbatim engine answer in Courier (`.transcript`) and every column figure in tabular numerals (`.tnum`).
-- **Do** separate content with hairlines, tone bands, and `gap-px` grids over a `border-strong` ground.
-- **Do** keep inputs to a bottom rule only, shifting to `ox-700` on focus.
-- **Do** give every state a word as well as a color, so the surface survives a grayscale screenshot. The build is verified at **0 contrast failures across 101 elements at WCAG AA**; keep it there.
-- **Do** write real alt text for content images, and mark the decorative library band `aria-hidden` with an empty alt.
-- **Do** keep motion to `.ink-in`, once per surface, and honor `prefers-reduced-motion`.
-- **Do** name the destination in a back link (`BackLink` takes an explicit `href` + `label`); never `history.back()`.
-
-### Don't:
-
-- **Don't** stack a small-caps label above a heading as an eyebrow or kicker. That pattern is banned in this world; notation is a run-in.
-- **Don't** wrap content in a shadowed card to give it presence. Shadow is only for elements that overlay the page.
-- **Don't** round corners past the 2–3px tokens. No pills, no `rounded-lg` surfaces, no soft cards.
-- **Don't** use neutral gray for text. All ink is the blue-black `ink-*` range.
-- **Don't** reach for the cream/parchment law-firm rendition — this world is the saturated one.
-- **Don't** introduce a second signal color, or place two canary elements in competition inside one field.
-- **Don't** use Courier for anything that is not verbatim machine output or a docket identifier.
-- **Don't** use the legacy alias tokens (`--color-primary-900/700/500`, `--color-accent-600`, `--color-danger-600`, `--color-warn-600`, `--color-ink-600`) in new work. They are a **deprecated migration bridge** so unrebuilt surfaces render in this world; every new surface uses `ox-*`, `verdict`, `rule`, `foil`, `ink-500`. The aliases are to be removed once the last surface is rewritten.
-- **Don't** add a chart color outside the `chart-1…6` engine series; a chart library's default palette is a different world.
-- **Don't** use emojis or glyph icons in UI. Icons are Lucide, sized 16–24px, `aria-hidden` beside a text label.
+Variants live in `public/brand/`: `mark.svg` (colour, light grounds),
+`mark-reversed.svg` (dark grounds), `mark-mono.svg` (single colour via
+`currentColor`), `icon-app.svg` (512px, on an ink ground, for app icons and
+favicons). Clear space equals the height of the chevron on all sides. Minimum
+size 16px; below that use the mono variant, whose rays are weighted to survive.

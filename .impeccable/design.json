@@ -1,281 +1,680 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-08-04T00:00:00.000Z",
-  "title": "Design System: First Chair",
+  "generatedAt": "2026-09-03",
+  "title": "First Chair — Prism",
   "extensions": {
     "colorMeta": {
-      "ox-900": {
-        "role": "primary",
-        "displayName": "Oxblood Buckram (Deep)",
-        "canonical": "#3f1119",
-        "tonalRamp": ["#1f080c", "#3f1119", "#57171f", "#6e1f2c", "#8e2a3a", "#b04a58", "#d4868e", "#f2d2d5"]
-      },
-      "ox-700": {
-        "role": "primary",
-        "displayName": "Oxblood Buckram",
-        "canonical": "#6e1f2c",
-        "tonalRamp": ["#2a0b11", "#3f1119", "#57171f", "#6e1f2c", "#8e2a3a", "#ad4a57", "#d1868f", "#f0d0d4"]
-      },
-      "ox-500": {
-        "role": "primary",
-        "displayName": "Oxblood Buckram (Light)",
-        "canonical": "#8e2a3a",
-        "tonalRamp": ["#310d13", "#48141c", "#5f1a26", "#77222f", "#8e2a3a", "#ac5461", "#cb8f97", "#eed6d9"]
-      },
-      "canary-400": {
-        "role": "secondary",
-        "displayName": "Canary Legal Pad",
-        "canonical": "#f7d64a",
-        "tonalRamp": ["#4a3f0a", "#6b5a10", "#8d7817", "#b0971e", "#d3b62c", "#f7d64a", "#f3e4a6", "#fbf4d6"]
-      },
-      "canary-200": {
-        "role": "secondary",
-        "displayName": "Canary Wash",
-        "canonical": "#f3e4a6",
-        "tonalRamp": ["#4a4222", "#6b6031", "#8d7f42", "#b09f55", "#cfc078", "#e2d693", "#f3e4a6", "#fbf4d6"]
-      },
-      "canary-100": {
-        "role": "secondary",
-        "displayName": "Legal Pad Ground",
-        "canonical": "#fbf4d6",
-        "tonalRamp": ["#4b4630", "#6c6644", "#8e8759", "#b0a870", "#cfc78d", "#e6dfae", "#f4edc6", "#fbf4d6"]
-      },
-      "ink-900": {
+      "bg": {
         "role": "neutral",
-        "displayName": "Pleading Ink",
-        "canonical": "#12161f",
-        "tonalRamp": ["#080a0e", "#12161f", "#1e2430", "#2b3444", "#3a4353", "#4a5160", "#8c93a0", "#dfe2e8"]
-      },
-      "ink-700": {
-        "role": "neutral",
-        "displayName": "Pleading Ink (Running)",
-        "canonical": "#2b3444",
-        "tonalRamp": ["#0c0f15", "#12161f", "#1e2430", "#2b3444", "#3a4353", "#4a5160", "#8c93a0", "#dfe2e8"]
-      },
-      "ink-500": {
-        "role": "neutral",
-        "displayName": "Notation Ink",
-        "canonical": "#4a5160",
-        "tonalRamp": ["#12161f", "#1e2430", "#2b3444", "#3a4353", "#4a5160", "#727a89", "#a9b0ba", "#e4e7eb"]
-      },
-      "rule": {
-        "role": "tertiary",
-        "displayName": "Margin Rule Red",
-        "canonical": "#c8102e",
-        "tonalRamp": ["#3d050e", "#5c0815", "#7a0a1c", "#990d23", "#c8102e", "#e13a55", "#ee8494", "#fbdbe1"]
-      },
-      "verdict": {
-        "role": "tertiary",
-        "displayName": "Verdict Green",
-        "canonical": "#3f6212",
-        "tonalRamp": ["#141f06", "#1f300a", "#2a410c", "#35520f", "#3f6212", "#65922a", "#9ac267", "#dcecc6"]
-      },
-      "foil": {
-        "role": "tertiary",
-        "displayName": "Spine Foil",
-        "canonical": "#a8843a",
-        "tonalRamp": ["#332810", "#4c3c19", "#665021", "#80642a", "#a8843a", "#c2a35e", "#dac697", "#f1e8d3"]
-      },
-      "surface-0": {
-        "role": "neutral",
-        "displayName": "Uncoated Stock",
+        "displayName": "Page",
         "canonical": "#ffffff",
-        "tonalRamp": ["#26241f", "#403d36", "#5b574d", "#787365", "#9a9488", "#c4bfb4", "#f7f6f2", "#ffffff"]
+        "dark": "#0b0b10",
+        "tonalRamp": [
+          "#1a1a1a",
+          "#333333",
+          "#4d4d4d",
+          "#6b6b6b",
+          "#8c8c8c",
+          "#adadad",
+          "#cccccc",
+          "#ebebeb"
+        ]
       },
-      "surface-50": {
+      "surface-1": {
         "role": "neutral",
-        "displayName": "Warm Inset Stock",
-        "canonical": "#f7f6f2",
-        "tonalRamp": ["#26241f", "#403d36", "#5b574d", "#787365", "#9a9488", "#c4bfb4", "#e6e3db", "#f7f6f2"]
+        "displayName": "Raised Surface",
+        "canonical": "#fafafd",
+        "dark": "#14141c",
+        "tonalRamp": [
+          "#0f0f24",
+          "#1d1d49",
+          "#2c2c6d",
+          "#3d3d99",
+          "#5b5bbd",
+          "#8a8ad0",
+          "#b6b6e2",
+          "#e2e2f3"
+        ]
+      },
+      "surface-2": {
+        "role": "neutral",
+        "displayName": "Inset Surface",
+        "canonical": "#f5f5fa",
+        "dark": "#1c1c26",
+        "tonalRamp": [
+          "#111122",
+          "#222244",
+          "#333366",
+          "#47478f",
+          "#6666b2",
+          "#9292c9",
+          "#bbbbdd",
+          "#e4e4f1"
+        ]
       },
       "border": {
         "role": "neutral",
-        "displayName": "Paper Hairline",
-        "canonical": "#ddd8ce",
-        "tonalRamp": ["#2e2b25", "#474338", "#615c4d", "#7d7767", "#9f9989", "#b9b2a4", "#ddd8ce", "#f2f0ea"]
+        "displayName": "Divider",
+        "canonical": "#e0e0ea",
+        "dark": "#2a2a38",
+        "tonalRamp": [
+          "#15151e",
+          "#29293d",
+          "#3e3e5b",
+          "#575780",
+          "#7676a2",
+          "#9e9ebd",
+          "#c2c2d6",
+          "#e7e7ef"
+        ]
       },
       "border-strong": {
         "role": "neutral",
         "displayName": "Structural Rule",
-        "canonical": "#b9b2a4",
-        "tonalRamp": ["#2e2b25", "#474338", "#615c4d", "#7d7767", "#9f9989", "#b9b2a4", "#ddd8ce", "#f2f0ea"]
+        "canonical": "#c9c9d8",
+        "dark": "#3a3a4c",
+        "tonalRamp": [
+          "#15151e",
+          "#2b2b3b",
+          "#404059",
+          "#5a5a7c",
+          "#7a7a9f",
+          "#a0a0bb",
+          "#c4c4d4",
+          "#e7e7ee"
+        ]
       },
-      "chart-2": {
-        "role": "tertiary",
-        "displayName": "Court Blue-Green",
-        "canonical": "#1d4e5f",
-        "tonalRamp": ["#0a1d24", "#122f39", "#17404e", "#1d4e5f", "#2a7089", "#4a9db8", "#8ac4d7", "#d6ebf2"]
+      "border-input": {
+        "role": "neutral",
+        "displayName": "Control Boundary",
+        "canonical": "#8e8ea8",
+        "dark": "#5c5c76",
+        "tonalRamp": [
+          "#16161d",
+          "#2c2c3a",
+          "#434356",
+          "#5d5d79",
+          "#7d7d9b",
+          "#a3a3b8",
+          "#c5c5d3",
+          "#e8e8ed"
+        ]
       },
-      "chart-5": {
+      "text-primary": {
+        "role": "neutral",
+        "displayName": "Primary Ink",
+        "canonical": "#14141a",
+        "dark": "#ececf5",
+        "tonalRamp": [
+          "#16161d",
+          "#2c2c3a",
+          "#434356",
+          "#5d5d79",
+          "#7d7d9b",
+          "#a3a3b8",
+          "#c5c5d3",
+          "#e8e8ed"
+        ]
+      },
+      "text-secondary": {
+        "role": "neutral",
+        "displayName": "Running Ink",
+        "canonical": "#5a5a72",
+        "dark": "#a3a3b8",
+        "tonalRamp": [
+          "#17171d",
+          "#2d2d39",
+          "#444456",
+          "#5e5e78",
+          "#7f7f9a",
+          "#a4a4b7",
+          "#c6c6d2",
+          "#e8e8ed"
+        ]
+      },
+      "text-muted": {
+        "role": "neutral",
+        "displayName": "Notation Ink",
+        "canonical": "#73738b",
+        "dark": "#7a7a93",
+        "tonalRamp": [
+          "#17171c",
+          "#2e2e38",
+          "#454554",
+          "#616175",
+          "#818197",
+          "#a6a6b5",
+          "#c7c7d1",
+          "#e9e9ed"
+        ]
+      },
+      "brand-50": {
+        "role": "primary",
+        "displayName": "Indigo Wash",
+        "canonical": "#f3f3ff",
+        "dark": "#17172c",
+        "tonalRamp": [
+          "#020231",
+          "#040462",
+          "#060693",
+          "#0909ce",
+          "#2323f6",
+          "#6262f8",
+          "#9d9dfb",
+          "#d8d8fd"
+        ]
+      },
+      "brand-100": {
+        "role": "primary",
+        "displayName": "Indigo Tint",
+        "canonical": "#e8e8ff",
+        "dark": "#1e1e3a",
+        "tonalRamp": [
+          "#020231",
+          "#040462",
+          "#060693",
+          "#0909ce",
+          "#2323f6",
+          "#6262f8",
+          "#9d9dfb",
+          "#d8d8fd"
+        ]
+      },
+      "brand-500": {
+        "role": "primary",
+        "displayName": "Prism Indigo",
+        "canonical": "#5b5bf5",
+        "dark": "#7c7cf8",
+        "tonalRamp": [
+          "#030330",
+          "#060660",
+          "#090990",
+          "#0c0cca",
+          "#2727f2",
+          "#6565f6",
+          "#9f9ff9",
+          "#d9d9fd"
+        ]
+      },
+      "brand-600": {
+        "role": "primary",
+        "displayName": "Prism Indigo (Hover)",
+        "canonical": "#4a45e0",
+        "dark": "#8f8ffa",
+        "tonalRamp": [
+          "#08072c",
+          "#110f57",
+          "#191683",
+          "#241fb8",
+          "#403ade",
+          "#7773e8",
+          "#aaa8f0",
+          "#dddcf9"
+        ]
+      },
+      "brand-700": {
+        "role": "primary",
+        "displayName": "Prism Indigo (Pressed)",
+        "canonical": "#3a34c4",
+        "dark": "#a3a3fc",
+        "tonalRamp": [
+          "#0c0b28",
+          "#181551",
+          "#242079",
+          "#322da9",
+          "#4f4acf",
+          "#827edd",
+          "#b1aeea",
+          "#e0dff6"
+        ]
+      },
+      "openai": {
+        "role": "secondary",
+        "displayName": "ChatGPT Emerald",
+        "canonical": "#0e9f6e",
+        "dark": "#34d399",
+        "tonalRamp": [
+          "#042f20",
+          "#085e41",
+          "#0c8d61",
+          "#11c588",
+          "#2cecab",
+          "#69f2c4",
+          "#a1f7da",
+          "#dafcf0"
+        ]
+      },
+      "openai-text": {
+        "role": "secondary",
+        "displayName": "ChatGPT Emerald (Text)",
+        "canonical": "#07734f",
+        "dark": "#34d399",
+        "tonalRamp": [
+          "#033021",
+          "#066042",
+          "#099063",
+          "#0cca8b",
+          "#27f2ae",
+          "#65f6c5",
+          "#9ff9db",
+          "#d9fdf1"
+        ]
+      },
+      "gemini": {
+        "role": "secondary",
+        "displayName": "Gemini Azure",
+        "canonical": "#2e90fa",
+        "dark": "#60a5fa",
+        "tonalRamp": [
+          "#021931",
+          "#043162",
+          "#064a93",
+          "#0967ce",
+          "#2388f6",
+          "#62aaf8",
+          "#9dcafb",
+          "#d8eafd"
+        ]
+      },
+      "gemini-text": {
+        "role": "secondary",
+        "displayName": "Gemini Azure (Text)",
+        "canonical": "#1667c4",
+        "dark": "#60a5fa",
+        "tonalRamp": [
+          "#05182e",
+          "#0a305c",
+          "#0f488a",
+          "#1665c1",
+          "#3186e8",
+          "#6ca9ef",
+          "#a3c9f5",
+          "#dae9fb"
+        ]
+      },
+      "perplexity": {
+        "role": "secondary",
+        "displayName": "Perplexity Rose",
+        "canonical": "#f04f6a",
+        "dark": "#fb7185",
+        "tonalRamp": [
+          "#2f040b",
+          "#5e0816",
+          "#8d0c22",
+          "#c5112f",
+          "#ed2c4c",
+          "#f26980",
+          "#f7a1af",
+          "#fcd9df"
+        ]
+      },
+      "perplexity-text": {
+        "role": "secondary",
+        "displayName": "Perplexity Rose (Text)",
+        "canonical": "#c22645",
+        "dark": "#fb7185",
+        "tonalRamp": [
+          "#2b080f",
+          "#55111e",
+          "#80192e",
+          "#b32340",
+          "#d93f5e",
+          "#e4778c",
+          "#eeaab7",
+          "#f8dde2"
+        ]
+      },
+      "series-5": {
         "role": "tertiary",
-        "displayName": "Docket Plum",
-        "canonical": "#7c2d5c",
-        "tonalRamp": ["#2a0e1f", "#3e152e", "#541c3d", "#68244d", "#7c2d5c", "#a24d7e", "#c78dab", "#eed7e3"]
+        "displayName": "Series Amber",
+        "canonical": "#f59e0b",
+        "dark": "#fbbf24",
+        "tonalRamp": [
+          "#312002",
+          "#623f04",
+          "#935f06",
+          "#ce8409",
+          "#f6a723",
+          "#f8c162",
+          "#fbd89d",
+          "#fdefd8"
+        ]
+      },
+      "series-6": {
+        "role": "tertiary",
+        "displayName": "Series Lime",
+        "canonical": "#65a30d",
+        "dark": "#a3e635",
+        "tonalRamp": [
+          "#1d2f04",
+          "#3b5e08",
+          "#588e0b",
+          "#7bc610",
+          "#9dee2a",
+          "#b9f368",
+          "#d4f7a1",
+          "#eefcd9"
+        ]
+      },
+      "success": {
+        "role": "tertiary",
+        "displayName": "Success",
+        "canonical": "#0e7a4e",
+        "dark": "#34d399",
+        "tonalRamp": [
+          "#052e1d",
+          "#0a5c3b",
+          "#108958",
+          "#16c07b",
+          "#31e79d",
+          "#6deeb9",
+          "#a4f5d4",
+          "#dafbee"
+        ]
+      },
+      "danger": {
+        "role": "tertiary",
+        "displayName": "Danger",
+        "canonical": "#c22645",
+        "dark": "#fb7185",
+        "tonalRamp": [
+          "#2b080f",
+          "#55111e",
+          "#80192e",
+          "#b32340",
+          "#d93f5e",
+          "#e4778c",
+          "#eeaab7",
+          "#f8dde2"
+        ]
+      },
+      "warning": {
+        "role": "tertiary",
+        "displayName": "Warning",
+        "canonical": "#b45309",
+        "dark": "#fbbf24",
+        "tonalRamp": [
+          "#311602",
+          "#612d05",
+          "#924307",
+          "#cc5e0a",
+          "#f47e24",
+          "#f7a364",
+          "#fac69e",
+          "#fde8d8"
+        ]
       }
     },
     "typographyMeta": {
-      "display": { "displayName": "Display", "purpose": "One hero headline per surface, in Libre Caslon Display. Measure set on the heading itself so ch resolves against the display face." },
-      "headline": { "displayName": "Headline", "purpose": "Section openers on the Persuade and Read surfaces." },
-      "title": { "displayName": "Title", "purpose": "Panel headings, plan names, definition terms, proceeding steps." },
-      "body": { "displayName": "Body", "purpose": "All running prose in Public Sans, measure held between 54ch and 76ch." },
-      "label": { "displayName": "Notation", "purpose": "Bluebook small-caps run-in label. Inline only — never stacked above a heading as an eyebrow." },
-      "transcript": { "displayName": "Transcript", "purpose": "Verbatim engine answers and Q./A. pairs in Courier Prime, because a court transcript is Courier." },
-      "numeric": { "displayName": "Numeric", "purpose": "Visibility scores, prices and deltas in tabular Caslon figures — columns align, values do not jitter." }
+      "display-xl": "Hero figure or landing headline. Archivo 700, tightest tracking.",
+      "display": "Section opener on marketing surfaces.",
+      "headline": "Primary heading inside the product.",
+      "title": "Panel and card titles.",
+      "subtitle": "Supporting line under a title. IBM Plex Sans 500.",
+      "body-lg": "Lede paragraph.",
+      "body": "Default running text.",
+      "body-sm": "Dense UI text, table cells, helper copy.",
+      "label": "Uppercase run-in label. Panel headers, table headers, eyebrows.",
+      "mono-sm": "Verbatim engine output, citations, hex values, IDs. Never decorative.",
+      "numeric": "The visibility score. Tabular so a changing figure never shifts the column."
     },
-    "shadows": [
-      { "name": "shadow-card-hover", "value": "0 6px 16px -4px rgb(63 17 25 / 0.16)", "purpose": "Mobile navigation drawer floating above an ink-900/40 scrim. Oxblood-tinted, never neutral black. The only shadow applied in the shipped build." },
-      { "name": "shadow-card", "value": "0 1px 2px rgb(63 17 25 / 0.08)", "purpose": "Defined but unused. Available for a genuine overlay; not the resting state of a panel." }
-    ],
-    "motion": [
-      { "name": "ink-in", "value": "ink-in 900ms cubic-bezier(0.16, 1, 0.3, 1) both", "purpose": "The single authored motion moment: a verdict inking onto the page as a stamp presses. clip-path inset(0 100% 0 0) → inset(0 0 0 0), opacity 0.4 → 1. Once per surface, on the proof block. Disabled under prefers-reduced-motion." },
-      { "name": "ink-in-stagger", "value": "160ms / 320ms / 480ms", "purpose": "Delay steps .ink-in-1 / -2 / -3 for a sequenced reveal within one proof block." },
-      { "name": "transition-colors", "value": "color / background-color transition", "purpose": "The only state transition in the system. Buttons and links change color; they never lift, scale, or gain shadow." }
-    ],
-    "breakpoints": [
-      { "name": "md", "value": "768px" },
-      { "name": "lg", "value": "1024px" }
-    ],
-    "containers": [
-      { "name": "editorial", "value": "72rem", "purpose": "Persuade surface and all mastheads/footers." },
-      { "name": "operate", "value": "80rem", "purpose": "Dashboard main column." },
-      { "name": "read", "value": "74ch", "purpose": "Legal/Read surface, measure-bound." }
-    ],
-    "deprecated": [
-      { "name": "--color-primary-900 / -700 / -500", "purpose": "Legacy alias for ox-900 / ox-700 / ox-500. Migration bridge only; remove once every surface is rewritten." },
-      { "name": "--color-accent-600", "purpose": "Legacy alias for verdict. Do not use in new work." },
-      { "name": "--color-danger-600", "purpose": "Legacy alias for rule. Do not use in new work." },
-      { "name": "--color-warn-600", "purpose": "Legacy alias for foil. Do not use in new work." },
-      { "name": "--color-ink-600", "purpose": "Legacy alias for ink-500. Do not use in new work." }
-    ]
+    "shadows": {
+      "shadow-sm": "0 1px 2px rgb(20 20 26 / 0.06)",
+      "shadow-md": "0 4px 12px -2px rgb(20 20 26 / 0.08)",
+      "shadow-lg": "0 12px 32px -8px rgb(20 20 26 / 0.14)",
+      "note": "All three resolve to none in dark mode; elevation there is carried by border and surface step."
+    },
+    "motion": {
+      "ease-out": "cubic-bezier(0.23, 1, 0.32, 1)",
+      "ease-in-out": "cubic-bezier(0.77, 0, 0.175, 1)",
+      "ease-drawer": "cubic-bezier(0.32, 0.72, 0, 1)",
+      "press": "160ms — scale(0.97) on :active, every pressable element",
+      "ds-pop": "180ms — popovers from scale(0.95) at the trigger; modals stay centred",
+      "ds-cascade": "300ms — rows, 40ms stagger, capped at 8 steps",
+      "ds-pulse": "200ms — score delta, once, on change",
+      "ds-skeleton": "1400ms loop — loading placeholder",
+      "chart-draw": "600ms — stroke-dashoffset, 60ms per engine",
+      "score-count": "700ms — first paint per session only",
+      "prism-shift": "8s loop — marketing only"
+    },
+    "breakpoints": {
+      "md": "768px",
+      "lg": "1024px"
+    },
+    "containers": {
+      "marketing": "72rem",
+      "app": "80rem",
+      "form": "48rem",
+      "read": "70ch"
+    },
+    "radius": {
+      "sm": "6px",
+      "md": "10px",
+      "lg": "14px",
+      "full": "999px"
+    },
+    "spacing": {
+      "base": "4px",
+      "scale": [
+        4,
+        8,
+        12,
+        16,
+        20,
+        24,
+        32,
+        40,
+        56,
+        80,
+        120
+      ]
+    },
+    "deprecated": {
+      "note": "Editorial Law Review tokens. Present in globals.css only until every surface is migrated; when the legacy block is empty, delete it.",
+      "tokens": [
+        "ox-900",
+        "ox-700",
+        "ox-500",
+        "canary-400",
+        "canary-200",
+        "canary-100",
+        "ink-900",
+        "ink-700",
+        "ink-600",
+        "ink-500",
+        "rule",
+        "foil",
+        "verdict",
+        "surface-0",
+        "surface-50",
+        "border",
+        "border-strong"
+      ]
+    }
   },
   "components": [
     {
       "name": "Primary Button",
-      "kind": "button",
+      "kind": "action",
       "refersTo": "button-primary",
-      "description": "The commit action on white stock — oxblood field, canary text, square corners.",
-      "html": "<button class=\"ds-btn-primary\">Run my free audit</button>",
-      "css": ".ds-btn-primary { font-family: 'Public Sans', system-ui, sans-serif; font-weight: 600; font-size: 1rem; background: var(--color-ox-700, #6e1f2c); color: var(--color-canary-100, #fbf4d6); padding: 14px 16px; border: none; border-radius: 0; cursor: pointer; transition: background-color 0.15s ease; } .ds-btn-primary:hover { background: var(--color-ox-900, #3f1119); } .ds-btn-primary:focus-visible { outline: 2px solid var(--color-canary-400, #f7d64a); outline-offset: 2px; } .ds-btn-primary:disabled { opacity: 0.7; cursor: wait; }"
-    },
-    {
-      "name": "Signal Button",
-      "kind": "button",
-      "refersTo": "button-signal",
-      "description": "Used only on an oxblood field, where canary is the one bright object in the region.",
-      "html": "<div style=\"background:#3f1119;padding:24px\"><button class=\"ds-btn-signal\">Start trial</button></div>",
-      "css": ".ds-btn-signal { font-family: 'Public Sans', system-ui, sans-serif; font-weight: 600; font-size: 1rem; background: var(--color-canary-400, #f7d64a); color: var(--color-ox-900, #3f1119); padding: 12px 16px; border: none; border-radius: 0; cursor: pointer; transition: background-color 0.15s ease; } .ds-btn-signal:hover { background: var(--color-canary-200, #f3e4a6); } .ds-btn-signal:focus-visible { outline: 2px solid var(--color-canary-100, #fbf4d6); outline-offset: 2px; }"
+      "description": "The single committed action on a surface. Answers a press with scale(0.97).",
+      "html": "<button class=\"ds-btn ds-btn-primary\">Run a scan</button>",
+      "css": ".ds-btn-primary{background:var(--p-brand-500);color:var(--p-on-brand);border:1px solid transparent}\n.ds-btn:active{transform:scale(.97)}"
     },
     {
       "name": "Outline Button",
-      "kind": "button",
+      "kind": "action",
       "refersTo": "button-outline",
-      "description": "Secondary commit on white; inverts to a filled oxblood button on hover.",
-      "html": "<button class=\"ds-btn-outline\">Start trial</button>",
-      "css": ".ds-btn-outline { font-family: 'Public Sans', system-ui, sans-serif; font-weight: 600; font-size: 1rem; background: var(--color-surface-0, #ffffff); color: var(--color-ox-700, #6e1f2c); padding: 12px 16px; border: 1px solid var(--color-ox-700, #6e1f2c); border-radius: 0; cursor: pointer; transition: background-color 0.15s ease, color 0.15s ease; } .ds-btn-outline:hover { background: var(--color-ox-700, #6e1f2c); color: var(--color-canary-100, #fbf4d6); } .ds-btn-outline:focus-visible { outline: 2px solid var(--color-ox-700, #6e1f2c); outline-offset: 2px; }"
+      "description": "Secondary action. Border uses border-input, the only border allowed to identify a control.",
+      "html": "<button class=\"ds-btn ds-btn-outline\">Export</button>",
+      "css": ".ds-btn-outline{background:transparent;color:var(--p-brand-500);border:1px solid var(--p-border-input)}"
     },
     {
-      "name": "Underlined Field",
+      "name": "Ghost Button",
+      "kind": "action",
+      "refersTo": "button-ghost",
+      "description": "Tertiary action and toolbar item. No border until hover.",
+      "html": "<button class=\"ds-btn ds-btn-ghost\">Cancel</button>",
+      "css": ".ds-btn-ghost{background:transparent;color:var(--p-text-secondary);border:1px solid transparent}"
+    },
+    {
+      "name": "Field",
       "kind": "input",
-      "refersTo": "input-field",
-      "description": "A form field is a line to write on, not a box. Notation label above, bottom hairline only, oxblood on focus.",
-      "html": "<label class=\"ds-field\"><span class=\"ds-field-label\">Firm name</span><input class=\"ds-field-input\" placeholder=\"Smith &amp; Jones LLP\" /></label>",
-      "css": ".ds-field { display: block; font-size: 0.875rem; font-family: 'Public Sans', system-ui, sans-serif; } .ds-field-label { font-variant-caps: all-small-caps; letter-spacing: 0.11em; font-weight: 600; color: var(--color-ink-500, #4a5160); } .ds-field-input { margin-top: 4px; width: 100%; background: transparent; border: 0; border-bottom: 1px solid var(--color-border-strong, #b9b2a4); border-radius: 0; padding: 8px 0; font-size: 1rem; color: var(--color-ink-900, #12161f); } .ds-field-input::placeholder { color: rgb(74 81 96 / 0.55); } .ds-field-input:focus { outline: none; border-bottom-color: var(--color-ox-700, #6e1f2c); }"
+      "refersTo": "field",
+      "description": "Text input. Boundary is border-input at 3.19:1 so the control is identifiable without focus.",
+      "html": "<input class=\"ds-field\" placeholder=\"Firm name\">",
+      "css": ".ds-field{border:1px solid var(--p-border-input);border-radius:var(--radius-sm);padding:9px 12px}"
     },
     {
-      "name": "Filed-Form Panel",
-      "kind": "card",
+      "name": "Panel",
+      "kind": "container",
       "refersTo": "panel",
-      "description": "The container primitive: a cover-sheet header band in warm stock over a hairline, body below. No shadow, square corners.",
-      "html": "<section class=\"ds-panel\"><div class=\"ds-panel-head\"><span class=\"ds-panel-label\">Request for audit</span><span class=\"ds-panel-no\">No. 001</span></div><div class=\"ds-panel-body\"><h3 class=\"ds-panel-title\">Barnes Whitfield</h3><p class=\"ds-panel-text\">Every number opens to the sentence it came from.</p></div></section>",
-      "css": ".ds-panel { border: 1px solid var(--color-border-strong, #b9b2a4); background: var(--color-surface-0, #ffffff); border-radius: 0; max-width: 28rem; } .ds-panel-head { display: flex; align-items: baseline; justify-content: space-between; border-bottom: 1px solid var(--color-border-strong, #b9b2a4); background: var(--color-surface-50, #f7f6f2); padding: 10px 24px; } .ds-panel-label { font-family: 'Public Sans', system-ui, sans-serif; font-variant-caps: all-small-caps; letter-spacing: 0.11em; font-weight: 600; font-size: 0.8rem; color: var(--color-ink-500, #4a5160); } .ds-panel-no { font-family: 'Courier Prime', ui-monospace, monospace; font-size: 0.75rem; color: var(--color-ink-500, #4a5160); } .ds-panel-body { padding: 24px; } .ds-panel-title { font-family: 'Libre Caslon Display', Georgia, serif; font-weight: 400; font-size: 1.5rem; line-height: 1.08; letter-spacing: -0.02em; color: var(--color-ink-900, #12161f); margin: 0; } .ds-panel-text { font-family: 'Public Sans', system-ui, sans-serif; line-height: 1.6; color: var(--color-ink-700, #2b3444); margin: 8px 0 0; }"
+      "description": "The standard content container. Shadow in light, border-only in dark.",
+      "html": "<div class=\"ds-panel\"><div class=\"ds-panel-header\">Top cited sources</div></div>",
+      "css": ".ds-panel{background:var(--p-surface-1);border:1px solid var(--p-border);border-radius:var(--radius-lg);box-shadow:var(--p-shadow-sm)}"
     },
     {
-      "name": "Score State Badges",
-      "kind": "chip",
+      "name": "Panel Header",
+      "kind": "container",
+      "refersTo": "panel-header",
+      "description": "Uppercase run-in label band on an inset ground.",
+      "html": "<div class=\"ds-panel-header\">Latest scan</div>",
+      "css": ".ds-panel-header{background:var(--p-surface-2);color:var(--p-text-secondary);font-size:.75rem;letter-spacing:.06em;text-transform:uppercase}"
+    },
+    {
+      "name": "Mention Badges",
+      "kind": "status",
       "refersTo": "badge-recommended",
-      "description": "Square state markers. The word carries the meaning; color reinforces, so the row survives a grayscale screenshot.",
-      "html": "<div class=\"ds-badges\"><span class=\"ds-badge ds-badge-rec\">Recommended</span><span class=\"ds-badge ds-badge-men\">Mentioned</span><span class=\"ds-badge ds-badge-abs\">Absent</span></div>",
-      "css": ".ds-badges { display: flex; gap: 8px; font-family: 'Public Sans', system-ui, sans-serif; } .ds-badge { display: inline-block; padding: 2px 8px; font-size: 0.75rem; font-weight: 600; border-radius: 0; } .ds-badge-rec { background: rgb(63 98 18 / 0.1); color: var(--color-verdict, #3f6212); } .ds-badge-men { background: var(--color-canary-100, #fbf4d6); color: var(--color-ox-700, #6e1f2c); } .ds-badge-abs { background: var(--color-surface-50, #f7f6f2); color: var(--color-ink-500, #4a5160); }"
+      "description": "The three outcomes of a prompt. Each carries a word, never colour alone.",
+      "html": "<span class=\"ds-badge ds-badge-recommended\">Recommended</span>\n<span class=\"ds-badge ds-badge-mentioned\">Mentioned</span>\n<span class=\"ds-badge ds-badge-absent\">Absent</span>",
+      "css": ".ds-badge-recommended{background:color-mix(in srgb,var(--p-success) 14%,transparent);color:var(--p-success)}"
     },
     {
-      "name": "Sidebar Navigation",
-      "kind": "nav",
-      "refersTo": "nav-link",
-      "description": "Operate-surface sidebar. Active item is a filled oxblood block; unbuilt destinations render disabled with a Soon tag rather than a dead link.",
-      "html": "<nav class=\"ds-nav\"><a class=\"ds-nav-item ds-nav-active\" href=\"#\" aria-current=\"page\"><svg class=\"ds-nav-icon\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><rect x=\"3\" y=\"3\" width=\"7\" height=\"9\"/><rect x=\"14\" y=\"3\" width=\"7\" height=\"5\"/><rect x=\"14\" y=\"12\" width=\"7\" height=\"9\"/><rect x=\"3\" y=\"16\" width=\"7\" height=\"5\"/></svg>Dashboard</a><a class=\"ds-nav-item\" href=\"#\"><svg class=\"ds-nav-icon\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><rect x=\"2\" y=\"5\" width=\"20\" height=\"14\" rx=\"2\"/><path d=\"M2 10h20\"/></svg>Billing</a><span class=\"ds-nav-item ds-nav-soon\" aria-disabled=\"true\"><svg class=\"ds-nav-icon\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M14 9a2 2 0 0 1-2 2H6l-4 4V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2z\"/><path d=\"M18 9h2a2 2 0 0 1 2 2v11l-4-4h-6a2 2 0 0 1-2-2v-1\"/></svg>Prompts<span class=\"ds-nav-tag\">Soon</span></span></nav>",
-      "css": ".ds-nav { display: flex; flex-direction: column; gap: 4px; width: 15rem; background: var(--color-surface-0, #ffffff); border-right: 1px solid var(--color-border, #ddd8ce); padding: 16px; font-family: 'Public Sans', system-ui, sans-serif; } .ds-nav-item { display: flex; align-items: center; gap: 12px; padding: 8px 12px; font-size: 0.875rem; font-weight: 500; color: var(--color-ink-500, #4a5160); text-decoration: none; } .ds-nav-icon { height: 20px; width: 20px; flex-shrink: 0; } .ds-nav-item:hover { background: var(--color-surface-50, #f7f6f2); color: var(--color-ink-900, #12161f); } .ds-nav-active, .ds-nav-active:hover { background: var(--color-ox-700, #6e1f2c); color: var(--color-canary-100, #fbf4d6); } .ds-nav-item:focus-visible { outline: 2px solid var(--color-ox-700, #6e1f2c); outline-offset: -2px; } .ds-nav-soon { opacity: 0.5; cursor: default; } .ds-nav-soon:hover { background: transparent; color: var(--color-ink-500, #4a5160); } .ds-nav-tag { margin-left: auto; border-radius: 999px; background: var(--color-surface-50, #f7f6f2); padding: 2px 8px; font-size: 0.75rem; font-weight: 600; }"
-    },
-    {
-      "name": "Transcript Block",
-      "kind": "custom",
+      "name": "Skeleton",
+      "kind": "feedback",
       "refersTo": null,
-      "description": "The proof object: a verbatim engine answer in Courier with a canary left rule, the firm name struck in highlighter, and a notation provenance line above.",
-      "html": "<div class=\"ds-transcript-wrap\"><p class=\"ds-transcript-src\">Asked of ChatGPT — “best personal injury lawyer in Austin”</p><blockquote class=\"ds-transcript\">Based on client reviews and case results, a few well-regarded options are <mark class=\"ds-strike\">Barnes Whitfield</mark>, <mark class=\"ds-strike\">Ruiz &amp; Associates</mark>, and <mark class=\"ds-strike\">Kessler Injury Law</mark>.</blockquote><p class=\"ds-finding\"><span class=\"ds-transcript-src\">Your firm</span> <span class=\"ds-finding-val\">not mentioned</span></p></div>",
-      "css": ".ds-transcript-wrap { background: var(--color-ox-900, #3f1119); padding: 32px; } .ds-transcript-src { font-family: 'Public Sans', system-ui, sans-serif; font-variant-caps: all-small-caps; letter-spacing: 0.11em; font-weight: 600; color: var(--color-canary-400, #f7d64a); margin: 0; } .ds-transcript { font-family: 'Courier Prime', ui-monospace, monospace; line-height: 1.7; font-size: 1.125rem; color: var(--color-canary-100, #fbf4d6); max-width: 74ch; border-left: 2px solid var(--color-canary-400, #f7d64a); padding-left: 24px; margin: 20px 0 0; animation: ds-ink-in 900ms cubic-bezier(0.16, 1, 0.3, 1) both; } .ds-strike { background: var(--color-canary-400, #f7d64a); color: var(--color-ox-900, #3f1119); font-weight: 700; padding: 0 4px; } .ds-finding { display: flex; flex-wrap: wrap; align-items: baseline; gap: 0 12px; margin: 24px 0 0; } .ds-finding-val { font-family: 'Courier Prime', ui-monospace, monospace; font-size: 1.125rem; color: var(--color-canary-200, #f3e4a6); } @keyframes ds-ink-in { from { clip-path: inset(0 100% 0 0); opacity: 0.4; } to { clip-path: inset(0 0 0 0); opacity: 1; } } @media (prefers-reduced-motion: reduce) { .ds-transcript { animation: none; } }"
+      "description": "Loading placeholder. Replaces the bare spinner; stops animating under reduced motion.",
+      "html": "<div class=\"ds-skeleton\" style=\"height:13px;width:72%\"></div>",
+      "css": ".ds-skeleton{animation:ds-shimmer 1400ms linear infinite}"
     },
     {
-      "name": "Score Display",
-      "kind": "custom",
+      "name": "Focus Ring",
+      "kind": "a11y",
       "refersTo": null,
-      "description": "Tabular Caslon numeral in oxblood with a notation denominator and a signed, arrowed delta chip — readable in grayscale.",
-      "html": "<section class=\"ds-score\"><h2 class=\"ds-score-h\">Visibility Score — 30 days</h2><div class=\"ds-score-row\"><span class=\"ds-score-val\">74</span><span class=\"ds-score-den\">/100</span><span class=\"ds-score-delta\"><svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M7 17 17 7\"/><path d=\"M7 7h10v10\"/></svg>+6 vs last week</span></div></section>",
-      "css": ".ds-score { border: 1px solid var(--color-border-strong, #b9b2a4); background: var(--color-surface-0, #ffffff); padding: 24px; border-radius: 0; font-family: 'Public Sans', system-ui, sans-serif; } .ds-score-h { font-size: 0.875rem; font-weight: 600; color: var(--color-ink-500, #4a5160); margin: 0; } .ds-score-row { display: flex; align-items: baseline; gap: 12px; margin-top: 8px; } .ds-score-val { font-family: 'Libre Caslon Display', Georgia, serif; font-variant-numeric: tabular-nums; font-size: 3.75rem; line-height: 1; color: var(--color-ox-700, #6e1f2c); } .ds-score-den { color: var(--color-ink-500, #4a5160); } .ds-score-delta { display: inline-flex; align-items: center; gap: 2px; font-variant-numeric: tabular-nums; font-size: 0.875rem; font-weight: 600; padding: 2px 8px; background: rgb(63 98 18 / 0.1); color: var(--color-verdict, #3f6212); } .ds-score-delta svg { height: 16px; width: 16px; }"
+      "description": "Applied through a :where() base rule so every interactive element inherits it and a component has to work to lose it.",
+      "html": "<!-- automatic on any focusable element -->",
+      "css": ":where(a,button,input,select,textarea,[tabindex]):focus-visible{outline:2px solid var(--p-brand-500);outline-offset:2px}"
     },
     {
-      "name": "Wordmark",
-      "kind": "custom",
+      "name": "Engine Series",
+      "kind": "dataviz",
       "refersTo": null,
-      "description": "Counsel table with three seats, the first one taken — drawn as geometry so it holds at 16px and never waits on a font. Beside it, caps Caslon with wide tracking.",
-      "html": "<span class=\"ds-wordmark\"><svg class=\"ds-mark\" viewBox=\"0 0 32 32\" aria-hidden=\"true\" focusable=\"false\"><rect width=\"32\" height=\"32\" fill=\"currentColor\"/><rect x=\"3\" y=\"8\" width=\"26\" height=\"2\" fill=\"#f7d64a\" opacity=\"0.55\"/><rect x=\"3\" y=\"13\" width=\"7\" height=\"10\" fill=\"#f7d64a\"/><rect x=\"12.5\" y=\"13\" width=\"7\" height=\"10\" fill=\"#f7d64a\" opacity=\"0.28\"/><rect x=\"22\" y=\"13\" width=\"7\" height=\"10\" fill=\"#f7d64a\" opacity=\"0.28\"/></svg><span class=\"ds-wordmark-text\">First Chair</span></span>",
-      "css": ".ds-wordmark { display: inline-flex; align-items: center; gap: 12px; color: var(--color-ox-900, #3f1119); } .ds-mark { height: 32px; width: 32px; } .ds-wordmark-text { font-family: 'Libre Caslon Display', Georgia, serif; font-weight: 400; font-size: 1.25rem; text-transform: uppercase; letter-spacing: 0.14em; line-height: 1; }"
+      "description": "Each engine owns a hue and a line style. Indigo is reserved for the user's own firm.",
+      "html": "<svg><path stroke=\"var(--p-openai)\"/><path stroke=\"var(--p-gemini)\" stroke-dasharray=\"6 5\"/><path stroke=\"var(--p-perplexity)\" stroke-dasharray=\"2 5\"/></svg>",
+      "css": "/* openai solid, gemini dashed, perplexity dotted — colour is never the only cue */"
+    },
+    {
+      "name": "Mark",
+      "kind": "brand",
+      "refersTo": null,
+      "description": "A chevron splitting into three rays, one per engine. Geometry, not type.",
+      "html": "<svg viewBox=\"0 0 32 32\"><path d=\"M8 6 L19 16 L8 26\"/><path d=\"M21 15 L29 9\"/><path d=\"M22 16 L30 16\"/><path d=\"M21 17 L29 23\"/></svg>",
+      "css": "/* variants in public/brand/: mark, mark-reversed, mark-mono, icon-app */"
     }
   ],
   "narrative": {
-    "northStar": "The Editorial Law Review",
-    "overview": "An AI answer is a record, so this surface is set as legal publishing sets a record — refusing the light-SaaS hero-with-floating-dashboard the GEO category ships. West reporter oxblood as committed field, canary legal-pad yellow as the only signal, blue-black pleading ink, red margin rule as structural hairline, foil for detail. Caslon display, Public Sans UI, Courier for verbatim answers. Square corners, hairline rules, no cards-as-scaffold.\n\nThe world is drawn from legal publishing's saturated range — buckram reporter spines, the canary legal pad, blue-backed pleadings, the red margin rule, foil stamping on a spine — and deliberately not the cream-and-parchment rendition that \"law firm website\" usually means. Nothing here is beige. The surface is white stock with a saturated oxblood field pressed onto it.\n\nDensity is editorial, not dashboard. Content is set as definition lists, ordered proceedings, ruled tables and transcript blocks rather than as a grid of cards. Structure is carried by hairline rules and by 1px gaps that let a background color read as a grid line, not by boxes with shadows floating over a gray page. The single piece of authored motion in the entire system is a verdict inking onto the page.",
+    "northStar": "The Prism — one question in, three engine answers out.",
+    "overview": "First Chair records what ChatGPT, Gemini and Perplexity say about a law firm. The identity is the instrument that splits one question into three answers, chosen to be operable at data density rather than atmospheric. It replaces Editorial Law Review, a legal-publishing metaphor that could not carry six chart series, a dark mode, or a per-engine colour system.",
     "keyCharacteristics": [
-      "Oxblood is a field, not an accent: whole sections and whole pricing panels are set in it.",
-      "Canary is the only signal color; it marks the one thing that matters on a surface.",
-      "Square corners (2–3px) throughout; the form language is a printed page, not a chip.",
-      "Three faces with three jobs: Caslon sets, Public Sans operates, Courier quotes.",
-      "Every number is tabular and traces back to the sentence it came from.",
-      "Depth is achieved by tone and rule, not by shadow."
+      "Indigo means the user's own firm and nothing else.",
+      "Each engine owns one hue permanently, plus a line style so colour is never the only cue.",
+      "Graphic hues and text hues are separate values; the mark colour does not pass AA as small text.",
+      "Every colour pair is verified by a test that parses globals.css and fails the build on regression.",
+      "Dark is a peer mode: shadows off, elevation by border.",
+      "Motion is decided by frequency — seen constantly means no animation.",
+      "Two registers: marketing may be expressive, the product is quiet and dense."
     ],
     "rules": [
-      { "name": "The Committed Field Rule", "body": "Oxblood is applied as a region, not as a highlight. A surface either commits — the whole hero, the whole panel, the whole masthead rule — or it stays on white. There is no 8%-oxblood-tint decoration.", "section": "colors" },
-      { "name": "The One Signal Rule", "body": "Canary marks exactly one thing per region: the struck name in the transcript, the primary action in a nav, the live plan. Two canary elements competing in the same field means one of them is not the signal.", "section": "colors" },
-      { "name": "The Blue-Black Rule", "body": "Text is never neutral gray. All ink is the blue-black ink-* range, because pleading ink is blue-black.", "section": "colors" },
-      { "name": "The Grayscale Rule", "body": "No state is carried by hue alone. A score state, a delta, or a citation gap must survive a grayscale screenshot — the Recommended / Mentioned / Absent badges each carry a word, the delta carries a sign and an arrow.", "section": "colors" },
-      { "name": "The Notation Rule", "body": "Small-caps notation runs inline — in copy, in a table header, next to a value. It is never stacked above a heading as an eyebrow or kicker. The eyebrow pattern is banned in this world; .notation is what replaced it.", "section": "typography" },
-      { "name": "The Courier Means Verbatim Rule", "body": "Courier is a claim about provenance, not a texture. If text is set in Courier it is either a machine's exact words or a docket-style identifier. Never use it for UI chrome or headings.", "section": "typography" },
-      { "name": "The Tabular Figures Rule", "body": "Every number that sits in a column, updates, or is compared to another number carries .tnum. Score displays and price rows must not jitter between renders.", "section": "typography" },
-      { "name": "The Gap-as-Rule Rule", "body": "Multi-panel groups are built as a gap-px grid over a border-strong background, so the divider between panels is a true hairline the grid produces rather than a border each panel draws.", "section": "layout" },
-      { "name": "The No Card Scaffold Rule", "body": "Content is not wrapped in a shadowed card to give it presence. If a group needs separation, it gets a hairline, a tone change, or a field. Shadow is reserved for elements that actually overlay the page.", "section": "elevation" },
-      { "name": "The Underline-Not-Box Rule", "body": "Text inputs and selects have no box: border-0 border-b border-border-strong on a transparent ground, shifting to ox-700 on focus.", "section": "shapes" },
-      { "name": "The One Moment Rule", "body": ".ink-in is used once per surface, on the proof block. It is not a generic section-entrance animation, and no second motion vocabulary exists in this system.", "section": "components" }
+      {
+        "name": "Indigo Means You",
+        "body": "brand-500 identifies the user's own firm and nothing else.",
+        "section": "Colour"
+      },
+      {
+        "name": "One Hue Per Engine",
+        "body": "ChatGPT emerald, Gemini azure, Perplexity rose, everywhere, forever.",
+        "section": "Colour"
+      },
+      {
+        "name": "Graphic Hue, Text Hue",
+        "body": "The engine mark colour is for strokes and fills; the -text variant is for words.",
+        "section": "Colour"
+      },
+      {
+        "name": "Never Colour Alone",
+        "body": "Every colour-coded distinction carries a second cue. Charts must survive greyscale.",
+        "section": "Colour"
+      },
+      {
+        "name": "Measured, Not Eyeballed",
+        "body": "A pair enters the system only after the contrast test passes.",
+        "section": "Colour"
+      },
+      {
+        "name": "Mono Means Verbatim",
+        "body": "IBM Plex Mono is reserved for what a machine actually said.",
+        "section": "Typography"
+      },
+      {
+        "name": "Tabular Figures",
+        "body": "Any number that updates is tabular-nums.",
+        "section": "Typography"
+      },
+      {
+        "name": "Focus Is Never Removed",
+        "body": "Only restyled.",
+        "section": "Accessibility"
+      },
+      {
+        "name": "Frequency Decides Motion",
+        "body": "Seen constantly means no animation; seen rarely earns delight.",
+        "section": "Motion"
+      },
+      {
+        "name": "Components, Not Call Sites",
+        "body": "Anything used more than twice becomes a class.",
+        "section": "Components"
+      },
+      {
+        "name": "Two Registers",
+        "body": "Marketing may be expressive. The product is quiet and fast.",
+        "section": "Overview"
+      }
     ],
     "dos": [
-      "Do commit oxblood as a whole region — a full-bleed hero, a full pricing panel, a full active nav item — rather than tinting.",
-      "Do run small-caps notation (.notation) inline: as a field label, a table header, or a run-in before a value.",
-      "Do set every verbatim engine answer in Courier (.transcript) and every column figure in tabular numerals (.tnum).",
-      "Do separate content with hairlines, tone bands, and gap-px grids over a border-strong ground.",
-      "Do keep inputs to a bottom rule only, shifting to ox-700 on focus.",
-      "Do give every state a word as well as a color, so the surface survives a grayscale screenshot. The build is verified at 0 contrast failures across 101 elements at WCAG AA; keep it there.",
-      "Do write real alt text for content images, and mark the decorative library band aria-hidden with an empty alt.",
-      "Do keep motion to .ink-in, once per surface, and honor prefers-reduced-motion.",
-      "Do name the destination in a back link (BackLink takes an explicit href + label); never history.back()."
+      "Pair every colour signal with a word, sign, arrow or line style.",
+      "Use the -text engine variant whenever the hue carries words.",
+      "Put a border-input boundary on anything the user can operate.",
+      "Set verbatim engine output in mono.",
+      "Give every pressable element the scale(0.97) press.",
+      "Keep numbers tabular.",
+      "Design both themes at once; check the dark ground before shipping.",
+      "Reach for an existing .ds- class before writing a new style.",
+      "Let the contrast test decide, not the eye."
     ],
     "donts": [
-      "Don't stack a small-caps label above a heading as an eyebrow or kicker. That pattern is banned in this world; notation is a run-in.",
-      "Don't wrap content in a shadowed card to give it presence. Shadow is only for elements that overlay the page.",
-      "Don't round corners past the 2–3px tokens. No pills, no rounded-lg surfaces, no soft cards.",
-      "Don't use neutral gray for text. All ink is the blue-black ink-* range.",
-      "Don't reach for the cream/parchment law-firm rendition — this world is the saturated one.",
-      "Don't introduce a second signal color, or place two canary elements in competition inside one field.",
-      "Don't use Courier for anything that is not verbatim machine output or a docket identifier.",
-      "Don't use the legacy alias tokens (--color-primary-900/700/500, --color-accent-600, --color-danger-600, --color-warn-600, --color-ink-600) in new work. They are a deprecated migration bridge so unrebuilt surfaces render in this world; every new surface uses ox-*, verdict, rule, foil, ink-500. The aliases are to be removed once the last surface is rewritten.",
-      "Don't add a chart color outside the chart-1…6 engine series; a chart library's default palette is a different world.",
-      "Don't use emojis or glyph icons in UI. Icons are Lucide, sized 16–24px, aria-hidden beside a text label."
+      "No chart colour outside series-1 to 6 and the engine hues.",
+      "No raw hex in JSX.",
+      "No emoji in the interface.",
+      "No rounded-full outside avatars and status dots.",
+      "No shadow in dark mode.",
+      "No text-white as a generic light colour.",
+      "No fifth container width.",
+      "No font size off the ramp.",
+      "No animation on a keyboard-initiated action.",
+      "No legacy Editorial token in new work.",
+      "Never ease-in on a UI transition.",
+      "Never enter an element from scale(0)."
     ]
   }
 }
