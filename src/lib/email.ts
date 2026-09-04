@@ -13,10 +13,10 @@ function esc(s: string): string {
 }
 
 const shell = (title: string, inner: string) => `
-<div style="font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;max-width:560px;margin:0 auto;color:#12161f">
-  <h1 style="font-size:20px;color:#6e1f2c;margin:0 0 4px">${esc(title)}</h1>
+<div style="font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;max-width:560px;margin:0 auto;color:#1b1a17">
+  <h1 style="font-size:20px;color:#0b5a52;margin:0 0 4px">${esc(title)}</h1>
   ${inner}
-  <p style="font-size:12px;color:#4a5160;margin-top:24px;border-top:1px solid #ddd8ce;padding-top:12px">
+  <p style="font-size:12px;color:#55534b;margin-top:24px;border-top:1px solid #e2e0d9;padding-top:12px">
     First Chair — AI visibility for law firms. Scores from ChatGPT, Gemini and Perplexity.
   </p>
 </div>`;
@@ -45,7 +45,7 @@ export function renderAuditEmail(a: AuditEmailInput): { subject: string; html: s
     <tr>
       <td style="padding:8px 0;font-weight:600">${ENGINE_LABELS[e.engine]}</td>
       <td style="padding:8px 0;text-align:right;font-variant-numeric:tabular-nums">${e.visibilityScore}/100</td>
-      <td style="padding:8px 0;text-align:right;color:#4a5160">${e.mentionedInPrompts}/${e.totalPrompts} prompts${
+      <td style="padding:8px 0;text-align:right;color:#55534b">${e.mentionedInPrompts}/${e.totalPrompts} prompts${
         e.bestPosition ? ` · best #${e.bestPosition}` : ""
       }</td>
     </tr>`,
@@ -55,9 +55,9 @@ export function renderAuditEmail(a: AuditEmailInput): { subject: string; html: s
     <p style="font-size:14px">Here's how the AI assistants talk about <strong>${esc(
       a.firmName,
     )}</strong> for ${esc(a.practiceArea)} in ${esc(a.city)}.</p>
-    <p style="font-size:32px;font-weight:700;color:#6e1f2c;margin:8px 0">${a.overallScore}<span style="font-size:16px;color:#4a5160">/100 visibility</span></p>
+    <p style="font-size:32px;font-weight:700;color:#0b5a52;margin:8px 0">${a.overallScore}<span style="font-size:16px;color:#55534b">/100 visibility</span></p>
     <table style="width:100%;border-collapse:collapse;font-size:14px">${rows}</table>
-    <a href="${APP_URL}/login" style="display:inline-block;margin-top:16px;background:#6e1f2c;color:#fff;text-decoration:none;padding:10px 18px;border-radius:2px;font-weight:600">Track this daily — start free trial</a>`;
+    <a href="${APP_URL}/login" style="display:inline-block;margin-top:16px;background:#0b5a52;color:#fff;text-decoration:none;padding:10px 18px;border-radius:2px;font-weight:600">Track this daily — start free trial</a>`;
   return { subject: `${a.firmName}: ${a.overallScore}/100 AI visibility`, html: shell("Your AI visibility audit", inner) };
 }
 
@@ -71,14 +71,14 @@ export interface WeeklyEmailInput {
 
 export function renderWeeklyEmail(w: WeeklyEmailInput): { subject: string; html: string } {
   const arrow = w.delta > 0 ? "▲" : w.delta < 0 ? "▼" : "–";
-  const color = w.delta > 0 ? "#3f6212" : w.delta < 0 ? "#c8102e" : "#4a5160";
+  const color = w.delta > 0 ? "#2f7a4e" : w.delta < 0 ? "#b23b47" : "#55534b";
   const inner = `
     <p style="font-size:14px">This week for <strong>${esc(w.firmName)}</strong>:</p>
-    <p style="font-size:32px;font-weight:700;color:#6e1f2c;margin:8px 0">${w.score}<span style="font-size:16px;color:#4a5160">/100</span>
+    <p style="font-size:32px;font-weight:700;color:#0b5a52;margin:8px 0">${w.score}<span style="font-size:16px;color:#55534b">/100</span>
       <span style="font-size:16px;color:${color};margin-left:8px">${arrow} ${w.delta >= 0 ? "+" : ""}${w.delta}</span></p>
-    <p style="font-size:14px;color:#4a5160">Mentioned in ${Math.round(w.mentionRate * 100)}% of tracked prompts.</p>
+    <p style="font-size:14px;color:#55534b">Mentioned in ${Math.round(w.mentionRate * 100)}% of tracked prompts.</p>
     ${w.topRecommendation ? `<p style="font-size:14px"><strong>Fix first:</strong> ${esc(w.topRecommendation)}</p>` : ""}
-    <a href="${APP_URL}/dashboard" style="display:inline-block;margin-top:16px;background:#6e1f2c;color:#fff;text-decoration:none;padding:10px 18px;border-radius:2px;font-weight:600">View dashboard</a>`;
+    <a href="${APP_URL}/dashboard" style="display:inline-block;margin-top:16px;background:#0b5a52;color:#fff;text-decoration:none;padding:10px 18px;border-radius:2px;font-weight:600">View dashboard</a>`;
   return {
     subject: `${w.firmName}: ${w.score}/100 (${w.delta >= 0 ? "+" : ""}${w.delta} this week)`,
     html: shell("Your weekly AI visibility report", inner),

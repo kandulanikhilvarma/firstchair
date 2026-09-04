@@ -167,7 +167,7 @@ export default async function Home({
             <blockquote className="ink-in transcript mt-5 max-w-[74ch] border-l-2 border-on-brand/40 pl-6 text-lg text-on-brand">
               {TRANSCRIPT.answer.map((part, i) =>
                 part.firm ? (
-                  <mark key={i} className="bg-on-brand px-1 font-bold text-brand-700">
+                  <mark key={i} className="bg-accent-2 px-1 font-bold text-on-brand">
                     {part.text}
                   </mark>
                 ) : (
@@ -221,7 +221,7 @@ export default async function Home({
                 key={p.step}
                 className="grid gap-x-8 gap-y-2 border-t border-line-strong bg-surface-1/70 px-6 py-7 md:grid-cols-[7rem_1fr]"
               >
-                <span className="notation pt-1 text-danger">{p.step}</span>
+                <span className="notation pt-1 text-accent">{p.step}</span>
                 <div>
                   <h3 className="font-display text-2xl text-fg">{p.title}</h3>
                   <p className="mt-2 max-w-[66ch] text-fg">{p.body}</p>
@@ -298,7 +298,7 @@ export default async function Home({
             {FAQS.map((f) => (
               <div key={f.q} className="border-t border-line-strong pt-6">
                 <dt className="transcript flex gap-3 text-lg text-fg">
-                  <span className="text-danger">Q.</span>
+                  <span className="text-accent">Q.</span>
                   <span>{f.q}</span>
                 </dt>
                 <dd className="transcript mt-3 flex gap-3 text-fg">

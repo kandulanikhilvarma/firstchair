@@ -11,44 +11,48 @@
 :root {
   color-scheme: light;
 
-  /* Neutrals — a slight violet cast so they sit under indigo, never cold grey */
+  /* Neutrals — warm stone, a calm paper ground rather than a cold or violet grey */
   --p-bg: #ffffff;
-  --p-surface-1: #fafafd;
-  --p-surface-2: #f5f5fa;
-  --p-border: #e0e0ea;
-  --p-border-strong: #c9c9d8;
-  --p-border-input: #8e8ea8; /* 3.19:1 — a field boundary must be identifiable */
-  --p-text-primary: #14141a;
-  --p-text-secondary: #5a5a72;
-  --p-text-muted: #73738b; /* 4.61:1 — hints are content, not decoration */
+  --p-surface-1: #f7f6f3;
+  --p-surface-2: #efeee9;
+  --p-border: #e2e0d9;
+  --p-border-strong: #ccc9bf;
+  --p-border-input: #86847a; /* 3.75:1 — a field boundary must be identifiable */
+  --p-text-primary: #1b1a17;
+  --p-text-secondary: #55534b;
+  --p-text-muted: #6c6a5f; /* 5.4:1 — hints are content, not decoration */
 
-  /* Brand — "your firm", everywhere */
-  --p-brand-50: #f3f3ff;
-  --p-brand-100: #e8e8ff;
-  --p-brand-500: #5b5bf5;
-  --p-brand-600: #4a45e0;
-  --p-brand-700: #3a34c4;
+  /* Brand — "your firm", everywhere: a quiet deep teal */
+  --p-brand-50: #eef6f4;
+  --p-brand-100: #dcede9;
+  --p-brand-500: #147d72;
+  --p-brand-600: #0f6b62;
+  --p-brand-700: #0b5a52;
   --p-on-brand: #ffffff;
 
   /* Engines — mark hue for fills and strokes, text hue where it carries words */
-  --p-openai: #0e9f6e;
-  --p-openai-text: #07734f;
-  --p-gemini: #2e90fa;
-  --p-gemini-text: #1667c4;
-  --p-perplexity: #f04f6a;
-  --p-perplexity-text: #c22645;
+  --p-openai: #b8623f;
+  --p-openai-text: #8f4626;
+  --p-gemini: #4f6bb0;
+  --p-gemini-text: #3a5290;
+  --p-perplexity: #9c5aa0;
+  --p-perplexity-text: #7d3f82;
 
   /* Series — competitor charts. 1 is always you. */
-  --p-series-1: #5b5bf5;
-  --p-series-2: #0e9f6e;
-  --p-series-3: #2e90fa;
-  --p-series-4: #f04f6a;
-  --p-series-5: #f59e0b;
-  --p-series-6: #65a30d;
+  --p-series-1: #147d72;
+  --p-series-2: #b8623f;
+  --p-series-3: #4f6bb0;
+  --p-series-4: #9c5aa0;
+  --p-series-5: #c69324;
+  --p-series-6: #6f8a3f;
 
-  --p-success: #0e7a4e;
-  --p-danger: #c22645;
-  --p-warning: #b45309;
+  --p-success: #2f7a4e;
+  --p-danger: #b23b47;
+  --p-warning: #8f6212;
+
+  /* Accents — marketing only (eyebrows, highlights, secondary CTAs); never data */
+  --p-accent: #96611a;
+  --p-accent-2: #a8465a;
 
   --p-shadow-sm: 0 1px 2px rgb(20 20 26 / 0.06);
   --p-shadow-md: 0 4px 12px -2px rgb(20 20 26 / 0.08);
@@ -60,40 +64,43 @@
 :root[data-theme="dark"] {
   color-scheme: dark;
 
-  --p-bg: #0b0b10;
-  --p-surface-1: #14141c;
-  --p-surface-2: #1c1c26;
-  --p-border: #2a2a38;
-  --p-border-strong: #3a3a4c;
-  --p-border-input: #5c5c76;
-  --p-text-primary: #ececf5;
-  --p-text-secondary: #a3a3b8;
-  --p-text-muted: #7a7a93;
+  --p-bg: #12120f;
+  --p-surface-1: #1b1b16;
+  --p-surface-2: #24241e;
+  --p-border: #33332b;
+  --p-border-strong: #45453a;
+  --p-border-input: #6a6a5a;
+  --p-text-primary: #edece4;
+  --p-text-secondary: #a8a596;
+  --p-text-muted: #85826f;
 
-  --p-brand-50: #17172c;
-  --p-brand-100: #1e1e3a;
-  --p-brand-500: #7c7cf8;
-  --p-brand-600: #8f8ffa;
-  --p-brand-700: #a3a3fc;
-  --p-on-brand: #0b0b10;
+  --p-brand-50: #12241f;
+  --p-brand-100: #163029;
+  --p-brand-500: #3fb3a4;
+  --p-brand-600: #55c2b3;
+  --p-brand-700: #74d3c4;
+  --p-on-brand: #12120f;
 
-  --p-openai: #34d399;
-  --p-openai-text: #34d399;
-  --p-gemini: #60a5fa;
-  --p-gemini-text: #60a5fa;
-  --p-perplexity: #fb7185;
-  --p-perplexity-text: #fb7185;
+  --p-openai: #d98a63;
+  --p-openai-text: #d98a63;
+  --p-gemini: #7d9be0;
+  --p-gemini-text: #7d9be0;
+  --p-perplexity: #c589c9;
+  --p-perplexity-text: #c589c9;
 
-  --p-series-1: #7c7cf8;
-  --p-series-2: #34d399;
-  --p-series-3: #60a5fa;
-  --p-series-4: #fb7185;
-  --p-series-5: #fbbf24;
-  --p-series-6: #a3e635;
+  --p-series-1: #3fb3a4;
+  --p-series-2: #d98a63;
+  --p-series-3: #7d9be0;
+  --p-series-4: #c589c9;
+  --p-series-5: #dcb44e;
+  --p-series-6: #9fbf63;
 
-  --p-success: #34d399;
-  --p-danger: #fb7185;
-  --p-warning: #fbbf24;
+  --p-success: #46b878;
+  --p-danger: #e06b78;
+  --p-warning: #dcb44e;
+
+  --p-accent: #e0b45a;
+  --p-accent-2: #eb8a9c;
 
   --p-shadow-sm: none;
   --p-shadow-md: none;
@@ -104,40 +111,43 @@
   :root:not([data-theme="light"]) {
     color-scheme: dark;
 
-    --p-bg: #0b0b10;
-    --p-surface-1: #14141c;
-    --p-surface-2: #1c1c26;
-    --p-border: #2a2a38;
-    --p-border-strong: #3a3a4c;
-    --p-border-input: #5c5c76;
-    --p-text-primary: #ececf5;
-    --p-text-secondary: #a3a3b8;
-    --p-text-muted: #7a7a93;
+    --p-bg: #12120f;
+    --p-surface-1: #1b1b16;
+    --p-surface-2: #24241e;
+    --p-border: #33332b;
+    --p-border-strong: #45453a;
+    --p-border-input: #6a6a5a;
+    --p-text-primary: #edece4;
+    --p-text-secondary: #a8a596;
+    --p-text-muted: #85826f;
 
-    --p-brand-50: #17172c;
-    --p-brand-100: #1e1e3a;
-    --p-brand-500: #7c7cf8;
-    --p-brand-600: #8f8ffa;
-    --p-brand-700: #a3a3fc;
-    --p-on-brand: #0b0b10;
+    --p-brand-50: #12241f;
+    --p-brand-100: #163029;
+    --p-brand-500: #3fb3a4;
+    --p-brand-600: #55c2b3;
+    --p-brand-700: #74d3c4;
+    --p-on-brand: #12120f;
 
-    --p-openai: #34d399;
-    --p-openai-text: #34d399;
-    --p-gemini: #60a5fa;
-    --p-gemini-text: #60a5fa;
-    --p-perplexity: #fb7185;
-    --p-perplexity-text: #fb7185;
+    --p-openai: #d98a63;
+    --p-openai-text: #d98a63;
+    --p-gemini: #7d9be0;
+    --p-gemini-text: #7d9be0;
+    --p-perplexity: #c589c9;
+    --p-perplexity-text: #c589c9;
 
-    --p-series-1: #7c7cf8;
-    --p-series-2: #34d399;
-    --p-series-3: #60a5fa;
-    --p-series-4: #fb7185;
-    --p-series-5: #fbbf24;
-    --p-series-6: #a3e635;
+    --p-series-1: #3fb3a4;
+    --p-series-2: #d98a63;
+    --p-series-3: #7d9be0;
+    --p-series-4: #c589c9;
+    --p-series-5: #dcb44e;
+    --p-series-6: #9fbf63;
 
-    --p-success: #34d399;
-    --p-danger: #fb7185;
-    --p-warning: #fbbf24;
+    --p-success: #46b878;
+    --p-danger: #e06b78;
+    --p-warning: #dcb44e;
+
+    --p-accent: #e0b45a;
+    --p-accent-2: #eb8a9c;
 
     --p-shadow-sm: none;
     --p-shadow-md: none;
@@ -180,6 +190,8 @@
   --color-success: var(--p-success);
   --color-danger: var(--p-danger);
   --color-warning: var(--p-warning);
+  --color-accent: var(--p-accent);
+  --color-accent-2: var(--p-accent-2);
 
   --radius-sm: 6px;
   --radius-md: 10px;
@@ -193,16 +205,17 @@
   --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
   --ease-drawer: cubic-bezier(0.32, 0.72, 0, 1);
 
-  /* Archivo carries display and numerals; Plex Sans the UI, Plex Mono verbatim. */
-  --font-display: var(--font-archivo);
-  --font-sans: var(--font-plex-sans);
-  --font-mono: var(--font-plex-mono);
+  /* Hanken Grotesk carries display and numerals; Inter the UI, JetBrains verbatim. */
+  --font-display: var(--font-display-face);
+  --font-sans: var(--font-ui-face);
+  --font-mono: var(--font-mono-face);
+  --font-serif: var(--font-serif-face), Georgia, serif;
 }
 
 body {
   background: var(--p-bg);
   color: var(--p-text-primary);
-  font-family: var(--font-plex-sans), system-ui, sans-serif;
+  font-family: var(--font-ui-face), system-ui, sans-serif;
   line-height: 1.6;
 }
 
@@ -210,7 +223,7 @@ h1,
 h2,
 h3,
 h4 {
-  font-family: var(--font-archivo), system-ui, sans-serif;
+  font-family: var(--font-display-face), system-ui, sans-serif;
   line-height: 1.1;
   letter-spacing: -0.025em;
   font-weight: 600;
@@ -225,7 +238,7 @@ h4 {
   font-weight: 600;
 }
 .transcript {
-  font-family: var(--font-plex-mono), ui-monospace, monospace;
+  font-family: var(--font-mono-face), ui-monospace, monospace;
   line-height: 1.7;
 }
 @keyframes ink-in {

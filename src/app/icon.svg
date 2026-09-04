@@ -1,10 +1,10 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" role="img" aria-label="First Chair">
   <title>First Chair</title>
-  <rect width="32" height="32" rx="7" fill="#14141a"/>
+  <rect width="32" height="32" rx="7" fill="#12120f"/>
   <g fill="none" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" transform="translate(-3 0)">
-    <path d="M8 6 L19 16 L8 26" stroke="#7c7cf8"/>
-    <path d="M21 15 L29 9" stroke="#34d399"/>
-    <path d="M22 16 L30 16" stroke="#60a5fa"/>
-    <path d="M21 17 L29 23" stroke="#fb7185"/>
+    <path d="M8 6 L19 16 L8 26" stroke="#3fb3a4"/>
+    <path d="M21 15 L29 9" stroke="#d98a63"/>
+    <path d="M22 16 L30 16" stroke="#7d9be0"/>
+    <path d="M21 17 L29 23" stroke="#c589c9"/>
   </g>
 </svg>
