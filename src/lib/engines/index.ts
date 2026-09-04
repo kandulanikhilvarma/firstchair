@@ -14,7 +14,7 @@ const CLIENTS: Record<EngineName, (o: EngineCallOptions) => Promise<EngineResult
 const KEY_ENV: Record<EngineName, string> = {
   openai: "OPENAI_API_KEY",
   gemini: "GEMINI_API_KEY",
-  perplexity: "PERPLEXITY_API_KEY",
+  perplexity: "OPENROUTER_API_KEY", // routed via OpenRouter — see perplexity.ts
 };
 
 /** Server-side only — reads API keys from env. */

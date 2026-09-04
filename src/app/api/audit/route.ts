@@ -36,7 +36,7 @@ export async function POST(req: Request) {
     return NextResponse.json({ error: "Please fill in all fields with valid values." }, { status: 400 });
   }
 
-  if (!process.env.OPENAI_API_KEY && !process.env.GEMINI_API_KEY && !process.env.PERPLEXITY_API_KEY) {
+  if (!process.env.OPENAI_API_KEY && !process.env.GEMINI_API_KEY && !process.env.OPENROUTER_API_KEY) {
     return NextResponse.json(
       { error: `We're launching the live audit shortly — ${parsed.firmName} is noted, check back soon.` },
       { status: 503 },
