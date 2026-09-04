@@ -55,22 +55,22 @@ export default function LoginForm() {
 
   if (status === "sent") {
     return (
-      <div className="border border-border-strong bg-surface-0">
-        <div className="border-b border-border-strong bg-surface-50 px-6 py-2.5">
-          <span className="notation text-[0.8rem] text-ink-500">Link issued</span>
+      <div className="border border-line-strong bg-surface-1">
+        <div className="border-b border-line-strong bg-surface-2 px-6 py-2.5">
+          <span className="notation text-[0.8rem] text-fg-muted">Link issued</span>
         </div>
         <div className="px-6 py-6">
-          <p role="status" className="text-ink-900">
+          <p role="status" className="text-fg">
             {message}
           </p>
-          <p className="mt-3 text-sm text-ink-700">
+          <p className="mt-3 text-sm text-fg">
             Not there within a minute? Check spam, then send another.
           </p>
           <button
             type="button"
             onClick={onResend}
             disabled={resending}
-            className="notation mt-5 cursor-pointer border-b-2 border-canary-400 pb-0.5 text-ox-700 hover:border-ox-700 disabled:opacity-60"
+            className="notation mt-5 cursor-pointer border-b-2 border-brand-500 pb-0.5 text-brand-700 hover:border-brand-700 disabled:opacity-60"
           >
             {resending ? "Sending…" : "Send another link"}
           </button>
@@ -80,31 +80,31 @@ export default function LoginForm() {
   }
 
   return (
-    <form onSubmit={onSubmit} className="border border-border-strong bg-surface-0">
-      <div className="border-b border-border-strong bg-surface-50 px-6 py-2.5">
-        <span className="notation text-[0.8rem] text-ink-500">Sign-in request</span>
+    <form onSubmit={onSubmit} className="border border-line-strong bg-surface-1">
+      <div className="border-b border-line-strong bg-surface-2 px-6 py-2.5">
+        <span className="notation text-[0.8rem] text-fg-muted">Sign-in request</span>
       </div>
-      <div className="margin-rule px-6 py-6">
+      <div className="px-6 py-6">
         <label className="block text-sm">
-          <span className="notation text-ink-500">Work email</span>
+          <span className="notation text-fg-muted">Work email</span>
           <input
             name="email"
             type="email"
             required
             autoComplete="email"
             placeholder="you@firm.com"
-            className="mt-1 w-full border-0 border-b border-border-strong bg-transparent px-0 py-2 text-ink-900 placeholder:text-ink-500/55 focus:border-ox-700 focus:outline-none focus:ring-0"
+            className="mt-1 w-full border-0 border-b border-line-strong bg-transparent px-0 py-2 text-fg placeholder:text-fg-muted/55 focus:border-brand-500 focus:outline-none focus:ring-0"
           />
         </label>
         <button
           type="submit"
           disabled={status === "submitting"}
-          className="mt-6 w-full cursor-pointer bg-ox-700 px-4 py-3.5 font-semibold text-canary-100 transition-colors hover:bg-ox-900 disabled:cursor-wait disabled:opacity-70"
+          className="mt-6 w-full cursor-pointer bg-brand-500 px-4 py-3.5 font-semibold text-on-brand transition-colors hover:bg-brand-600 disabled:cursor-wait disabled:opacity-70"
         >
           {status === "submitting" ? "Sending…" : "Email me a sign-in link"}
         </button>
         {status === "error" && (
-          <p role="alert" className="mt-3 text-sm text-rule">
+          <p role="alert" className="mt-3 text-sm text-danger">
             {message}
           </p>
         )}

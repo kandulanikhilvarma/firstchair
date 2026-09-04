@@ -1,27 +1,28 @@
 import type { Metadata } from "next";
-import { Courier_Prime, Libre_Caslon_Display, Public_Sans } from "next/font/google";
+import { Archivo, IBM_Plex_Mono, IBM_Plex_Sans } from "next/font/google";
 import "./globals.css";
 
-/* Caslon is the historic face of American legal printing; Public Sans carries
-   the US federal design-system lineage; Courier is what a court transcript is
-   actually set in. Faces chosen as objects from this audience's world. */
-const caslonDisplay = Libre_Caslon_Display({
-  variable: "--font-caslon-display",
+/* Prism: Archivo is a wide grotesque set tight and heavy, so a score reads as a
+   figure. IBM Plex Sans carries the UI; IBM Plex Mono is its sibling, reserved
+   for verbatim engine answers so a transcript sits inside the product. */
+const archivo = Archivo({
+  variable: "--font-archivo",
   subsets: ["latin"],
-  weight: ["400"],
+  weight: ["400", "600", "700"],
   display: "swap",
 });
 
-const publicSans = Public_Sans({
-  variable: "--font-public-sans",
+const plexSans = IBM_Plex_Sans({
+  variable: "--font-plex-sans",
   subsets: ["latin"],
+  weight: ["400", "500", "600"],
   display: "swap",
 });
 
-const courierPrime = Courier_Prime({
-  variable: "--font-courier-prime",
+const plexMono = IBM_Plex_Mono({
+  variable: "--font-plex-mono",
   subsets: ["latin"],
-  weight: ["400", "700"],
+  weight: ["400", "500"],
   display: "swap",
 });
 
@@ -50,11 +51,11 @@ export const metadata: Metadata = {
 
 const DIRECTION_CONTRACT = `<!--
 impeccable-direction seed:993d9e85
-THESIS: An AI answer is a record, so this surface is set as legal publishing sets a record — refusing the light-SaaS hero-with-floating-dashboard the GEO category ships.
-OWN-WORLD: West reporter oxblood as committed field, canary legal-pad yellow as the only signal, blue-black pleading ink, red margin rule as structural hairline, foil for detail. Caslon display, Public Sans UI, Courier for verbatim answers. Square corners, hairline rules, no cards-as-scaffold.
+THESIS: One question enters, three engines answer. The product holds those three answers side by side, so the identity is the instrument that splits — not a metaphor borrowed from law.
+OWN-WORLD: Prism. Indigo is always "your firm"; each engine owns a hue forever — ChatGPT emerald, Gemini azure, Perplexity rose — in the mark, charts, badges and email. Archivo display, IBM Plex Sans UI, IBM Plex Mono for verbatim answers. Radius 6/10/14, measured contrast, dark mode as a peer.
 STORY: A partner or agency owner learns the machines already answer questions about their firm daily, sees a verbatim answer naming someone else, and runs a free audit.
-FIRST VIEWPORT: Full-bleed oxblood field. Caslon headline left at display scale, the audit form as a filed form on white to its right, and beneath the fold line a real transcript excerpt with the competitor's name struck in canary.
-FORM: Editorial Law Review, brief-pinned by the user; roll assigned candidate 7 (counsel table), pin overrides per skill.
+FIRST VIEWPORT: Marketing may express the split at full strength; the product stays quiet and dense. A display headline, the audit form to its side, and beneath it a real transcript excerpt with a competitor named.
+FORM: Prism, two registers — marketing expressive, product quiet and fast.
 FINISH: unreviewed and undocumented is unfinished; this build ends with the finish review, the verdict, and DESIGN.md
 -->`;
 
@@ -66,7 +67,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${caslonDisplay.variable} ${publicSans.variable} ${courierPrime.variable} h-full antialiased`}
+      className={`${archivo.variable} ${plexSans.variable} ${plexMono.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
         <div hidden dangerouslySetInnerHTML={{ __html: DIRECTION_CONTRACT }} />

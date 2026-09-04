@@ -33,6 +33,10 @@ export default function AuditForm() {
     setStatus("submitting");
     setResult(null);
     const data = Object.fromEntries(new FormData(e.currentTarget));
+    // Carry a referral tag from the link the lead arrived on (?ref=), so a
+    // referred audit can be credited later.
+    const ref = new URLSearchParams(window.location.search).get("ref");
+    if (ref) data.ref = ref;
     try {
       const res = await fetch("/api/audit", {
         method: "POST",
@@ -56,26 +60,26 @@ export default function AuditForm() {
 
   if (status === "ok" && result) {
     return (
-      <div className="w-full max-w-md border border-border-strong bg-surface-0 text-left">
-        <div className="border-b border-border-strong bg-surface-50 px-6 py-2.5">
-          <span className="notation text-[0.8rem] text-ink-500">Record of findings</span>
+      <div className="w-full max-w-md border border-line-strong bg-surface-1 text-left">
+        <div className="border-b border-line-strong bg-surface-2 px-6 py-2.5">
+          <span className="notation text-[0.8rem] text-fg-muted">Record of findings</span>
         </div>
         <div className="px-6 py-6">
-          <h3 className="text-2xl text-ink-900">{result.firmName}</h3>
-          <p className="mt-3 flex items-baseline gap-2 border-b border-border pb-5">
-            <span className="tnum font-display text-6xl leading-none text-ox-700">
+          <h3 className="text-2xl text-fg">{result.firmName}</h3>
+          <p className="mt-3 flex items-baseline gap-2 border-b border-line pb-5">
+            <span className="tnum font-display text-6xl leading-none text-brand-700">
               {result.overallScore}
             </span>
-            <span className="notation text-ink-500">of 100 visibility</span>
+            <span className="notation text-fg-muted">of 100 visibility</span>
           </p>
           <table className="mt-4 w-full text-left">
             <tbody>
               {result.engines.map((e) => (
-                <tr key={e.engine} className="border-b border-border last:border-0">
-                  <th scope="row" className="py-2 pr-3 font-normal text-ink-900">
+                <tr key={e.engine} className="border-b border-line last:border-0">
+                  <th scope="row" className="py-2 pr-3 font-normal text-fg">
                     {ENGINE_LABELS[e.engine] ?? e.engine}
                   </th>
-                  <td className="transcript tnum py-2 text-right text-sm text-ink-700">
+                  <td className="transcript tnum py-2 text-right text-sm text-fg">
                     {e.visibilityScore}/100 · {e.mentionedInPrompts} of {e.totalPrompts}
                     {e.bestPosition ? ` · best #${e.bestPosition}` : ""}
                   </td>
@@ -83,12 +87,12 @@ export default function AuditForm() {
               ))}
             </tbody>
           </table>
-          <p role="status" className="mt-4 text-sm text-verdict">
+          <p role="status" className="mt-4 text-sm text-success">
             {message}
           </p>
           <a
             href="/login"
-            className="mt-5 block bg-ox-700 px-4 py-3.5 text-center font-semibold text-canary-100 transition-colors hover:bg-ox-900"
+            className="mt-5 block bg-brand-500 px-4 py-3.5 text-center font-semibold text-on-brand transition-colors hover:bg-brand-600"
           >
             Track this daily — start free trial
           </a>
@@ -98,34 +102,34 @@ export default function AuditForm() {
   }
 
   const fieldCls =
-    "mt-1 w-full border-0 border-b border-border-strong bg-transparent px-0 py-2 text-ink-900 placeholder:text-ink-500/55 focus:border-ox-700 focus:outline-none focus:ring-0";
+    "mt-1 w-full border-0 border-b border-line-strong bg-transparent px-0 py-2 text-fg placeholder:text-fg-muted/55 focus:border-brand-500 focus:outline-none focus:ring-0";
 
   return (
     <form
       onSubmit={onSubmit}
-      className="w-full max-w-md border border-border-strong bg-surface-0 text-left"
+      className="w-full max-w-md border border-line-strong bg-surface-1 text-left"
     >
-      <div className="flex items-baseline justify-between border-b border-border-strong bg-surface-50 px-6 py-2.5">
-        <span className="notation text-[0.8rem] text-ink-500">Request for audit</span>
-        <span className="transcript text-xs text-ink-500">No. 001</span>
+      <div className="flex items-baseline justify-between border-b border-line-strong bg-surface-2 px-6 py-2.5">
+        <span className="notation text-[0.8rem] text-fg-muted">Request for audit</span>
+        <span className="transcript text-xs text-fg-muted">No. 001</span>
       </div>
 
-      <div className="margin-rule px-6 py-6">
+      <div className="px-6 py-6">
         <div className="flex flex-col gap-4">
           <label className="block text-sm">
-            <span className="notation text-ink-500">Firm name</span>
+            <span className="notation text-fg-muted">Firm name</span>
             <input name="firmName" required placeholder="Smith &amp; Jones LLP" className={fieldCls} />
           </label>
           <label className="block text-sm">
-            <span className="notation text-ink-500">City</span>
+            <span className="notation text-fg-muted">City</span>
             <input name="city" required placeholder="Austin" className={fieldCls} />
           </label>
           <label className="block text-sm">
-            <span className="notation text-ink-500">Practice area</span>
+            <span className="notation text-fg-muted">Practice area</span>
             <input name="practiceArea" required placeholder="Personal injury" className={fieldCls} />
           </label>
           <label className="block text-sm">
-            <span className="notation text-ink-500">Work email</span>
+            <span className="notation text-fg-muted">Work email</span>
             <input
               name="email"
               type="email"
@@ -139,7 +143,7 @@ export default function AuditForm() {
         <button
           type="submit"
           disabled={status === "submitting"}
-          className="mt-6 w-full cursor-pointer bg-ox-700 px-4 py-3.5 font-semibold text-canary-100 transition-colors hover:bg-ox-900 disabled:cursor-wait disabled:opacity-70"
+          className="mt-6 w-full cursor-pointer bg-brand-500 px-4 py-3.5 font-semibold text-on-brand transition-colors hover:bg-brand-600 disabled:cursor-wait disabled:opacity-70"
         >
           {status === "submitting" ? "Querying the engines…" : "Run my free audit"}
         </button>
@@ -147,13 +151,13 @@ export default function AuditForm() {
         {message && (
           <p
             role="status"
-            className={`mt-3 text-sm ${status === "error" ? "text-rule" : "text-verdict"}`}
+            className={`mt-3 text-sm ${status === "error" ? "text-danger" : "text-success"}`}
           >
             {message}
           </p>
         )}
 
-        <p className="mt-3 text-xs text-ink-500">
+        <p className="mt-3 text-xs text-fg-muted">
           5 real client questions across 3 engines. Results in about 2 minutes. No card.
         </p>
       </div>

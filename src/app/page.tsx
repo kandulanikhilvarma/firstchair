@@ -110,18 +110,18 @@ export default async function Home({
         {user ? (
           <Link
             href="/dashboard"
-            className="notation border-b-2 border-canary-400 pb-0.5 text-ox-900 hover:border-ox-700"
+            className="notation border-b-2 border-brand-500 pb-0.5 text-fg hover:border-brand-700"
           >
             Go to dashboard
           </Link>
         ) : (
           <>
-            <Link href="/login" className="notation text-ink-700 hover:text-ox-700">
+            <Link href="/login" className="notation text-fg hover:text-brand-700">
               Log in
             </Link>
             <Link
               href="/login"
-              className="notation border-b-2 border-canary-400 pb-0.5 text-ox-900 hover:border-ox-700"
+              className="notation border-b-2 border-brand-500 pb-0.5 text-fg hover:border-brand-700"
             >
               Start free trial
             </Link>
@@ -130,16 +130,16 @@ export default async function Home({
       </SiteHeader>
 
       {/* Hero — full oxblood field, headline against a filed form */}
-      <section className="bg-ox-900 text-canary-100">
+      <section className="bg-brand-700 text-on-brand">
         <div className="mx-auto grid w-full max-w-6xl gap-12 px-6 py-20 lg:grid-cols-[minmax(0,1fr)_27rem] lg:items-start lg:gap-16">
           <div className="min-w-0">
             {/* Measure lives on the heading, where `ch` resolves against the
                 display face — on the wrapper it resolves against 16px body
                 text and crushes the column to ~150px. */}
-            <h1 className="max-w-[15ch] font-display text-[clamp(2.5rem,5.5vw,4.5rem)] leading-[1.03] text-canary-100">
+            <h1 className="max-w-[15ch] font-display text-[clamp(2.5rem,5.5vw,4.5rem)] leading-[1.03] text-on-brand">
               Your next client asked an AI. It named three firms.
             </h1>
-            <p className="mt-7 max-w-[54ch] text-lg leading-relaxed text-canary-200">
+            <p className="mt-7 max-w-[54ch] text-lg leading-relaxed text-on-brand">
               People now ask ChatGPT, Gemini and Perplexity which lawyer to call. Those
               answers are being given today, about your practice, whether or not anyone at
               your firm has read one. First Chair reads them every day and keeps the receipt.
@@ -147,7 +147,7 @@ export default async function Home({
             <p className="mt-6">
               <Link
                 href="/audit/demo"
-                className="notation border-b border-canary-400/60 pb-0.5 text-canary-400 hover:border-canary-400"
+                className="notation border-b border-on-brand/50 pb-0.5 text-on-brand hover:border-on-brand"
               >
                 See a finished report first
               </Link>
@@ -160,15 +160,15 @@ export default async function Home({
         </div>
 
         {/* The proof: a verbatim answer, inking in as a stamp presses */}
-        <div className="border-t border-ox-700">
+        <div className="border-t border-brand-500">
           <div className="mx-auto w-full max-w-6xl px-6 py-14">
-            <p className="notation text-canary-400">
+            <p className="notation text-on-brand/80">
               Asked of {TRANSCRIPT.engine} — “{TRANSCRIPT.question}”
             </p>
-            <blockquote className="ink-in transcript mt-5 max-w-[74ch] border-l-2 border-canary-400 pl-6 text-lg text-canary-100">
+            <blockquote className="ink-in transcript mt-5 max-w-[74ch] border-l-2 border-on-brand/40 pl-6 text-lg text-on-brand">
               {TRANSCRIPT.answer.map((part, i) =>
                 part.firm ? (
-                  <mark key={i} className="bg-canary-400 px-1 font-bold text-ox-900">
+                  <mark key={i} className="bg-on-brand px-1 font-bold text-brand-700">
                     {part.text}
                   </mark>
                 ) : (
@@ -176,11 +176,11 @@ export default async function Home({
                 ),
               )}
             </blockquote>
-            <p className="ink-in ink-in-2 mt-6 flex flex-wrap items-baseline gap-x-3 text-canary-200">
-              <span className="notation text-canary-400">Your firm</span>
+            <p className="ink-in ink-in-2 mt-6 flex flex-wrap items-baseline gap-x-3 text-on-brand">
+              <span className="notation text-on-brand/80">Your firm</span>
               <span className="transcript text-lg">not mentioned</span>
             </p>
-            <p className="mt-8 text-xs text-canary-200/70">
+            <p className="mt-8 text-xs text-on-brand/70">
               Illustrative example. Not a real firm and not a live answer — your audit
               returns your own.
             </p>
@@ -189,14 +189,14 @@ export default async function Home({
       </section>
 
       {/* What the record contains — a definition list, not a card grid */}
-      <section className="border-b border-border bg-surface-0">
+      <section className="border-b border-line bg-surface-1">
         <div className="mx-auto w-full max-w-6xl px-6 py-20">
           <div className="grid items-start gap-10 lg:grid-cols-[1fr_minmax(0,26rem)] lg:gap-16">
             <div>
-              <h2 className="max-w-[16ch] text-[clamp(2rem,3.6vw,3rem)] text-ink-900">
+              <h2 className="max-w-[16ch] text-[clamp(2rem,3.6vw,3rem)] text-fg">
                 Every number opens to the sentence it came from.
               </h2>
-              <p className="mt-5 max-w-[62ch] text-lg text-ink-700">
+              <p className="mt-5 max-w-[62ch] text-lg text-fg">
                 Most visibility tools hand you a score and ask for trust. A partner will ask
                 where the number came from, and you should be able to answer in one click.
               </p>
@@ -213,9 +213,9 @@ export default async function Home({
 
           <dl className="mt-14 grid gap-x-16 gap-y-10 md:grid-cols-2">
             {RECORD.map((item) => (
-              <div key={item.term} className="border-t border-border-strong pt-5">
-                <dt className="font-display text-2xl text-ox-700">{item.term}</dt>
-                <dd className="mt-2 max-w-[58ch] text-ink-700">{item.detail}</dd>
+              <div key={item.term} className="border-t border-line-strong pt-5">
+                <dt className="font-display text-2xl text-brand-700">{item.term}</dt>
+                <dd className="mt-2 max-w-[58ch] text-fg">{item.detail}</dd>
               </div>
             ))}
           </dl>
@@ -223,20 +223,20 @@ export default async function Home({
       </section>
 
       {/* Proceedings — ruled legal-pad stock; the sequence carries real information */}
-      <section className="ruled border-b border-border bg-canary-100">
+      <section className="border-b border-line bg-brand-50">
         <div className="mx-auto w-full max-w-6xl px-6 py-20">
-          <h2 className="text-[clamp(2rem,3.6vw,3rem)] text-ink-900">How it proceeds</h2>
+          <h2 className="text-[clamp(2rem,3.6vw,3rem)] text-fg">How it proceeds</h2>
           <div className="mt-12 grid items-start gap-10 lg:grid-cols-[1fr_minmax(0,20rem)] lg:gap-14">
           <ol className="space-y-px">
             {PROCEEDINGS.map((p) => (
               <li
                 key={p.step}
-                className="grid gap-x-8 gap-y-2 border-t border-border-strong bg-surface-0/70 px-6 py-7 md:grid-cols-[7rem_1fr]"
+                className="grid gap-x-8 gap-y-2 border-t border-line-strong bg-surface-1/70 px-6 py-7 md:grid-cols-[7rem_1fr]"
               >
-                <span className="notation pt-1 text-rule">{p.step}</span>
+                <span className="notation pt-1 text-danger">{p.step}</span>
                 <div>
-                  <h3 className="font-display text-2xl text-ink-900">{p.title}</h3>
-                  <p className="mt-2 max-w-[66ch] text-ink-700">{p.body}</p>
+                  <h3 className="font-display text-2xl text-fg">{p.title}</h3>
+                  <p className="mt-2 max-w-[66ch] text-fg">{p.body}</p>
                 </div>
               </li>
             ))}
@@ -254,7 +254,7 @@ export default async function Home({
       </section>
 
       {/* A quiet band — the page has been dense; let it breathe before the ask */}
-      <section aria-hidden className="border-b border-border">
+      <section aria-hidden className="border-b border-line">
         <Image
           src="/img/library.jpg"
           alt=""
@@ -266,51 +266,55 @@ export default async function Home({
       </section>
 
       {/* Fee schedule */}
-      <section className="border-b border-border bg-surface-0">
+      <section className="border-b border-line bg-surface-1">
         <div className="mx-auto w-full max-w-6xl px-6 py-20">
-          <h2 className="text-[clamp(2rem,3.6vw,3rem)] text-ink-900">Schedule of fees</h2>
-          <p className="mt-4 text-ink-700">
+          <h2 className="text-[clamp(2rem,3.6vw,3rem)] text-fg">Schedule of fees</h2>
+          <p className="mt-4 text-fg">
             Seven-day trial on both. Annual billing is two months free.
           </p>
 
-          <div className="mt-12 grid gap-px border border-border-strong bg-border-strong md:grid-cols-2">
-            <div className="bg-surface-0 p-8">
-              <h3 className="font-display text-3xl text-ink-900">Solo</h3>
+          <div className="mt-12 grid gap-px border border-line-strong bg-line-strong md:grid-cols-2">
+            <div className="bg-surface-1 p-8">
+              <h3 className="font-display text-3xl text-fg">Solo</h3>
               <p className="mt-3 flex items-baseline gap-1.5">
-                <span className="tnum font-display text-5xl text-ink-900">$49</span>
-                <span className="notation text-ink-500">per month</span>
+                <span className="tnum font-display text-5xl text-fg">$49</span>
+                <span className="notation text-fg-muted">per month</span>
               </p>
-              <ul className="mt-6 space-y-2.5 text-ink-700">
-                <li className="border-b border-border pb-2.5">One firm</li>
-                <li className="border-b border-border pb-2.5">20 questions, scanned daily</li>
-                <li className="border-b border-border pb-2.5">Five competitors tracked</li>
+              <p className="tnum mt-1 text-sm text-fg-muted">
+                or $490 a year — <span className="font-medium text-success">save $98</span>
+              </p>
+              <ul className="mt-6 space-y-2.5 text-fg">
+                <li className="border-b border-line pb-2.5">One firm</li>
+                <li className="border-b border-line pb-2.5">20 questions, scanned daily</li>
+                <li className="border-b border-line pb-2.5">Five competitors tracked</li>
                 <li>Weekly email report</li>
               </ul>
               <Link
                 href={user ? "/billing" : "/login"}
-                className="mt-8 block border border-ox-700 px-4 py-3 text-center font-semibold text-ox-700 transition-colors hover:bg-ox-700 hover:text-canary-100"
+                className="mt-8 block border border-brand-500 px-4 py-3 text-center font-semibold text-brand-700 transition-colors hover:bg-brand-600 hover:text-on-brand"
               >
                 Start trial
               </Link>
             </div>
 
-            <div className="bg-ox-900 p-8 text-canary-100">
-              <h3 className="font-display text-3xl text-canary-100">Agency</h3>
+            <div className="bg-brand-700 p-8 text-on-brand">
+              <h3 className="font-display text-3xl text-on-brand">Agency</h3>
               <p className="mt-3 flex items-baseline gap-1.5">
                 <span className="tnum font-display text-5xl">$149</span>
-                <span className="notation text-canary-200">per month</span>
+                <span className="notation text-on-brand">per month</span>
               </p>
-              <ul className="mt-6 space-y-2.5 text-canary-200">
-                <li className="border-b border-ox-700 pb-2.5">Ten client firms</li>
-                <li className="border-b border-ox-700 pb-2.5">
+              <p className="tnum mt-1 text-sm text-on-brand/85">or $1,490 a year — save $298</p>
+              <ul className="mt-6 space-y-2.5 text-on-brand">
+                <li className="border-b border-brand-500 pb-2.5">Ten client firms</li>
+                <li className="border-b border-brand-500 pb-2.5">
                   Daily on three priority firms, weekly on the rest
                 </li>
-                <li className="border-b border-ox-700 pb-2.5">Competitors tracked per firm</li>
+                <li className="border-b border-brand-500 pb-2.5">Competitors tracked per firm</li>
                 <li>Client-ready weekly emails</li>
               </ul>
               <Link
                 href={user ? "/billing" : "/login"}
-                className="mt-8 block bg-canary-400 px-4 py-3 text-center font-semibold text-ox-900 transition-colors hover:bg-canary-200"
+                className="mt-8 block bg-on-brand px-4 py-3 text-center font-semibold text-brand-700 transition-colors hover:bg-brand-100"
               >
                 Start trial
               </Link>
@@ -320,18 +324,18 @@ export default async function Home({
       </section>
 
       {/* Questions, set as a transcript */}
-      <section className="bg-surface-50">
+      <section className="bg-surface-2">
         <div className="mx-auto w-full max-w-6xl px-6 py-20">
-          <h2 className="text-[clamp(2rem,3.6vw,3rem)] text-ink-900">Questions lawyers ask</h2>
+          <h2 className="text-[clamp(2rem,3.6vw,3rem)] text-fg">Questions lawyers ask</h2>
           <dl className="mt-12 max-w-[76ch] space-y-8">
             {FAQS.map((f) => (
-              <div key={f.q} className="border-t border-border-strong pt-6">
-                <dt className="transcript flex gap-3 text-lg text-ink-900">
-                  <span className="text-rule">Q.</span>
+              <div key={f.q} className="border-t border-line-strong pt-6">
+                <dt className="transcript flex gap-3 text-lg text-fg">
+                  <span className="text-danger">Q.</span>
                   <span>{f.q}</span>
                 </dt>
-                <dd className="transcript mt-3 flex gap-3 text-ink-700">
-                  <span className="text-ink-500">A.</span>
+                <dd className="transcript mt-3 flex gap-3 text-fg">
+                  <span className="text-fg-muted">A.</span>
                   <span className="max-w-[68ch]">{f.a}</span>
                 </dd>
               </div>
@@ -341,20 +345,20 @@ export default async function Home({
       </section>
 
       {/* Colophon */}
-      <footer className="border-t-2 border-ox-900 bg-surface-0">
+      <footer className="border-t-2 border-brand-700 bg-surface-1">
         <div className="mx-auto flex w-full max-w-6xl flex-wrap items-baseline justify-between gap-4 px-6 py-10">
-          <Wordmark markClassName="h-6 w-6 text-ox-900" textClassName="text-xl text-ox-900" />
-          <p className="notation text-ink-500">
+          <Wordmark markClassName="h-6 w-6 text-fg" textClassName="text-xl text-fg" />
+          <p className="notation text-fg-muted">
             AI visibility for law firms — ChatGPT, Gemini, Perplexity
           </p>
           <nav className="flex gap-6">
-            <Link href="/about" className="notation text-ink-500 hover:text-ox-700">
+            <Link href="/about" className="notation text-fg-muted hover:text-brand-700">
               About
             </Link>
-            <Link href="/privacy" className="notation text-ink-500 hover:text-ox-700">
+            <Link href="/privacy" className="notation text-fg-muted hover:text-brand-700">
               Privacy
             </Link>
-            <Link href="/terms" className="notation text-ink-500 hover:text-ox-700">
+            <Link href="/terms" className="notation text-fg-muted hover:text-brand-700">
               Terms
             </Link>
           </nav>

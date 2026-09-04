@@ -17,7 +17,7 @@ export default function SignOutButton() {
     <button
       type="button"
       onClick={signOut}
-      className="flex w-full cursor-pointer items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium text-ink-600 hover:bg-surface-50 hover:text-ink-900"
+      className="flex w-full cursor-pointer items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium text-fg-muted hover:bg-surface-2 hover:text-fg"
     >
       <LogOut className="h-5 w-5" aria-hidden />
       Sign out

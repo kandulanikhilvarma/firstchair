@@ -9,9 +9,9 @@ const UPDATED = "August 2026";
    owner and counsel to complete before taking payment. */
 export default function TermsPage() {
   return (
-    <article className="text-ink-700">
-      <h1 className="font-display text-[clamp(2.25rem,5vw,3.25rem)] text-ink-900">Terms</h1>
-      <p className="notation mt-3 text-ink-500">Last updated {UPDATED}</p>
+    <article className="text-fg">
+      <h1 className="font-display text-[clamp(2.25rem,5vw,3.25rem)] text-fg">Terms</h1>
+      <p className="notation mt-3 text-fg-muted">Last updated {UPDATED}</p>
 
       <p className="mt-8 text-lg">
         Plain terms for using First Chair. Using the service means agreeing to them.
@@ -79,7 +79,7 @@ export default function TermsPage() {
         <p>
           The firm data and questions you enter remain yours. You grant us permission to
           process them to run the service, as described in the{" "}
-          <a href="/privacy" className="border-b border-ox-500/40 text-ox-700 hover:border-ox-700">
+          <a href="/privacy" className="border-b border-brand-500/40 text-brand-700 hover:border-brand-500">
             privacy policy
           </a>
           . Engine answers are stored so your scores stay auditable. The software, interface,
@@ -101,7 +101,7 @@ export default function TermsPage() {
           limited to what you paid us in the 12 months before the claim. We do not exclude
           liability the law does not let us exclude.
         </p>
-        <p className="mt-4 border-l-2 border-canary-400 bg-canary-100 px-4 py-3 text-sm text-ink-700">
+        <p className="mt-4 border-l-2 border-brand-500 bg-brand-50 px-4 py-3 text-sm text-fg">
           Operator: [LEGAL ENTITY NAME], [REGISTERED ADDRESS]. Governing law: [JURISDICTION].
           These bracketed details must be completed, and these terms reviewed by counsel,
           before taking payment.
@@ -119,8 +119,8 @@ export default function TermsPage() {
 
 function Section({ title, children }: { title: string; children: React.ReactNode }) {
   return (
-    <section className="mt-12 border-t border-border-strong pt-6">
-      <h2 className="font-display text-2xl text-ox-700">{title}</h2>
+    <section className="mt-12 border-t border-line-strong pt-6">
+      <h2 className="font-display text-2xl text-brand-700">{title}</h2>
       <div className="mt-3 space-y-3">{children}</div>
     </section>
   );
@@ -130,7 +130,7 @@ function List({ items }: { items: string[] }) {
   return (
     <ul className="mt-4 space-y-2.5">
       {items.map((t) => (
-        <li key={t} className="border-b border-border pb-2.5 last:border-0">
+        <li key={t} className="border-b border-line pb-2.5 last:border-0">
           {t}
         </li>
       ))}
@@ -142,7 +142,7 @@ function Mail() {
   return (
     <a
       href="mailto:kandulanikhilvarma@gmail.com"
-      className="border-b border-ox-500/40 text-ox-700 hover:border-ox-700"
+      className="border-b border-brand-500/40 text-brand-700 hover:border-brand-500"
     >
       kandulanikhilvarma@gmail.com
     </a>

@@ -55,8 +55,12 @@ export default async function BillingPage() {
     >
       <main className="mx-auto max-w-4xl px-6 py-10">
         <BackLink href="/dashboard" label="Back to dashboard" />
-        <h1 className="mt-5 font-display text-4xl text-ink-900">Billing</h1>
-        <BillingClient currentPlan={plan} trialEndsAt={trialEndsAt} />
+        <h1 className="mt-5 font-display text-4xl text-fg">Billing</h1>
+        <BillingClient
+          currentPlan={plan}
+          trialEndsAt={trialEndsAt}
+          referralCode={membership?.workspace_id ?? null}
+        />
       </main>
     </Shell>
   );

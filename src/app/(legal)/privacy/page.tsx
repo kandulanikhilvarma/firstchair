@@ -9,11 +9,11 @@ const UPDATED = "August 2026";
    are the owner's facts to supply, and counsel should review before launch. */
 export default function PrivacyPage() {
   return (
-    <article className="text-ink-700">
-      <h1 className="font-display text-[clamp(2.25rem,5vw,3.25rem)] text-ink-900">
+    <article className="text-fg">
+      <h1 className="font-display text-[clamp(2.25rem,5vw,3.25rem)] text-fg">
         Privacy
       </h1>
-      <p className="notation mt-3 text-ink-500">Last updated {UPDATED}</p>
+      <p className="notation mt-3 text-fg-muted">Last updated {UPDATED}</p>
 
       <p className="mt-8 text-lg">
         First Chair records how public AI assistants answer questions about law firms. This
@@ -100,7 +100,7 @@ export default function PrivacyPage() {
           If this policy changes materially we will email account holders rather than quietly
           editing this page. Questions, requests, or complaints: <Mail />.
         </p>
-        <p className="mt-4 border-l-2 border-canary-400 bg-canary-100 px-4 py-3 text-sm text-ink-700">
+        <p className="mt-4 border-l-2 border-brand-500 bg-brand-50 px-4 py-3 text-sm text-fg">
           Operator: [LEGAL ENTITY NAME], [REGISTERED ADDRESS]. These bracketed details must
           be completed, and this policy reviewed by counsel, before taking payment.
         </p>
@@ -111,8 +111,8 @@ export default function PrivacyPage() {
 
 function Section({ title, children }: { title: string; children: React.ReactNode }) {
   return (
-    <section className="mt-12 border-t border-border-strong pt-6">
-      <h2 className="font-display text-2xl text-ox-700">{title}</h2>
+    <section className="mt-12 border-t border-line-strong pt-6">
+      <h2 className="font-display text-2xl text-brand-700">{title}</h2>
       <div className="mt-3 space-y-3">{children}</div>
     </section>
   );
@@ -122,7 +122,7 @@ function List({ items }: { items: string[] }) {
   return (
     <ul className="mt-4 space-y-2.5">
       {items.map((t) => (
-        <li key={t} className="border-b border-border pb-2.5 last:border-0">
+        <li key={t} className="border-b border-line pb-2.5 last:border-0">
           {t}
         </li>
       ))}
@@ -132,8 +132,8 @@ function List({ items }: { items: string[] }) {
 
 function Processor({ name, role }: { name: string; role: string }) {
   return (
-    <div className="border-b border-border pb-3 last:border-0">
-      <dt className="font-semibold text-ink-900">{name}</dt>
+    <div className="border-b border-line pb-3 last:border-0">
+      <dt className="font-semibold text-fg">{name}</dt>
       <dd className="mt-1">{role}</dd>
     </div>
   );
@@ -143,7 +143,7 @@ function Mail() {
   return (
     <a
       href="mailto:kandulanikhilvarma@gmail.com"
-      className="border-b border-ox-500/40 text-ox-700 hover:border-ox-700"
+      className="border-b border-brand-500/40 text-brand-700 hover:border-brand-500"
     >
       kandulanikhilvarma@gmail.com
     </a>

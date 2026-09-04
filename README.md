@@ -10,7 +10,7 @@
 First Chair puts the exact questions clients ask to the three major answer engines every day, records what they say verbatim, and turns it into an explainable visibility score, competitor share-of-voice, and a prioritized fix list.
 
 [![CI](https://github.com/kandulanikhilvarma/firstchair/actions/workflows/ci.yml/badge.svg)](https://github.com/kandulanikhilvarma/firstchair/actions/workflows/ci.yml)
-&nbsp;·&nbsp; Next.js 16 &nbsp;·&nbsp; TypeScript &nbsp;·&nbsp; Supabase &nbsp;·&nbsp; Stripe &nbsp;·&nbsp; 95 unit specs
+&nbsp;·&nbsp; Next.js 16 &nbsp;·&nbsp; TypeScript &nbsp;·&nbsp; Supabase &nbsp;·&nbsp; Stripe &nbsp;·&nbsp; 135 unit specs
 
 </div>
 
@@ -119,12 +119,12 @@ flowchart LR
 
 ## Design
 
-First Chair is dressed as **legal publishing**, not a blue SaaS dashboard — oxblood reporter buckram, canary legal-pad yellow, a red margin rule, Caslon display and Courier for verbatim answers. The full system (tokens, faces, named rules) is recorded in [`DESIGN.md`](DESIGN.md).
+First Chair is drawn as **the Prism** — one question enters, three engines answer, so the identity is the instrument that splits. Indigo always means your firm; each engine owns a hue for life (ChatGPT emerald, Gemini azure, Perplexity rose) across the mark, charts, badges and email. Archivo for display and numerals, IBM Plex Sans for UI, IBM Plex Mono for verbatim answers. Marketing may express the split; the product stays quiet and dense, with a dark mode as a peer and every colour pair contrast-tested in `src/lib/tokens.test.ts`. The full system is recorded in [`DESIGN.md`](DESIGN.md).
 
 ## Project structure
 
 ```
-src/app/            landing · /login · /dashboard · /onboarding · /billing · /settings · /audit/demo · /privacy · /terms
+src/app/            landing · /login · /dashboard (+ /prompts /competitors /reports) · /onboarding · /billing · /settings · /audit/demo · /privacy · /terms
 src/app/api/        /audit · /scan/run · /cron/{scan,weekly} · /stripe/{checkout,webhook,portal} · /auth/callback
 src/proxy.ts        Next 16 proxy (middleware) — auth gate, JWT validated per request
 src/lib/engines/    OpenAI / Gemini / Perplexity clients — retry, timeout, cost logging
@@ -151,7 +151,7 @@ npm run dev                  # http://localhost:3000
 | `npm run build` | Production build |
 | `npm run typecheck` | `tsc --noEmit` |
 | `npm run lint` | ESLint |
-| `npm test` | Vitest — 95 specs |
+| `npm test` | Vitest — 135 specs |
 
 Schema and RLS policies live in [`supabase/migrations`](supabase/migrations); apply with `supabase db reset`. LLM prompts are versioned in [`prompts/`](prompts).
 
@@ -173,7 +173,7 @@ Pre-launch MVP. All nine planned features (F1–F9) are built and verified end t
 | F2 · Auth, magic link, workspace bootstrap | live — verified against production Supabase |
 | F3–F4 · Onboarding → brands, competitors, prompts | live — RLS-enforced, plan-limited |
 | F5 · Daily scan worker | live — queue → engines → extraction → scores, verified with real responses |
-| F6 · Dashboard on live `daily_scores` | live — trend, share of voice, prompt table, citation gaps |
+| F6 · Dashboard on live `daily_scores` | live — trend, share of voice, prompt table, citation gaps, plus Prompts / Competitors / Reports detail pages |
 | F7 · Weekly report email | live — Monday cron blends the week and emails |
 | F8 · Billing (Stripe checkout, webhook state, portal) | live in test mode — signed-webhook lifecycle verified |
 | F9 · Rule-based recommendations | live — citation-gap analysis feeds the dashboard |
