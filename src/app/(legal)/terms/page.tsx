@@ -102,9 +102,7 @@ export default function TermsPage() {
           liability the law does not let us exclude.
         </p>
         <p className="mt-4 border-l-2 border-brand-500 bg-brand-50 px-4 py-3 text-sm text-fg">
-          Operator: [LEGAL ENTITY NAME], [REGISTERED ADDRESS]. Governing law: [JURISDICTION].
-          These bracketed details must be completed, and these terms reviewed by counsel,
-          before taking payment.
+          Operator: Kandula Studio, Warangal, Telangana 506001, India. Governing law: India.
         </p>
       </Section>
 
