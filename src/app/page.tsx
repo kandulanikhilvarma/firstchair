@@ -1,4 +1,3 @@
-import Image from "next/image";
 import Link from "next/link";
 import { redirect } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
@@ -191,24 +190,14 @@ export default async function Home({
       {/* What the record contains — a definition list, not a card grid */}
       <section className="border-b border-line bg-surface-1">
         <div className="mx-auto w-full max-w-6xl px-6 py-20">
-          <div className="grid items-start gap-10 lg:grid-cols-[1fr_minmax(0,26rem)] lg:gap-16">
-            <div>
-              <h2 className="max-w-[16ch] text-[clamp(2rem,3.6vw,3rem)] text-fg">
-                Every number opens to the sentence it came from.
-              </h2>
-              <p className="mt-5 max-w-[62ch] text-lg text-fg">
-                Most visibility tools hand you a score and ask for trust. A partner will ask
-                where the number came from, and you should be able to answer in one click.
-              </p>
-            </div>
-            <Image
-              src="/img/record.jpg"
-              alt="A report bound in oxblood cloth on a walnut desk beside a canary legal pad, fountain pen and reading glasses."
-              width={1536}
-              height={1024}
-              sizes="(max-width: 1024px) 100vw, 26rem"
-              className="w-full"
-            />
+          <div>
+            <h2 className="max-w-[16ch] text-[clamp(2rem,3.6vw,3rem)] text-fg">
+              Every number opens to the sentence it came from.
+            </h2>
+            <p className="mt-5 max-w-[62ch] text-lg text-fg">
+              Most visibility tools hand you a score and ask for trust. A partner will ask
+              where the number came from, and you should be able to answer in one click.
+            </p>
           </div>
 
           <dl className="mt-14 grid gap-x-16 gap-y-10 md:grid-cols-2">
@@ -226,8 +215,7 @@ export default async function Home({
       <section className="border-b border-line bg-brand-50">
         <div className="mx-auto w-full max-w-6xl px-6 py-20">
           <h2 className="text-[clamp(2rem,3.6vw,3rem)] text-fg">How it proceeds</h2>
-          <div className="mt-12 grid items-start gap-10 lg:grid-cols-[1fr_minmax(0,20rem)] lg:gap-14">
-          <ol className="space-y-px">
+          <ol className="mt-12 space-y-px">
             {PROCEEDINGS.map((p) => (
               <li
                 key={p.step}
@@ -241,28 +229,7 @@ export default async function Home({
               </li>
             ))}
           </ol>
-            <Image
-              src="/img/detail.jpg"
-              alt="A hand drawing a canary highlighter line across a page in a cloth-bound volume."
-              width={1000}
-              height={1250}
-              sizes="(max-width: 1024px) 100vw, 20rem"
-              className="w-full"
-            />
-          </div>
         </div>
-      </section>
-
-      {/* A quiet band — the page has been dense; let it breathe before the ask */}
-      <section aria-hidden className="border-b border-line">
-        <Image
-          src="/img/library.jpg"
-          alt=""
-          width={1205}
-          height={742}
-          sizes="100vw"
-          className="h-[40vh] min-h-64 w-full object-cover"
-        />
       </section>
 
       {/* Fee schedule */}
