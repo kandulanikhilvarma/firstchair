@@ -15,14 +15,14 @@ export default function GlobalError({ reset }: { error: Error; reset: () => void
         }}
       >
         <div style={{ textAlign: "center", padding: "2rem" }}>
-          <h1 style={{ color: "#153E75" }}>Something went wrong</h1>
-          <p style={{ color: "#475569" }}>Please reload the page.</p>
+          <h1 style={{ color: "#0b5a52" }}>Something went wrong</h1>
+          <p style={{ color: "#55534b" }}>Please reload the page.</p>
           <button
             type="button"
             onClick={reset}
             style={{
               marginTop: "1rem",
-              background: "#153E75",
+              background: "#0b5a52",
               color: "#fff",
               border: 0,
               borderRadius: 8,

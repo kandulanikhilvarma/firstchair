@@ -122,7 +122,7 @@ export default function AboutPage() {
             in Germany, previously eighteen months in US fintech. One person writes the
             scan engine, reads the engine answers, and answers the support email.
           </p>
-          <blockquote className="ink-in mt-10 max-w-[54ch] border-l-2 border-on-brand/40 pl-6 font-display text-[clamp(1.5rem,2.6vw,2rem)] leading-[1.15] text-on-brand">
+          <blockquote className="ink-in mt-10 max-w-[54ch] border-l-2 border-on-brand/40 pl-6 font-serif text-[clamp(1.5rem,2.6vw,2rem)] leading-[1.2] italic text-on-brand">
             The best data work is invisible. The pipeline nobody notices because it never
             breaks.
           </blockquote>
@@ -193,7 +193,7 @@ export default function AboutPage() {
               key={p.n}
               className="grid gap-x-8 gap-y-2 border-t border-line-strong bg-surface-1/70 px-6 py-7 md:grid-cols-[5rem_1fr]"
             >
-              <span className="notation tnum pt-1 text-danger">{p.n}</span>
+              <span className="notation tnum pt-1 text-accent">{p.n}</span>
               <div>
                 <h3 className="font-display text-2xl text-fg">{p.title}</h3>
                 <p className="mt-2 max-w-[66ch] text-fg">{p.body}</p>
@@ -344,7 +344,7 @@ function Section({
     <section className={field}>
       <div className="mx-auto w-full max-w-6xl px-6 py-20">
         <h2 className="flex items-baseline gap-5 text-[clamp(2rem,3.6vw,3rem)] text-fg">
-          <span className="notation tnum text-danger">{n}</span>
+          <span className="notation tnum text-accent">{n}</span>
           <span>{title}</span>
         </h2>
         <div className="mt-10">{children}</div>

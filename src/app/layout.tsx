@@ -1,26 +1,36 @@
 import type { Metadata } from "next";
-import { Archivo, IBM_Plex_Mono, IBM_Plex_Sans } from "next/font/google";
+import { Fraunces, Hanken_Grotesk, Inter, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 
-/* Prism: Archivo is a wide grotesque set tight and heavy, so a score reads as a
-   figure. IBM Plex Sans carries the UI; IBM Plex Mono is its sibling, reserved
-   for verbatim engine answers so a transcript sits inside the product. */
-const archivo = Archivo({
-  variable: "--font-archivo",
+/* Quiet sans-serifs: Hanken Grotesk is a calm neutral grotesque that still has
+   heavy weights, so a score reads as a figure without shouting. Inter carries
+   the UI; JetBrains Mono is reserved for verbatim engine answers so a transcript
+   sits inside the product. Fraunces is the one serif — pull-quotes and editorial
+   moments only, warmth against the sans. */
+const displayFont = Hanken_Grotesk({
+  variable: "--font-display-face",
   subsets: ["latin"],
-  weight: ["400", "600", "700"],
+  weight: ["500", "600", "700"],
   display: "swap",
 });
 
-const plexSans = IBM_Plex_Sans({
-  variable: "--font-plex-sans",
+const serifFont = Fraunces({
+  variable: "--font-serif-face",
+  subsets: ["latin"],
+  weight: ["400", "500", "600"],
+  style: ["normal", "italic"],
+  display: "swap",
+});
+
+const uiFont = Inter({
+  variable: "--font-ui-face",
   subsets: ["latin"],
   weight: ["400", "500", "600"],
   display: "swap",
 });
 
-const plexMono = IBM_Plex_Mono({
-  variable: "--font-plex-mono",
+const monoFont = JetBrains_Mono({
+  variable: "--font-mono-face",
   subsets: ["latin"],
   weight: ["400", "500"],
   display: "swap",
@@ -52,7 +62,7 @@ export const metadata: Metadata = {
 const DIRECTION_CONTRACT = `<!--
 impeccable-direction seed:993d9e85
 THESIS: One question enters, three engines answer. The product holds those three answers side by side, so the identity is the instrument that splits — not a metaphor borrowed from law.
-OWN-WORLD: Prism. Indigo is always "your firm"; each engine owns a hue forever — ChatGPT emerald, Gemini azure, Perplexity rose — in the mark, charts, badges and email. Archivo display, IBM Plex Sans UI, IBM Plex Mono for verbatim answers. Radius 6/10/14, measured contrast, dark mode as a peer.
+OWN-WORLD: Prism. Teal is always "your firm"; each engine owns a hue forever — ChatGPT clay, Gemini slate blue, Perplexity plum — in the mark, charts, badges and email. Quiet sans-serifs: Hanken Grotesk display, Inter UI, JetBrains Mono for verbatim answers, Fraunces serif for pull-quotes. Warm-stone neutrals, marketing accents amber + rose. Radius 6/10/14, measured contrast, dark mode as a peer.
 STORY: A partner or agency owner learns the machines already answer questions about their firm daily, sees a verbatim answer naming someone else, and runs a free audit.
 FIRST VIEWPORT: Marketing may express the split at full strength; the product stays quiet and dense. A display headline, the audit form to its side, and beneath it a real transcript excerpt with a competitor named.
 FORM: Prism, two registers — marketing expressive, product quiet and fast.
@@ -67,7 +77,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${archivo.variable} ${plexSans.variable} ${plexMono.variable} h-full antialiased`}
+      className={`${displayFont.variable} ${uiFont.variable} ${monoFont.variable} ${serifFont.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
         <div hidden dangerouslySetInnerHTML={{ __html: DIRECTION_CONTRACT }} />

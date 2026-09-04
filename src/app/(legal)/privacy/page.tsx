@@ -101,8 +101,7 @@ export default function PrivacyPage() {
           editing this page. Questions, requests, or complaints: <Mail />.
         </p>
         <p className="mt-4 border-l-2 border-brand-500 bg-brand-50 px-4 py-3 text-sm text-fg">
-          Operator: [LEGAL ENTITY NAME], [REGISTERED ADDRESS]. These bracketed details must
-          be completed, and this policy reviewed by counsel, before taking payment.
+          Operator: Kandula Studio, Warangal, Telangana 506001, India.
         </p>
       </Section>
     </article>

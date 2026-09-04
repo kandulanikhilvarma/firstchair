@@ -15,7 +15,17 @@ jobs:
           node-version: 22
           cache: npm
       - run: npm ci
-      - run: npm audit --audit-level=high
       - run: npm run typecheck
       - run: npm run lint
       - run: npm test
+      # npm's audit endpoint is being retired and intermittently returns 400/503.
+      # Retry so infra flake doesn't red the PR; a real high advisory still fails
+      # every attempt and fails the job. Runs last so real checks always report.
+      - name: npm audit (high)
+        run: |
+          for i in 1 2 3; do
+            if npm audit --audit-level=high; then exit 0; fi
+            echo "audit attempt $i failed; retrying in 10s"
+            sleep 10
+          done
+          npm audit --audit-level=high
