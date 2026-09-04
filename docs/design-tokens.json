@@ -1,0 +1,340 @@
+{
+  "$description": "First Chair — Prism design tokens (W3C DTCG). Generated from src/app/globals.css. Import via Figma Tokens Studio. Do not hand-edit; run scripts/export-design-tokens.mjs.",
+  "light": {
+    "neutral": {
+      "bg": {
+        "$type": "color",
+        "$value": "#ffffff"
+      },
+      "surface-1": {
+        "$type": "color",
+        "$value": "#fafafd"
+      },
+      "surface-2": {
+        "$type": "color",
+        "$value": "#f5f5fa"
+      },
+      "line": {
+        "$type": "color",
+        "$value": "#e0e0ea"
+      },
+      "line-strong": {
+        "$type": "color",
+        "$value": "#c9c9d8"
+      },
+      "line-input": {
+        "$type": "color",
+        "$value": "#8e8ea8"
+      },
+      "fg": {
+        "$type": "color",
+        "$value": "#14141a"
+      },
+      "fg-muted": {
+        "$type": "color",
+        "$value": "#5a5a72"
+      },
+      "fg-subtle": {
+        "$type": "color",
+        "$value": "#73738b"
+      }
+    },
+    "brand": {
+      "brand-50": {
+        "$type": "color",
+        "$value": "#f3f3ff"
+      },
+      "brand-100": {
+        "$type": "color",
+        "$value": "#e8e8ff"
+      },
+      "brand-500": {
+        "$type": "color",
+        "$value": "#5b5bf5"
+      },
+      "brand-600": {
+        "$type": "color",
+        "$value": "#4a45e0"
+      },
+      "brand-700": {
+        "$type": "color",
+        "$value": "#3a34c4"
+      },
+      "on-brand": {
+        "$type": "color",
+        "$value": "#ffffff"
+      }
+    },
+    "engine": {
+      "openai": {
+        "$type": "color",
+        "$value": "#0e9f6e"
+      },
+      "openai-text": {
+        "$type": "color",
+        "$value": "#07734f"
+      },
+      "gemini": {
+        "$type": "color",
+        "$value": "#2e90fa"
+      },
+      "gemini-text": {
+        "$type": "color",
+        "$value": "#1667c4"
+      },
+      "perplexity": {
+        "$type": "color",
+        "$value": "#f04f6a"
+      },
+      "perplexity-text": {
+        "$type": "color",
+        "$value": "#c22645"
+      }
+    },
+    "series": {
+      "series-1": {
+        "$type": "color",
+        "$value": "#5b5bf5"
+      },
+      "series-2": {
+        "$type": "color",
+        "$value": "#0e9f6e"
+      },
+      "series-3": {
+        "$type": "color",
+        "$value": "#2e90fa"
+      },
+      "series-4": {
+        "$type": "color",
+        "$value": "#f04f6a"
+      },
+      "series-5": {
+        "$type": "color",
+        "$value": "#f59e0b"
+      },
+      "series-6": {
+        "$type": "color",
+        "$value": "#65a30d"
+      }
+    },
+    "state": {
+      "success": {
+        "$type": "color",
+        "$value": "#0e7a4e"
+      },
+      "danger": {
+        "$type": "color",
+        "$value": "#c22645"
+      },
+      "warning": {
+        "$type": "color",
+        "$value": "#b45309"
+      }
+    }
+  },
+  "dark": {
+    "neutral": {
+      "bg": {
+        "$type": "color",
+        "$value": "#0b0b10"
+      },
+      "surface-1": {
+        "$type": "color",
+        "$value": "#14141c"
+      },
+      "surface-2": {
+        "$type": "color",
+        "$value": "#1c1c26"
+      },
+      "line": {
+        "$type": "color",
+        "$value": "#2a2a38"
+      },
+      "line-strong": {
+        "$type": "color",
+        "$value": "#3a3a4c"
+      },
+      "line-input": {
+        "$type": "color",
+        "$value": "#5c5c76"
+      },
+      "fg": {
+        "$type": "color",
+        "$value": "#ececf5"
+      },
+      "fg-muted": {
+        "$type": "color",
+        "$value": "#a3a3b8"
+      },
+      "fg-subtle": {
+        "$type": "color",
+        "$value": "#7a7a93"
+      }
+    },
+    "brand": {
+      "brand-50": {
+        "$type": "color",
+        "$value": "#17172c"
+      },
+      "brand-100": {
+        "$type": "color",
+        "$value": "#1e1e3a"
+      },
+      "brand-500": {
+        "$type": "color",
+        "$value": "#7c7cf8"
+      },
+      "brand-600": {
+        "$type": "color",
+        "$value": "#8f8ffa"
+      },
+      "brand-700": {
+        "$type": "color",
+        "$value": "#a3a3fc"
+      },
+      "on-brand": {
+        "$type": "color",
+        "$value": "#0b0b10"
+      }
+    },
+    "engine": {
+      "openai": {
+        "$type": "color",
+        "$value": "#34d399"
+      },
+      "openai-text": {
+        "$type": "color",
+        "$value": "#34d399"
+      },
+      "gemini": {
+        "$type": "color",
+        "$value": "#60a5fa"
+      },
+      "gemini-text": {
+        "$type": "color",
+        "$value": "#60a5fa"
+      },
+      "perplexity": {
+        "$type": "color",
+        "$value": "#fb7185"
+      },
+      "perplexity-text": {
+        "$type": "color",
+        "$value": "#fb7185"
+      }
+    },
+    "series": {
+      "series-1": {
+        "$type": "color",
+        "$value": "#7c7cf8"
+      },
+      "series-2": {
+        "$type": "color",
+        "$value": "#34d399"
+      },
+      "series-3": {
+        "$type": "color",
+        "$value": "#60a5fa"
+      },
+      "series-4": {
+        "$type": "color",
+        "$value": "#fb7185"
+      },
+      "series-5": {
+        "$type": "color",
+        "$value": "#fbbf24"
+      },
+      "series-6": {
+        "$type": "color",
+        "$value": "#a3e635"
+      }
+    },
+    "state": {
+      "success": {
+        "$type": "color",
+        "$value": "#34d399"
+      },
+      "danger": {
+        "$type": "color",
+        "$value": "#fb7185"
+      },
+      "warning": {
+        "$type": "color",
+        "$value": "#fbbf24"
+      }
+    }
+  },
+  "radius": {
+    "sm": {
+      "$type": "dimension",
+      "$value": "6px"
+    },
+    "md": {
+      "$type": "dimension",
+      "$value": "10px"
+    },
+    "lg": {
+      "$type": "dimension",
+      "$value": "14px"
+    },
+    "full": {
+      "$type": "dimension",
+      "$value": "999px"
+    }
+  },
+  "font": {
+    "display": {
+      "$type": "fontFamily",
+      "$value": [
+        "Archivo",
+        "system-ui",
+        "sans-serif"
+      ]
+    },
+    "sans": {
+      "$type": "fontFamily",
+      "$value": [
+        "IBM Plex Sans",
+        "system-ui",
+        "sans-serif"
+      ]
+    },
+    "mono": {
+      "$type": "fontFamily",
+      "$value": [
+        "IBM Plex Mono",
+        "ui-monospace",
+        "monospace"
+      ]
+    }
+  },
+  "easing": {
+    "out": {
+      "$type": "cubicBezier",
+      "$value": [
+        0.23,
+        1,
+        0.32,
+        1
+      ]
+    },
+    "in-out": {
+      "$type": "cubicBezier",
+      "$value": [
+        0.77,
+        0,
+        0.175,
+        1
+      ]
+    },
+    "drawer": {
+      "$type": "cubicBezier",
+      "$value": [
+        0.32,
+        0.72,
+        0,
+        1
+      ]
+    }
+  }
+}

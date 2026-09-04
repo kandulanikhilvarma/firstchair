@@ -9,6 +9,7 @@
     "lint": "eslint",
     "typecheck": "tsc --noEmit",
     "test": "vitest run",
+    "tokens": "node scripts/export-design-tokens.mjs",
     "probe": "tsx --env-file=.env.local scripts/day1-probe.ts"
   },
   "dependencies": {

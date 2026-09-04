@@ -409,3 +409,12 @@ Variants live in `public/brand/`: `mark.svg` (colour, light grounds),
 `currentColor`), `icon-app.svg` (512px, on an ink ground, for app icons and
 favicons). Clear space equals the height of the chevron on all sides. Minimum
 size 16px; below that use the mono variant, whose rays are weighted to survive.
+
+## Figma handoff
+
+`docs/design-tokens.json` is the W3C DTCG export of every colour (light and dark),
+radius, family and easing above — import it into Figma via the Tokens Studio
+plugin and swatches map 1:1 to the `--color-*` classes in code. It is generated
+from `globals.css`, not hand-kept: run `npm run tokens` after a token change so
+the handoff can never drift from what ships. The document above stays the source
+for the *why*; `globals.css` and this JSON are the source for the values.
