@@ -319,6 +319,15 @@ function SaveStep({
           <p role="alert" className="text-sm text-danger">
             {state.message}
           </p>
+          {/* A plan-limit error names Billing as the way out; give it a real link. */}
+          {/Billing/.test(state.message) && (
+            <Link
+              href="/billing"
+              className="self-start bg-brand-500 px-5 py-2.5 font-semibold text-on-brand transition-colors hover:bg-brand-600"
+            >
+              Go to Billing
+            </Link>
+          )}
           <button
             type="button"
             onClick={run}

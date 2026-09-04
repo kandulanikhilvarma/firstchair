@@ -70,7 +70,7 @@ export default function LoginForm() {
             type="button"
             onClick={onResend}
             disabled={resending}
-            className="notation mt-5 cursor-pointer border-b-2 border-warning pb-0.5 text-brand-700 hover:border-brand-500 disabled:opacity-60"
+            className="notation mt-5 cursor-pointer border-b-2 border-brand-500 pb-0.5 text-brand-700 hover:border-brand-700 disabled:opacity-60"
           >
             {resending ? "Sending…" : "Send another link"}
           </button>

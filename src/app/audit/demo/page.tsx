@@ -51,7 +51,7 @@ export default function AuditDemo() {
             </p>
           </div>
           <span
-            className="tnum flex h-12 w-12 items-center justify-center border-2 border-warning text-lg font-bold"
+            className="tnum flex h-12 w-12 items-center justify-center border-2 border-brand-500 text-lg font-bold"
             aria-label="Score 62 out of 100"
           >
             62

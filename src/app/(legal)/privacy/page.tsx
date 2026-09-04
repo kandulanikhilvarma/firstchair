@@ -100,7 +100,7 @@ export default function PrivacyPage() {
           If this policy changes materially we will email account holders rather than quietly
           editing this page. Questions, requests, or complaints: <Mail />.
         </p>
-        <p className="mt-4 border-l-2 border-warning bg-brand-50 px-4 py-3 text-sm text-fg">
+        <p className="mt-4 border-l-2 border-brand-500 bg-brand-50 px-4 py-3 text-sm text-fg">
           Operator: [LEGAL ENTITY NAME], [REGISTERED ADDRESS]. These bracketed details must
           be completed, and this policy reviewed by counsel, before taking payment.
         </p>

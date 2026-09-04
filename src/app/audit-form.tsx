@@ -33,6 +33,10 @@ export default function AuditForm() {
     setStatus("submitting");
     setResult(null);
     const data = Object.fromEntries(new FormData(e.currentTarget));
+    // Carry a referral tag from the link the lead arrived on (?ref=), so a
+    // referred audit can be credited later.
+    const ref = new URLSearchParams(window.location.search).get("ref");
+    if (ref) data.ref = ref;
     try {
       const res = await fetch("/api/audit", {
         method: "POST",

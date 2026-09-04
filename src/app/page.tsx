@@ -110,7 +110,7 @@ export default async function Home({
         {user ? (
           <Link
             href="/dashboard"
-            className="notation border-b-2 border-warning pb-0.5 text-fg hover:border-brand-500"
+            className="notation border-b-2 border-brand-500 pb-0.5 text-fg hover:border-brand-700"
           >
             Go to dashboard
           </Link>
@@ -121,7 +121,7 @@ export default async function Home({
             </Link>
             <Link
               href="/login"
-              className="notation border-b-2 border-warning pb-0.5 text-fg hover:border-brand-500"
+              className="notation border-b-2 border-brand-500 pb-0.5 text-fg hover:border-brand-700"
             >
               Start free trial
             </Link>
@@ -147,7 +147,7 @@ export default async function Home({
             <p className="mt-6">
               <Link
                 href="/audit/demo"
-                className="notation border-b border-warning/60 pb-0.5 text-warning hover:border-warning"
+                className="notation border-b border-on-brand/50 pb-0.5 text-on-brand hover:border-on-brand"
               >
                 See a finished report first
               </Link>
@@ -162,13 +162,13 @@ export default async function Home({
         {/* The proof: a verbatim answer, inking in as a stamp presses */}
         <div className="border-t border-brand-500">
           <div className="mx-auto w-full max-w-6xl px-6 py-14">
-            <p className="notation text-warning">
+            <p className="notation text-on-brand/80">
               Asked of {TRANSCRIPT.engine} — “{TRANSCRIPT.question}”
             </p>
-            <blockquote className="ink-in transcript mt-5 max-w-[74ch] border-l-2 border-warning pl-6 text-lg text-on-brand">
+            <blockquote className="ink-in transcript mt-5 max-w-[74ch] border-l-2 border-on-brand/40 pl-6 text-lg text-on-brand">
               {TRANSCRIPT.answer.map((part, i) =>
                 part.firm ? (
-                  <mark key={i} className="bg-warning px-1 font-bold text-fg">
+                  <mark key={i} className="bg-on-brand px-1 font-bold text-brand-700">
                     {part.text}
                   </mark>
                 ) : (
@@ -177,7 +177,7 @@ export default async function Home({
               )}
             </blockquote>
             <p className="ink-in ink-in-2 mt-6 flex flex-wrap items-baseline gap-x-3 text-on-brand">
-              <span className="notation text-warning">Your firm</span>
+              <span className="notation text-on-brand/80">Your firm</span>
               <span className="transcript text-lg">not mentioned</span>
             </p>
             <p className="mt-8 text-xs text-on-brand/70">
@@ -280,6 +280,9 @@ export default async function Home({
                 <span className="tnum font-display text-5xl text-fg">$49</span>
                 <span className="notation text-fg-muted">per month</span>
               </p>
+              <p className="tnum mt-1 text-sm text-fg-muted">
+                or $490 a year — <span className="font-medium text-success">save $98</span>
+              </p>
               <ul className="mt-6 space-y-2.5 text-fg">
                 <li className="border-b border-line pb-2.5">One firm</li>
                 <li className="border-b border-line pb-2.5">20 questions, scanned daily</li>
@@ -300,6 +303,7 @@ export default async function Home({
                 <span className="tnum font-display text-5xl">$149</span>
                 <span className="notation text-on-brand">per month</span>
               </p>
+              <p className="tnum mt-1 text-sm text-on-brand/85">or $1,490 a year — save $298</p>
               <ul className="mt-6 space-y-2.5 text-on-brand">
                 <li className="border-b border-brand-500 pb-2.5">Ten client firms</li>
                 <li className="border-b border-brand-500 pb-2.5">
@@ -310,7 +314,7 @@ export default async function Home({
               </ul>
               <Link
                 href={user ? "/billing" : "/login"}
-                className="mt-8 block bg-warning px-4 py-3 text-center font-semibold text-fg transition-colors hover:bg-brand-100"
+                className="mt-8 block bg-on-brand px-4 py-3 text-center font-semibold text-brand-700 transition-colors hover:bg-brand-100"
               >
                 Start trial
               </Link>

@@ -60,6 +60,9 @@ export async function POST(request: Request) {
     customer: customerId,
     line_items: [{ price: priceId, quantity: 1 }],
     subscription_data: { trial_period_days: 7 },
+    // Referral and launch discounts ride on Stripe promotion codes rather than
+    // custom coupon plumbing — a referred lead redeems the code we issue here.
+    allow_promotion_codes: true,
     // card required up front even during trial (master plan)
     payment_method_collection: "always",
     client_reference_id: membership.workspace_id,

@@ -78,13 +78,27 @@ function ViewSiteLink({ onNavigate }: { onNavigate?: () => void }) {
 function PlanBanner({ plan, trialDaysLeft }: { plan: string | null; trialDaysLeft: number | null }) {
   if (plan === "trial" && trialDaysLeft !== null) {
     const daysLeft = trialDaysLeft;
+    // Urgency climbs as the trial runs out — the last stretch is where a nudge
+    // converts, so it changes colour rather than just counting down.
+    const urgent = daysLeft <= 3;
     return (
-      <div className="flex flex-wrap items-center justify-between gap-2 border-b border-line bg-brand-50 px-4 py-2 text-sm lg:px-6">
+      <div
+        className={`flex flex-wrap items-center justify-between gap-2 border-b border-line px-4 py-2 text-sm lg:px-6 ${
+          urgent ? "bg-warning/15" : "bg-brand-50"
+        }`}
+      >
         <span className="font-medium text-fg">
-          <span className="tnum font-semibold">{daysLeft}</span> day
-          {daysLeft === 1 ? "" : "s"} left in your free trial.
+          {daysLeft === 0 ? (
+            "Last day of your free trial."
+          ) : (
+            <>
+              <span className="tnum font-semibold">{daysLeft}</span> day
+              {daysLeft === 1 ? "" : "s"} left in your free trial.
+            </>
+          )}{" "}
+          <span className="text-fg-muted">Plans from $49/mo.</span>
         </span>
-        <Link href="/billing" className="font-semibold text-brand-700 hover:text-brand-700">
+        <Link href="/billing" className="font-semibold text-brand-700 hover:text-brand-500">
           Choose a plan →
         </Link>
       </div>
@@ -206,7 +220,7 @@ export default function Shell({
               saveOnboarding enforces the plan limit — no separate flow needed. */}
           <Link
             href="/onboarding"
-            className="notation border-b-2 border-warning pb-0.5 text-brand-700 hover:border-brand-500"
+            className="notation border-b-2 border-brand-500 pb-0.5 text-brand-700 hover:border-brand-700"
           >
             Add a firm
           </Link>

@@ -18,6 +18,9 @@ const auditRequestSchema = z.object({
   city: z.string().trim().min(2).max(80),
   practiceArea: z.string().trim().min(2).max(80),
   email: z.string().trim().email().max(200),
+  // Optional referral tag from the link the lead arrived on. Untrusted, so it's
+  // length-capped and only ever stored/echoed, never used to look anything up.
+  ref: z.string().trim().max(64).optional(),
 });
 
 const AUDIT_PROMPTS = 5;
@@ -110,6 +113,7 @@ export async function POST(req: Request) {
     city: parsed.city,
     practice_area: parsed.practiceArea,
     result,
+    referred_by: parsed.ref ?? null,
   });
 
   const { subject, html } = renderAuditEmail(result);

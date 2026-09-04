@@ -105,7 +105,7 @@ export default function AboutPage() {
         </Link>
         <Link
           href="/login"
-          className="notation border-b-2 border-warning pb-0.5 text-fg hover:border-brand-500"
+          className="notation border-b-2 border-brand-500 pb-0.5 text-fg hover:border-brand-700"
         >
           Start free trial
         </Link>
@@ -122,7 +122,7 @@ export default function AboutPage() {
             in Germany, previously eighteen months in US fintech. One person writes the
             scan engine, reads the engine answers, and answers the support email.
           </p>
-          <blockquote className="ink-in mt-10 max-w-[54ch] border-l-2 border-warning pl-6 font-display text-[clamp(1.5rem,2.6vw,2rem)] leading-[1.15] text-on-brand">
+          <blockquote className="ink-in mt-10 max-w-[54ch] border-l-2 border-on-brand/40 pl-6 font-display text-[clamp(1.5rem,2.6vw,2rem)] leading-[1.15] text-on-brand">
             The best data work is invisible. The pipeline nobody notices because it never
             breaks.
           </blockquote>
@@ -295,7 +295,7 @@ export default function AboutPage() {
           </div>
           <Link
             href="/"
-            className="bg-warning px-5 py-3 font-semibold text-fg transition-colors hover:bg-brand-100"
+            className="bg-on-brand px-5 py-3 font-semibold text-brand-700 transition-colors hover:bg-brand-100"
           >
             Run a free audit
           </Link>

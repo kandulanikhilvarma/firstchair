@@ -32,13 +32,16 @@ const PLANS = [
 export default function BillingClient({
   currentPlan,
   trialEndsAt,
+  referralCode,
 }: {
   currentPlan: string;
   trialEndsAt: string | null;
+  referralCode: string | null;
 }) {
   const [interval, setInterval] = useState<Interval>("monthly");
   const [pending, setPending] = useState<string | null>(null);
   const [error, setError] = useState("");
+  const [copied, setCopied] = useState(false);
 
   async function checkout(plan: "solo" | "agency") {
     setPending(plan);
@@ -103,7 +106,7 @@ export default function BillingClient({
             type="button"
             onClick={manage}
             disabled={pending !== null}
-            className="notation cursor-pointer border-b-2 border-warning pb-0.5 text-brand-700 hover:border-brand-500 disabled:opacity-60"
+            className="notation cursor-pointer border-b-2 border-brand-500 pb-0.5 text-brand-700 hover:border-brand-700 disabled:opacity-60"
           >
             {pending === "portal" ? "Opening…" : "Manage billing"}
           </button>
@@ -163,6 +166,11 @@ export default function BillingClient({
                   per {interval === "monthly" ? "month" : "year"}
                 </span>
               </p>
+              {interval === "annual" && (
+                <p className={`tnum mt-1 text-sm font-medium ${dark ? "text-on-brand/85" : "text-success"}`}>
+                  Save ${p.monthly * 12 - p.annual} a year
+                </p>
+              )}
               <ul className="mt-6 flex flex-1 flex-col gap-2.5">
                 {p.features.map((f) => (
                   <li
@@ -181,7 +189,7 @@ export default function BillingClient({
                 disabled={isCurrent || pending !== null}
                 className={`mt-8 cursor-pointer px-4 py-3 font-semibold transition-colors disabled:cursor-default disabled:opacity-60 ${
                   dark
-                    ? "bg-warning text-fg hover:bg-brand-100"
+                    ? "bg-on-brand text-brand-700 hover:bg-brand-100"
                     : "border border-brand-500 text-brand-700 hover:bg-brand-600 hover:text-on-brand"
                 }`}
               >
@@ -197,6 +205,46 @@ export default function BillingClient({
           {error}
         </p>
       )}
+
+      {referralCode && (
+        <section className="mt-12 border-t border-line-strong pt-8">
+          <h2 className="notation text-fg-muted">Refer a firm</h2>
+          <p className="mt-2 max-w-prose text-sm text-fg">
+            Share your link. When someone you send subscribes, email us and we&apos;ll credit you a
+            free month.
+          </p>
+          <div className="mt-4 flex flex-wrap items-stretch gap-2">
+            <code className="transcript flex-1 truncate border border-line-strong bg-surface-2 px-3 py-2 text-sm text-fg">
+              {referralLink(referralCode)}
+            </code>
+            <button
+              type="button"
+              onClick={async () => {
+                try {
+                  await navigator.clipboard.writeText(referralLink(referralCode));
+                  setCopied(true);
+                  window.setTimeout(() => setCopied(false), 2000);
+                } catch {
+                  setError("Could not copy — select the link and copy it manually.");
+                }
+              }}
+              className="cursor-pointer bg-brand-500 px-4 py-2 text-sm font-semibold text-on-brand transition-colors hover:bg-brand-600"
+            >
+              {copied ? "Copied" : "Copy link"}
+            </button>
+          </div>
+        </section>
+      )}
     </div>
   );
+}
+
+/** The public audit link tagged with the referrer's code. Built from the app
+ *  URL so it is stable across SSR and client — no window read on first paint. */
+function referralLink(code: string): string {
+  const base = (process.env.NEXT_PUBLIC_APP_URL ?? "https://rankwell-seven.vercel.app").replace(
+    /\/$/,
+    "",
+  );
+  return `${base}/?ref=${code}`;
 }
